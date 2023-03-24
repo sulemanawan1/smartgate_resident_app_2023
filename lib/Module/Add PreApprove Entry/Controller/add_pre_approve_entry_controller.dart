@@ -7,7 +7,7 @@ import 'package:userapp/Routes/set_routes.dart';
 import '../../../Constants/api_routes.dart';
 import '../../HomeScreen/Model/residents.dart';
 import '../../Login/Model/User.dart';
-import '../Model/GateKeeper.dart';
+import '../Model/gatekeeper.dart';
 
 class AddPreApproveEntryController extends GetxController {
   late final User userdata;

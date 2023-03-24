@@ -160,7 +160,8 @@ Future<List<Residents>>      loginResidentDetails(
 
     final List<Residents> residents = (mydata as List).map((e) =>  Residents(id: e['id'],
         residentid: e['residentid'], subadminid: e['subadminid'], country: e["country"],
-        state: e["state"], city: e["city"], societyname:e ["societyname"], phasename: e["phasename"],
+        state: e["state"], city: e["city"], societyname:e ["societyname"],
+        phasename: e["phasename"],
         blockname:e["blockname"], streetname: e["streetname"], houseid:e ["houseid"],
         houseaddress: e["houseaddress"], vechileno: e["vechileno"],
         residenttype:e ["residenttype"],

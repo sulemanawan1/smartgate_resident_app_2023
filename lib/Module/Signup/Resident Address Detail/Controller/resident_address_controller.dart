@@ -5,17 +5,17 @@ import 'package:http/http.dart' as Http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/Apartment.dart';
-import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/Phase.dart';
+import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/apartment.dart';
+import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/phase.dart';
 import 'package:userapp/Services/Shared%20Preferences/MySharedPreferences.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../../Login/Model/User.dart';
-import '../Model/Building.dart';
-import '../Model/Floor.dart';
-import '../Model/HousesApartmentsModel.dart';
-import '../Model/Society.dart';
-import '../Model/Street.dart';
+import '../Model/building.dart';
+import '../Model/floor.dart';
+import '../Model/measurement.dart';
+import '../Model/society.dart';
+import '../Model/street.dart';
 import '../Model/block.dart';
 import '../Model/house.dart';
 
@@ -54,7 +54,7 @@ class ResidentAddressDetailController extends GetxController {
   Floor? floor;
   Apartment? apartment;
 
-  HousesApartmentsModel? housesApartmentsModel;
+  Measurement? housesApartmentsModel;
 
   String rentalorowner = 'Rental';
   var societyli = <Society>[];
@@ -64,7 +64,7 @@ class ResidentAddressDetailController extends GetxController {
   var blockli = <Block>[];
   var streetli = <Street>[];
   var houseli = <House>[];
-  var housesApartments = <HousesApartmentsModel>[];
+  var housesApartments = <Measurement>[];
 
   /* for apartments */
   var buildingli = <Building>[];
@@ -506,7 +506,7 @@ class ResidentAddressDetailController extends GetxController {
               country: e['country'],
               state: e['state'],
               city: e['city'],
-              type: e['type'],structuretype: e['structuretype']
+              type: e['type'],structureType: e['structuretype']
             ))
         .toList();
 
@@ -532,7 +532,7 @@ class ResidentAddressDetailController extends GetxController {
               id: e['id'],
               address: e['address'],
               subadminid: e['subadminid'],
-              societyid: e['societyid'],iteration: e['iteration'],dynamiId: e['dynamicid']
+              societyid: e['societyid'],iteration: e['iteration'],dynamicId: e['dynamicid']
             ))
         .toList();
 
@@ -685,7 +685,7 @@ print(data);
     update();
   }
 
-  Future<List<HousesApartmentsModel>> housesApartmentsModelApi(
+  Future<List<Measurement>> housesApartmentsModelApi(
       {required int subadminid,
       required String token,
       required String type}) async {
@@ -706,7 +706,7 @@ print(data);
     var data = response.data['data'];
 
     housesApartments = (data as List)
-        .map((e) => HousesApartmentsModel(
+        .map((e) => Measurement(
             id: e['id'],
             subadminid: e['subadminid'],
             charges: e['charges'],

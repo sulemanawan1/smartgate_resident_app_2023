@@ -1,6 +1,4 @@
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +12,6 @@ import 'package:userapp/Widgets/My%20Button/my_button.dart';
 import '../../../Constants/constants.dart';
 import 'package:jazzcash_flutter/jazzcash_flutter.dart';
 
-
 class HomeScreen extends GetView {
   final HomeScreenController _homeScreenController =
       Get.put(HomeScreenController());
@@ -22,7 +19,6 @@ class HomeScreen extends GetView {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
           key: _homeScreenController.scaffoldKey,
           drawer: Drawer(
             child: ListView(
@@ -46,7 +42,6 @@ class HomeScreen extends GetView {
                         ),
                       ],
                     )),
-
                 ListTile(
                   leading: Icon(
                     Icons.logout,
@@ -54,9 +49,8 @@ class HomeScreen extends GetView {
                   ),
                   title: Text("Logout"),
                   onTap: () {
-
-                    _homeScreenController.logoutApi(token: _homeScreenController.user.bearerToken!);
-
+                    _homeScreenController.logoutApi(
+                        token: _homeScreenController.user.bearerToken!);
                   },
                 ),
               ],
@@ -97,28 +91,27 @@ class HomeScreen extends GetView {
                       ],
                     ),
                   ),
-
                   FutureBuilder(
-
                       future:
                           //Family member Check
-                      _homeScreenController.user.roleId == 5
-                          ? _homeScreenController.loginResidentDetails(
-                              userid: _homeScreenController.user.residentid!,
-                              token: _homeScreenController.user.bearerToken!)
-                          : // Login user Resident
-                      _homeScreenController.loginResidentDetails(
-                              userid: _homeScreenController.user.userid!,
-                              token: _homeScreenController.user.bearerToken!),
+                          _homeScreenController.user.roleId == 5
+                              ? _homeScreenController.loginResidentDetails(
+                                  userid:
+                                      _homeScreenController.user.residentid!,
+                                  token:
+                                      _homeScreenController.user.bearerToken!)
+                              : // Login user Resident
+                              _homeScreenController.loginResidentDetails(
+                                  userid: _homeScreenController.user.userid!,
+                                  token:
+                                      _homeScreenController.user.bearerToken!),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
-
                         if (snapshot.hasData) {
-                          return
-                            snapshot.data[0].status == 0
+                          return snapshot.data[0].status == 0
                               ? SingleChildScrollView(
-
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       SizedBox(
                                         height: 100,
@@ -147,10 +140,9 @@ class HomeScreen extends GetView {
                                       ),
                                     ],
                                   ),
-                              )
-                              :
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                                )
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Padding(
                                     //   padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
@@ -199,7 +191,8 @@ class HomeScreen extends GetView {
                                                   width: 259,
                                                   height: 99,
                                                   decoration: BoxDecoration(
-                                                      color: HexColor('#FEFBF2')),
+                                                      color:
+                                                          HexColor('#FEFBF2')),
                                                 ),
                                                 Padding(
                                                   padding:
@@ -213,8 +206,8 @@ class HomeScreen extends GetView {
                                                         fontWeight:
                                                             FontWeight.w400,
                                                         fontSize: 10,
-                                                        color:
-                                                            HexColor('#B5B3B6')),
+                                                        color: HexColor(
+                                                            '#B5B3B6')),
                                                   ),
                                                 ),
                                                 Padding(
@@ -229,8 +222,8 @@ class HomeScreen extends GetView {
                                                         fontWeight:
                                                             FontWeight.w400,
                                                         fontSize: 12,
-                                                        color:
-                                                            HexColor('#CF6058')),
+                                                        color: HexColor(
+                                                            '#CF6058')),
                                                   ),
                                                 ),
                                                 Padding(
@@ -245,8 +238,8 @@ class HomeScreen extends GetView {
                                                         fontWeight:
                                                             FontWeight.w400,
                                                         fontSize: 12,
-                                                        color:
-                                                            HexColor('#000000')),
+                                                        color: HexColor(
+                                                            '#000000')),
                                                   ),
                                                 ),
                                                 Padding(
@@ -269,8 +262,8 @@ class HomeScreen extends GetView {
                                                         fontWeight:
                                                             FontWeight.w400,
                                                         fontSize: 12,
-                                                        color:
-                                                            HexColor('#CF6058')),
+                                                        color: HexColor(
+                                                            '#CF6058')),
                                                   ),
                                                 ),
                                               ],
@@ -292,8 +285,8 @@ class HomeScreen extends GetView {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(35, 8, 21, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
                                       child: Row(
                                         children: [
                                           SizedBox(
@@ -303,7 +296,8 @@ class HomeScreen extends GetView {
                                               onTap: () {
                                                 Get.toNamed(adminreports,
                                                     arguments: [
-                                                      _homeScreenController.user,
+                                                      _homeScreenController
+                                                          .user,
                                                       snapshot.data[0]
                                                     ]);
                                               },
@@ -314,7 +308,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/report_icon.png',
                                                           height: 25,
@@ -322,32 +317,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Complaint',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 0, 0),
                                                       child: Text(
                                                         'Complaint for your Apartments',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -368,9 +371,11 @@ class HomeScreen extends GetView {
                                             height: 65,
                                             child: GestureDetector(
                                               onTap: () {
-                                                Get.toNamed(preapproveentryscreen,
+                                                Get.toNamed(
+                                                    preapproveentryscreen,
                                                     arguments: [
-                                                      _homeScreenController.user,
+                                                      _homeScreenController
+                                                          .user,
                                                       snapshot.data[0]
                                                     ]);
                                               },
@@ -381,7 +386,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/team 1.png',
                                                           height: 25,
@@ -389,32 +395,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Pre Approve Entry',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 10, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 10, 0),
                                                       child: Text(
                                                         'You can Pre approve your visitor',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -460,7 +474,10 @@ class HomeScreen extends GetView {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .fromLTRB(
-                                                                    13, 1, 0, 0),
+                                                                    13,
+                                                                    1,
+                                                                    0,
+                                                                    0),
                                                             child: Image.asset(
                                                                 'assets/report_icon.png',
                                                                 height: 25,
@@ -470,7 +487,10 @@ class HomeScreen extends GetView {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .fromLTRB(
-                                                                    13, 4, 0, 4),
+                                                                    13,
+                                                                    4,
+                                                                    0,
+                                                                    4),
                                                             child: Text(
                                                               'Family Members',
                                                               style: GoogleFonts.ubuntu(
@@ -489,7 +509,10 @@ class HomeScreen extends GetView {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .fromLTRB(
-                                                                    13, 0, 0, 0),
+                                                                    13,
+                                                                    0,
+                                                                    0,
+                                                                    0),
                                                             child: Text(
                                                               'Add your family member',
                                                               style: GoogleFonts.ubuntu(
@@ -535,8 +558,8 @@ class HomeScreen extends GetView {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(35, 8, 21, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
                                       child: Row(
                                         children: [
                                           SizedBox(
@@ -546,7 +569,8 @@ class HomeScreen extends GetView {
                                               onTap: () {
                                                 Get.toNamed(eventsscreen,
                                                     arguments: [
-                                                      _homeScreenController.user,
+                                                      _homeScreenController
+                                                          .user,
                                                       snapshot.data[0]
                                                     ]);
                                               },
@@ -557,7 +581,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/event 1.png',
                                                           height: 25,
@@ -565,32 +590,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Society Events',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 0, 0),
                                                       child: Text(
                                                         'You can view events',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -613,7 +646,8 @@ class HomeScreen extends GetView {
                                               onTap: () {
                                                 Get.toNamed(noticeboardscreen,
                                                     arguments: [
-                                                      _homeScreenController.user,
+                                                      _homeScreenController
+                                                          .user,
                                                       snapshot.data[0]
                                                     ]);
                                               },
@@ -624,7 +658,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/post-it 1.png',
                                                           height: 25,
@@ -632,32 +667,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Notice Board',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 10, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 10, 0),
                                                       child: Text(
                                                         'Announcement from Admin',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -686,8 +729,8 @@ class HomeScreen extends GetView {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(35, 8, 21, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
                                       child: Row(
                                         children: [
                                           SizedBox(
@@ -700,11 +743,13 @@ class HomeScreen extends GetView {
                                                     .user.userid!);
                                                 print(_homeScreenController
                                                     .user.firstName!);
-                                                print(
-                                                    snapshot.data[0].residentid);
-                                                Get.toNamed(reportshistoryscreen,
+                                                print(snapshot
+                                                    .data[0].residentid);
+                                                Get.toNamed(
+                                                    reportshistoryscreen,
                                                     arguments: [
-                                                      _homeScreenController.user,
+                                                      _homeScreenController
+                                                          .user,
                                                       snapshot.data[0]
                                                     ]);
                                               },
@@ -715,7 +760,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/file 3.png',
                                                           height: 25,
@@ -723,32 +769,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Complain History',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 0, 0),
                                                       child: Text(
                                                         'Your Complaint History',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -781,7 +835,8 @@ class HomeScreen extends GetView {
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: Image.asset(
                                                           'assets/file 3.png',
                                                           height: 25,
@@ -789,32 +844,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Guest History',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 10, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 10, 0),
                                                       child: Text(
                                                         'Your Guest History',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -827,8 +890,6 @@ class HomeScreen extends GetView {
                                               ),
                                             ),
                                           ),
-
-
                                         ],
                                       ),
                                     ),
@@ -845,8 +906,8 @@ class HomeScreen extends GetView {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                      const EdgeInsets.fromLTRB(35, 8, 21, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
                                       child: Row(
                                         children: [
                                           SizedBox(
@@ -854,22 +915,23 @@ class HomeScreen extends GetView {
                                             height: 65,
                                             child: GestureDetector(
                                               onTap: () {
-
-
-
-                                                Get.toNamed(chatavailbilityscreen,
+                                                Get.toNamed(
+                                                    chatavailbilityscreen,
                                                     arguments: [
-                                                        _homeScreenController.user,
-                                                          snapshot.data[0]]);
+                                                      _homeScreenController
+                                                          .user,
+                                                      snapshot.data[0]
+                                                    ]);
                                               },
                                               child: Card(
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: SvgPicture.asset(
                                                           'assets/undraw_share_opinion_re_4qk7.svg',
                                                           height: 25,
@@ -877,32 +939,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Chats',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                            FontStyle.normal,
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 0, 0),
                                                       child: Text(
                                                         'Chat with Neighbours/Gatekeepers',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                            FontStyle.normal,
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -910,8 +980,8 @@ class HomeScreen extends GetView {
                                                 elevation: 1.6,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        12)),
+                                                        BorderRadius.circular(
+                                                            12)),
                                               ),
                                             ),
                                           ),
@@ -923,21 +993,20 @@ class HomeScreen extends GetView {
                                             height: 65,
                                             child: GestureDetector(
                                               onTap: () {
-
                                                 Get.toNamed(discussion_form,
                                                     arguments:
-                                                    _homeScreenController
-                                                        .user);
-
+                                                        _homeScreenController
+                                                            .user);
                                               },
                                               child: Card(
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 1, 0, 0),
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
                                                       child: SvgPicture.asset(
                                                           'assets/undraw_connected_re_lmq2.svg',
                                                           height: 25,
@@ -945,32 +1014,40 @@ class HomeScreen extends GetView {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 4, 0, 4),
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
                                                       child: Text(
                                                         'Discussion Form',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                            FontStyle.normal,
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize: 10,
-                                                            color: HexColor(
-                                                                '#585353')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
                                                       ),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                          .fromLTRB(13, 0, 10, 0),
+                                                              .fromLTRB(
+                                                          13, 0, 10, 0),
                                                       child: Text(
                                                         'Share your opinions here',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontStyle:
-                                                            FontStyle.normal,
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize: 7,
-                                                            color: HexColor(
-                                                                '#8A8A8A')),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
                                                       ),
                                                     ),
                                                   ],
@@ -978,23 +1055,21 @@ class HomeScreen extends GetView {
                                                 elevation: 1.6,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        12)),
+                                                        BorderRadius.circular(
+                                                            12)),
                                               ),
                                             ),
                                           ),
-
-
                                         ],
                                       ),
                                     ),
 
-                                    MyButton(name: 'Pay',onPressed: (){
-
-                                      _payViaJazzCash(context);
-
-                                    },)
-
+                                    MyButton(
+                                      name: 'Pay',
+                                      onPressed: () {
+                                        _payViaJazzCash(context);
+                                      },
+                                    )
                                   ],
                                 );
                         } else if (snapshot.hasError) {
@@ -1003,20 +1078,14 @@ class HomeScreen extends GetView {
                           return Loader();
                         }
                       })
-
                 ],
               ),
             ),
           )),
     );
-
-
-
   }
 
-
-  Future _payViaJazzCash( BuildContext context) async {
-
+  Future _payViaJazzCash(BuildContext context) async {
     try {
       JazzCashFlutter jazzCashFlutter = JazzCashFlutter(
         merchantId: "MC52072",
@@ -1027,20 +1096,23 @@ class HomeScreen extends GetView {
 
       DateTime date = DateTime.now();
 
-      JazzCashPaymentDataModelV1 paymentDataModelV1 = JazzCashPaymentDataModelV1(
+      JazzCashPaymentDataModelV1 paymentDataModelV1 =
+          JazzCashPaymentDataModelV1(
         ppAmount: '10',
-        ppBillReference:'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
+        ppBillReference:
+            'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
         ppDescription: 'Product details ',
         ppMerchantID: jazzCashFlutter.merchantId,
-        ppPassword:  jazzCashFlutter.merchantPassword,
-        ppReturnURL:  "https://sandbox.jazzcash.com.pk/ApplicationAPI/API/Payment/DoTransaction",);
+        ppPassword: jazzCashFlutter.merchantPassword,
+        ppReturnURL:
+            "https://sandbox.jazzcash.com.pk/ApplicationAPI/API/Payment/DoTransaction",
+      );
 
-      jazzCashFlutter.startPayment(paymentDataModelV1: paymentDataModelV1, context: context).then((_response) {
-
-
-print(jsonDecode(_response));
-
-
+      jazzCashFlutter
+          .startPayment(
+              paymentDataModelV1: paymentDataModelV1, context: context)
+          .then((_response) {
+        print(jsonDecode(_response));
       });
     } catch (err) {
       print("Error in payment $err");
@@ -1048,5 +1120,4 @@ print(jsonDecode(_response));
       return false;
     }
   }
-
 }

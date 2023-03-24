@@ -6,6 +6,7 @@ import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 // import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 // import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
+import '../../../../Widgets/Empty List/empty_list.dart';
 import '../Controller/neighbour_chat_screen_controller.dart';
 
 class NeighbourChatScreen extends GetView {
@@ -136,7 +137,10 @@ class NeighbourChatScreen extends GetView {
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             if (snapshot.hasData) {
-                              return ListView.builder(
+
+    if (snapshot.data != null && snapshot.data!.length != 0) {
+
+    return ListView.builder(
                                 reverse: true,
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (context, index) {
@@ -174,7 +178,8 @@ class NeighbourChatScreen extends GetView {
                                     ],
                                   );
                                 },
-                              );
+                              );}
+    else { return  EmptyList(name: 'No Neighbours'); }
                             } else if (snapshot.hasError) {
                               return Icon(Icons.error_outline);
                             } else {
