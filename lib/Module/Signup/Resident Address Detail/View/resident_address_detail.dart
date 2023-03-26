@@ -311,16 +311,17 @@ class ResidentAddressDetail extends GetView {
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
-                                                    .viewAllHousesApi(
-                                                        controller.streets?.id);
+                                                    .viewAllHousesApi(dynamicId:
+                                                        controller.streets?.id,type: 'street');
                                               },
-                                              onChanged: (House? data) {
-                                                controller.SelectedHouse(data);
+                                              onChanged: (House? house) {
+                                                controller.SelectedHouse(house);
 
-                                                controller
-                                                        .houseaddressdetailController
-                                                        .text =
-                                                    data!.address.toString();
+                                                controller.houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.streets!.address}${','}${ house!.address.toString()}";
+
+
+
+
                                                 controller
                                                     .isPropertyHouseApartment();
                                               },
@@ -515,9 +516,11 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? data) {
+                                              onChanged: (Apartment? apartment) {
                                                 controller.SelectedApartment(
-                                                    data);
+                                                    apartment);
+                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
+
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -735,17 +738,16 @@ class ResidentAddressDetail extends GetView {
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
-                                                return controller
-                                                    .viewAllHousesApi(
-                                                        controller.streets?.id);
-                                              },
-                                              onChanged: (House? data) {
-                                                controller.SelectedHouse(data);
-
+                                                return
                                                 controller
-                                                        .houseaddressdetailController
-                                                        .text =
-                                                    data!.address.toString();
+                                                    .viewAllHousesApi(dynamicId:
+                                                controller.streets?.id,type: 'street');
+                                              },
+                                              onChanged: (House? house) {
+                                                controller.SelectedHouse(house);
+
+                                                controller.houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.blocks!.address}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";
+
                                                 controller
                                                     .isPropertyHouseApartment();
                                               },
@@ -939,9 +941,10 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? data) {
-                                                controller.SelectedApartment(
-                                                    data);
+                                              onChanged: (Apartment? apartment) {
+                                                controller.SelectedApartment(apartment);
+
+                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -1199,16 +1202,14 @@ class ResidentAddressDetail extends GetView {
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
-                                                    .viewAllHousesApi(
-                                                        controller.streets?.id);
+                                                    .viewAllHousesApi(dynamicId:
+                                                controller.streets?.id,type: 'street');
                                               },
-                                              onChanged: (House? data) {
-                                                controller.SelectedHouse(data);
+                                              onChanged: (House? house) {
+                                                controller.SelectedHouse(house);
 
-                                                controller
-                                                        .houseaddressdetailController
-                                                        .text =
-                                                    data!.address.toString();
+                                                controller.houseaddressdetailController.text= "${controller.societies!.name}${','}${controller.phases!.address.toString()}${','}${controller.blocks!.address.toString()}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";;
+
                                                 controller
                                                     .isPropertyHouseApartment();
                                               },
@@ -1402,9 +1403,11 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? data) {
+                                              onChanged: (Apartment? apartment) {
                                                 controller.SelectedApartment(
-                                                    data);
+                                                    apartment);
+                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
+
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -1464,17 +1467,351 @@ class ResidentAddressDetail extends GetView {
                                           )
                                         ]
                                       ]
+
+
+                                      /// For Type 1 => Society,Street, House
+                                     else if (controller.societies?.structureType ==
+                                          5) ...[
+                                        Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child: Text(
+                                            "Select Property Type",
+                                            style: GoogleFonts.ubuntu(
+                                                fontStyle: FontStyle.normal,
+                                                // color: secondaryColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 14,
+                                                color: HexColor('#4D4D4D')),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: DropdownButtonFormField(
+                                            isExpanded: true,
+                                            style: GoogleFonts.ubuntu(
+                                                fontStyle: FontStyle.normal,
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 14,
+                                                color: HexColor('#4D4D4D')),
+                                            value: controller.propertytype,
+                                            icon: Icon(
+                                              Icons.arrow_drop_down_sharp,
+                                              color: primaryColor,
+                                            ),
+                                            validator: (value) => value == null
+                                                ? 'Please Select Property Type'
+                                                : null,
+                                            items: controller.propertytypelist
+                                                .map((String items) {
+                                              return DropdownMenuItem(
+                                                value: items,
+                                                child: Text(items),
+                                              );
+                                            }).toList(),
+                                            onChanged: (String? newValue) {
+                                              controller.SelectedProperty(
+                                                  newValue);
+                                            },
+                                          ),
+                                        ),
+
+                                        /// Check Property Type House or Apartment
+
+                                        if (controller.propertytype ==
+                                            'house') ...[
+
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select House",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<House>(
+                                              validator: (value) =>
+                                              value == null
+                                                  ? 'field required'
+                                                  : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .viewAllHousesApi(dynamicId:
+                                                controller.societies?.id,type: 'society');
+                                              },
+                                              onChanged: (House? house) {
+                                                controller.SelectedHouse(house);
+
+                                                 controller.houseaddressdetailController.text= "${controller.societies!.name}${','} ${house!.address.toString()}";
+                                                controller.isPropertyHouseApartment();
+                                              },
+                                              selectedItem: controller.houses,
+                                              itemAsString: (House p) {
+                                                return p.address.toString();
+                                              },
+                                            ),
+                                          ),
+
+                                          /// House Measurement
+
+                                           Padding(
+                                             padding: const EdgeInsets
+                                                 .fromLTRB(8, 0, 0, 0),
+                                             child: Text(
+                                               "Select Area Type",
+                                               style:
+                                               GoogleFonts.ubuntu(
+                                                   fontStyle:
+                                                   FontStyle
+                                                       .normal,
+                                                   // color: secondaryColor,
+                                                   fontWeight:
+                                                   FontWeight
+                                                       .w400,
+                                                   fontSize: 14,
+                                                   color: HexColor(
+                                                       '#4D4D4D')),
+                                             ),
+                                           ),
+                                           Padding(
+                                             padding:
+                                             const EdgeInsets.all(
+                                                 8.0),
+                                             child: DropdownSearch<
+                                                 Measurement>(
+                                               validator: (value) =>
+                                               value == null
+                                                   ? 'field required'
+                                                   : null,
+                                               asyncItems: (String
+                                               filter) async {
+                                                 print(filter);
+                                                 return controller.housesApartmentsModelApi(
+                                                     subadminid:
+                                                     controller
+                                                         .societies!
+                                                         .subAdminId!,
+                                                     token: controller
+                                                         .user!
+                                                         .bearerToken!,
+                                                     type: 'house');
+                                               },
+                                               onChanged:
+                                                   (Measurement?
+                                               data) {
+                                                 controller
+                                                     .SelectedHousesApartments(
+                                                     data);
+                                               },
+                                               selectedItem: controller
+                                                   .housesApartmentsModel,
+                                               itemAsString:
+                                                   (Measurement
+                                               p) {
+                                                 return p.area
+                                                     .toString() +
+                                                     ' ' +
+                                                     p.unit.toString();
+                                               },
+                                             ),
+                                           )
+                                        ] else ...[
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Building",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<Building>(
+                                              validator: (value) =>
+                                              value == null
+                                                  ? 'field required'
+                                                  : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .viewAllBuildingApi(
+                                                  bearerToken: controller
+                                                      .user!.bearerToken!,
+                                                  subAdminId: controller
+                                                      .societies!.subAdminId,
+                                                );
+                                              },
+                                              onChanged: (Building? data) {
+                                                controller.SelectedBuilding(
+                                                    data);
+                                              },
+                                              selectedItem: controller.building,
+                                              itemAsString: (Building p) {
+                                                return p.societybuildingname
+                                                    .toString();
+                                              },
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Floor",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<Floor>(
+                                              validator: (value) =>
+                                              value == null
+                                                  ? 'field required'
+                                                  : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .viewAllFloorApi(
+                                                    bearerToken: controller
+                                                        .user!.bearerToken!,
+                                                    buildingid: controller
+                                                        .building?.id);
+                                              },
+                                              onChanged: (Floor? data) {
+                                                controller.SelectedFloor(data);
+                                              },
+                                              selectedItem: controller.floor,
+                                              itemAsString: (Floor p) {
+                                                return p.name.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Apartment",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<Apartment>(
+                                              validator: (value) =>
+                                              value == null
+                                                  ? 'field required'
+                                                  : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .viewAllApartmentApi(
+                                                    bearerToken: controller
+                                                        .user!.bearerToken!,
+                                                    floorid: controller
+                                                        .floor?.id);
+                                              },
+                                              onChanged: (Apartment? apartment) {
+                                                controller.SelectedApartment(
+                                                    apartment);
+                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
+
+                                              },
+                                              selectedItem:
+                                              controller.apartment,
+                                              itemAsString: (Apartment p) {
+                                                return p.name.toString();
+                                              },
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Area Type",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<
+                                                Measurement>(
+                                              validator: (value) =>
+                                              value == null
+                                                  ? 'field required'
+                                                  : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .housesApartmentsModelApi(
+                                                    subadminid: controller
+                                                        .societies!
+                                                        .subAdminId!,
+                                                    token: controller
+                                                        .user!.bearerToken!,
+                                                    type: 'apartment');
+                                              },
+                                              onChanged: (Measurement?
+                                              data) {
+                                                controller
+                                                    .SelectedHousesApartments(
+                                                    data);
+                                              },
+                                              selectedItem: controller
+                                                  .housesApartmentsModel,
+                                              itemAsString:
+                                                  (Measurement p) {
+                                                return p.area.toString() +
+                                                    ' ' +
+                                                    p.unit.toString();
+                                              },
+                                            ),
+                                          )
+                                        ]
+                                      ]
+
                                     ],
                                   )
                                 : Container(),
                           ],
                         ),
                       ),
-                      MyTextFormField(
+                      MyTextFormField(readOnly: true,
                         validator: emptyStringValidator,
+                        maxLines: null,
                         controller: controller.houseaddressdetailController,
                         hintText: 'House / Apartment Adreess ',
-                        labelText: 'House / Apartment Adreess (optional)',
+                        labelText: 'House / Apartment Adreess ',
                       ),
                       MyTextFormField(
                         controller: controller.vehiclenoController,
@@ -1576,7 +1913,7 @@ class ResidentAddressDetail extends GetView {
                                       societyid: controller.societies?.id,
                                       phaseid: controller.phases?.id ?? 0,
                                       blockid: controller.blocks?.id ?? 0,
-                                      streetid: controller.streets?.id,
+                                      streetid: controller.streets?.id??0,
                                       propertyid: controller.houses?.id,
                                       houseaddress: controller
                                           .houseaddressdetailController.text,

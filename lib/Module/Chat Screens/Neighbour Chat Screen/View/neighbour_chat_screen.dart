@@ -179,7 +179,7 @@ class NeighbourChatScreen extends GetView {
                                   );
                                 },
                               );}
-    else { return  EmptyList(name: 'No Neighbours'); }
+    else { return  EmptyList(name: 'Say Hi ! to your Neighbour'); }
                             } else if (snapshot.hasError) {
                               return Icon(Icons.error_outline);
                             } else {

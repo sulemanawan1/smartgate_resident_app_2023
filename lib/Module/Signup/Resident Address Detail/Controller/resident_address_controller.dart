@@ -132,12 +132,17 @@ class ResidentAddressDetailController extends GetxController {
     blocks = null;
     streets = null;
     houses = null;
-
+    building=null;
+    floor=null;
+    apartment=null;
     societyli.clear();
     phaseli.clear();
     blockli.clear();
     streetli.clear();
     houseli.clear();
+    buildingli.clear();
+    floorli.clear();
+    apartmentli.clear();
     houseaddressdetailController.clear();
     societyorbuildingval = val;
 
@@ -265,7 +270,7 @@ class ResidentAddressDetailController extends GetxController {
 
     apartment = val;
 
-    houseaddressdetailController.text = apartment!.name!;
+
 
     update();
   }
@@ -653,13 +658,13 @@ print(data);
     return apartmentli;
   }
 
-  Future<List<House>> viewAllHousesApi(streetid) async {
-    print('House aya');
+  Future<List<House>> viewAllHousesApi({required dynamicId,required type }  ) async {
+
     print(token);
-    print(streetid);
+    print(dynamicId);
 
     var response = await Dio().get(
-        Api.view_properties_for_residents + '/' + streetid.toString(),
+        Api.view_properties_for_residents + '/' + dynamicId.toString()+ '/' + type.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${token}"

@@ -103,11 +103,10 @@ class HomeScreen extends GetView {
                               : // Login user Resident
                               _homeScreenController.loginResidentDetails(
                                   userid: _homeScreenController.user.userid!,
-                                  token:
-                                      _homeScreenController.user.bearerToken!),
+                                  token: _homeScreenController.user.bearerToken!),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         if (snapshot.hasData) {
-                          return snapshot.data[0].status == 0
+                          return snapshot.data.status == 0
                               ? SingleChildScrollView(
                                   child: Column(
                                     crossAxisAlignment:
@@ -298,7 +297,7 @@ class HomeScreen extends GetView {
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(
@@ -376,7 +375,7 @@ class HomeScreen extends GetView {
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(
@@ -461,7 +460,7 @@ class HomeScreen extends GetView {
                                                           arguments: [
                                                             _homeScreenController
                                                                 .user,
-                                                            snapshot.data[0]
+                                                            snapshot.data
                                                           ]);
                                                     },
                                                     child: Card(
@@ -571,7 +570,7 @@ class HomeScreen extends GetView {
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(
@@ -648,7 +647,7 @@ class HomeScreen extends GetView {
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(
@@ -744,13 +743,13 @@ class HomeScreen extends GetView {
                                                 print(_homeScreenController
                                                     .user.firstName!);
                                                 print(snapshot
-                                                    .data[0].residentid);
+                                                    .data.residentid);
                                                 Get.toNamed(
                                                     reportshistoryscreen,
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(
@@ -920,7 +919,7 @@ class HomeScreen extends GetView {
                                                     arguments: [
                                                       _homeScreenController
                                                           .user,
-                                                      snapshot.data[0]
+                                                      snapshot.data
                                                     ]);
                                               },
                                               child: Card(

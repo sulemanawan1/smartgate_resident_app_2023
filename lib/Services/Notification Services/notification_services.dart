@@ -5,7 +5,6 @@ import 'package:app_settings/app_settings.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:userapp/Routes/set_routes.dart';
 
 import '../../Constants/api_routes.dart';
@@ -171,11 +170,7 @@ class NotificationServices {
             country: e["country"],
             state: e["state"],
             city: e["city"],
-            societyname: e["societyname"],
-            phasename: e["phasename"],
-            blockname: e["blockname"],
-            streetname: e["streetname"],
-            houseid: e["houseid"],
+
             houseaddress: e["houseaddress"],
             vechileno: e["vechileno"],
             residenttype: e["residenttype"],
