@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as Http;
 import 'package:pusher_client/pusher_client.dart';
 
+
 import '../../../../Constants/api_routes.dart';
 import '../../../../main.dart';
 
@@ -100,7 +101,12 @@ class NeighbourChatScreenController extends GetxController {
     resident = data[1];
     chatneighbours = data[2];
     chatRoomid=data[3];
+
+
     _initiatePusherSocketForMessaging();
+
+
+
     update();
 
 
@@ -255,6 +261,43 @@ update();
       return ChatRoomModel.fromJson(data);
     }
   }
+
+
+
+  Future ZegoCallApi({
+    required String token,
+    required int residentid,
+
+  }) async {
+
+
+    final response = await Http.get(
+      Uri.parse(Api.zegocall+"/"+residentid.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Bearer $token"
+      },
+
+    );
+    print(response.body);
+
+
+
+    if (response.statusCode == 200) {
+
+
+      print("Success");
+
+
+
+
+    } else {
+      Get.snackbar("Failed to send msg", "");
+    }
+  }
+
+
+
 
 
 }

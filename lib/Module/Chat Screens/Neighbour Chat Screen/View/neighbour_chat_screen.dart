@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:userapp/Constants/api_routes.dart';
 import 'package:userapp/Constants/constants.dart';
+import 'package:userapp/Services/Notification%20Services/notification_services.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 // import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 // import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
+
 import '../../../../Widgets/Empty List/empty_list.dart';
 import '../Controller/neighbour_chat_screen_controller.dart';
 
@@ -18,116 +20,71 @@ class NeighbourChatScreen extends GetView {
           return SafeArea(
             child: Scaffold(
               body: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  MyBackButton(
-                      text: '',
-                      widget: Row(
-                        children: [
-                          SizedBox(
-                            width: 2,
-                          ),
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(imageBaseUrl +
-                                controller.chatneighbours.image.toString()),
-                            maxRadius: 20,
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                controller.chatneighbours.firstname.toString() +
-                                    ' ' +
-                                    controller.chatneighbours.lastname
-                                        .toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                  Expanded(flex: 1,
+                    child: MyBackButton(
+                        text: '.',
+                        widget: Row(
+                          children: [
+                            SizedBox(
+                              width: 2,
+                            ),
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(imageBaseUrl +
+                                  controller.chatneighbours.image.toString()),
+                              maxRadius: 20,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              controller.chatneighbours.firstname.toString() +
+                                  ' ' +
+                                  controller.chatneighbours.lastname
+                                      .toString(),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ],
-                          ),
-                          // ZegoUIKitPrebuiltCallWithInvitation(
-                          //   ringtoneConfig: ZegoRingtoneConfig(),
-                          //   events: ZegoUIKitPrebuiltCallInvitationEvents(
-                          //
-                          //     onIncomingCallTimeout: (String timeout, ZegoCallUser? calluser){
-                          //
-                          //       print(calluser!.name);
-                          //       print(calluser!.id);
-                          //     },
-                          //     onIncomingCallAcceptButtonPressed: (){
-                          //
-                          //
-                          //       print( "Call Accepted");
-                          //     }
-                          //
-                          //
-                          //   ),
-                          //     appID:2104827868,
-                          //     tokenServerUrl: "wss://webliveroom2104827868-api.coolzcloud.com/ws",
-                          //     appSign:"0c362ea56d0f9f4a0d5114cb0c33a83989d9982d15450c866cecd91b810840b8",
-                          //     userID:  controller.chatneighbours.id.toString(),
-                          //     userName:controller.chatneighbours.firstname.toString(),
-                          //     notifyWhenAppRunningInBackgroundOrQuit: true,
-                          //     // isIOSSandboxEnvironment: false,
-                          //     plugins: [ZegoUIKitSignalingPlugin()],
-                          //   child: Container(),
-                          //
-                          //
-                          //
-                          //
-                          // ),
-                          //
-                          //
-                          // ZegoSendCallInvitationButton(
-                          //   /// For offline call notification
-                          //   ///
-                          //   resourceID: "zegouikit_call",
-                          //   icon: ButtonIcon(icon: Icon(Icons.video_call,color: Colors.white,)),
-                          //
-                          //   isVideoCall: true,
-                          //   invitees: [
-                          //     ZegoUIKitUser(
-                          //         id: controller.userdata.userid.toString(),
-                          //         name: controller.userdata.firstName.toString()
-                          //     ),
-                          //
-                          //   ],
-                          // ),
-                          // ZegoSendCallInvitationButton(
-                          //   /// For offline call notification
-                          //   ///
-                          //   resourceID: "zegouikit_call",
-                          //   icon: ButtonIcon(icon: Icon(Icons.call,color: Colors.white),),
-                          //
-                          //   isVideoCall: false,
-                          //   invitees: [
-                          //     ZegoUIKitUser(
-                          //         id: controller.userdata.userid.toString(),
-                          //         name: controller.userdata.firstName.toString()
-                          //     ),
-                          //
-                          //   ],
-                          // ),
+                            ),
 
-                          // GestureDetector(onTap: () {
-                          //
-                          //
-                          //   Get.toNamed(audiocallscreen,arguments: [
-                          //     controller.userdata,
-                          //     controller.chatRoomid
-                          //
-                          //   ]);
-                          //
-                          // }, child: Icon(Icons.call,color: Colors.white,)),
-                        ],
-                      )),
-                  Expanded(
+
+
+//                             ZegoUIKitPrebuiltCallWithInvitation(
+//                               androidNotificationConfig: ZegoAndroidNotificationConfig(channelID:'ZegoUIKit',channelName: 'Zego Call' ),
+//                               appID: 1638049856,
+//                               appSign: 'a8d10d15eeba1ff7e3d154b941f9c3a8d3dd7853c8be379e04d5379ea14caaba',
+//                               userID:controller. chatneighbours.id.toString(),
+//                               userName:controller.chatneighbours.firstname.toString(),
+//                               plugins: [ZegoUIKitSignalingPlugin()],
+//                               notifyWhenAppRunningInBackgroundOrQuit: true, child: Container(),
+//
+//                             ),
+//                             ZegoSendCallInvitationButton(
+//                               iconSize: Size(MediaQuery.of(context).size.width*2,MediaQuery.of(context).size.height*0.04),
+//
+//                               onPressed: (String a,String b, List<String> str) async{
+// await controller.ZegoCallApi(token: controller!.userdata.bearerToken!, residentid:controller!.chatneighbours.id!);
+//
+//                               },
+//                               /// For offline call notification
+//                               resourceID: "zegouikit_call",
+//                               isVideoCall: false,
+//                               invitees: [
+//
+//                                 ZegoUIKitUser(
+//                                     id: controller.userdata.userid.toString(),
+//                                     name: controller.userdata.firstName.toString()
+//                                 ),
+//                               ],
+//                             ),
+//
+
+
+                          ],
+                        )),
+                  ),
+                  Expanded(flex: 9,
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: FutureBuilder(

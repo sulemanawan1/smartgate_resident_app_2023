@@ -987,88 +987,89 @@ class HomeScreen extends GetView {
                                           SizedBox(
                                             width: 21,
                                           ),
-                                          SizedBox(
-                                            width: 140,
-                                            height: 65,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Get.toNamed(discussion_form,
-                                                    arguments:
-                                                        _homeScreenController
-                                                            .user);
-                                              },
-                                              child: Card(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 1, 0, 0),
-                                                      child: SvgPicture.asset(
-                                                          'assets/undraw_connected_re_lmq2.svg',
-                                                          height: 25,
-                                                          width: 25),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 4, 0, 4),
-                                                      child: Text(
-                                                        'Discussion Form',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 10,
-                                                                color: HexColor(
-                                                                    '#585353')),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 0, 10, 0),
-                                                      child: Text(
-                                                        'Share your opinions here',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 7,
-                                                                color: HexColor(
-                                                                    '#8A8A8A')),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                elevation: 1.6,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                              ),
-                                            ),
-                                          ),
+                                          // SizedBox(
+                                          //   width: 140,
+                                          //   height: 65,
+                                          //   child: GestureDetector(
+                                          //     onTap: () {
+                                          //       Get.toNamed(discussion_form,
+                                          //           arguments:
+                                          //               _homeScreenController
+                                          //                   .user);
+                                          //     },
+                                          //     child: Card(
+                                          //       child: Column(
+                                          //         crossAxisAlignment:
+                                          //             CrossAxisAlignment.start,
+                                          //         children: [
+                                          //           Padding(
+                                          //             padding: const EdgeInsets
+                                          //                     .fromLTRB(
+                                          //                 13, 1, 0, 0),
+                                          //             child: SvgPicture.asset(
+                                          //                 'assets/undraw_connected_re_lmq2.svg',
+                                          //                 height: 25,
+                                          //                 width: 25),
+                                          //           ),
+                                          //           Padding(
+                                          //             padding: const EdgeInsets
+                                          //                     .fromLTRB(
+                                          //                 13, 4, 0, 4),
+                                          //             child: Text(
+                                          //               'Discussion Form',
+                                          //               style:
+                                          //                   GoogleFonts.ubuntu(
+                                          //                       fontStyle:
+                                          //                           FontStyle
+                                          //                               .normal,
+                                          //                       fontWeight:
+                                          //                           FontWeight
+                                          //                               .w400,
+                                          //                       fontSize: 10,
+                                          //                       color: HexColor(
+                                          //                           '#585353')),
+                                          //             ),
+                                          //           ),
+                                          //           Padding(
+                                          //             padding: const EdgeInsets
+                                          //                     .fromLTRB(
+                                          //                 13, 0, 10, 0),
+                                          //             child: Text(
+                                          //               'Share your opinions here',
+                                          //               style:
+                                          //                   GoogleFonts.ubuntu(
+                                          //                       fontStyle:
+                                          //                           FontStyle
+                                          //                               .normal,
+                                          //                       fontWeight:
+                                          //                           FontWeight
+                                          //                               .w400,
+                                          //                       fontSize: 7,
+                                          //                       color: HexColor(
+                                          //                           '#8A8A8A')),
+                                          //             ),
+                                          //           ),
+                                          //         ],
+                                          //       ),
+                                          //       elevation: 1.6,
+                                          //       shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   12)),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ),
 
-                                    MyButton(
-                                      name: 'Pay',
-                                      onPressed: () {
-                                        _payViaJazzCash(context);
-                                      },
-                                    )
+                                    SizedBox(height: 20,)
+                                    // MyButton(
+                                    //   name: 'Pay',
+                                    //   onPressed: () {
+                                    //     _payViaJazzCash(context);
+                                    //   },
+                                    // )
                                   ],
                                 );
                         } else if (snapshot.hasError) {

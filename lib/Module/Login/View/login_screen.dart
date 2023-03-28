@@ -30,9 +30,7 @@ class Login extends GetView{
                       children: [
                         SizedBox(height:MediaQuery.of(context).size.height*0.05,),
                         Center(
-                          child: SvgPicture.asset(
-                            "assets/login_vector.svg",
-                          ),
+                          child: Image.asset('assets/login_vector.png'),
                         ),
                         SizedBox(height:MediaQuery.of(context).size.height*0.05,),
                         Padding(
@@ -138,6 +136,7 @@ class Login extends GetView{
                                         fontWeight: FontWeight.w500
                                     ),
                                   )),
+                              SizedBox(height:MediaQuery.of(context).size.height*0.05,),
                             ],
                           ),
                         )

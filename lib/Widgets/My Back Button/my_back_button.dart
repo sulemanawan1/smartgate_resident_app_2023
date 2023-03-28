@@ -15,7 +15,7 @@ class MyBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: EdgeInsets.only(left: 38, top: 40),
+      padding: EdgeInsets.only(left: 38, top: 38),
       child: Row(
         children: [
           GestureDetector(

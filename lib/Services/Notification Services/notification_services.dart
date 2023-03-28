@@ -16,7 +16,9 @@ class NotificationServices {
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-
+  AndroidNotificationChannel callAndroidNotificationChannel =
+  AndroidNotificationChannel('call', 'call',
+      importance: Importance.max);
   initFlutterNotification(RemoteMessage messages) async {
     var androidInitialization =
         AndroidInitializationSettings("@mipmap/ic_launcher");

@@ -101,85 +101,76 @@ class EventsScreen extends GetView {
                                                     SizedBox(
                                                       height: 8,
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                      const EdgeInsets
-                                                          .fromLTRB(
-                                                          26,
-                                                          0,
-                                                          0,
-                                                          0),
-                                                      child: Row(
-                                                        children: [
-                                                          Container(
-                                                            width: 82,
-                                                            height: 25,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    4),
-                                                                border: Border.all(
-                                                                    color:
-                                                                    primaryColor)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                              children: [
-                                                                Text(
-                                                                  snapshot
-                                                                      .data!.data![index]
-                                                                      .startdate!,
-                                                                  style: GoogleFonts.ubuntu(
-                                                                      color: HexColor('#535353'),
-                                                                      fontSize: 10,
-                                                                      fontWeight: FontWeight.w300),
-                                                                ),
-                                                                SvgPicture.asset(
-                                                                    'assets/complain_history_date_icon1.svg')
-                                                              ],
-                                                            ),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          width: MediaQuery.of(context).size.width*0.2,
+                                                          height: MediaQuery.of(context).size.height*0.03,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                              BorderRadius.circular(
+                                                                  4),
+                                                              border: Border.all(
+                                                                  color:
+                                                                  primaryColor)),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                            children: [
+                                                              Text(
+                                                                snapshot
+                                                                    .data!.data![index]
+                                                                    .startdate!,
+                                                                style: GoogleFonts.ubuntu(
+                                                                    color: HexColor('#535353'),
+                                                                    fontSize: 10,
+                                                                    fontWeight: FontWeight.w300),
+                                                              ),
+                                                              SvgPicture.asset(
+                                                                  'assets/complain_history_date_icon1.svg')
+                                                            ],
                                                           ),
-                                                          SizedBox(
-                                                            width: 15,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        SvgPicture.asset(
+                                                            'assets/Arrow 1.svg'),
+                                                        SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        Container(
+                                                          width: MediaQuery.of(context).size.width*0.2,
+                                                          height: MediaQuery.of(context).size.height*0.03,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                              BorderRadius.circular(
+                                                                  4),
+                                                              border: Border.all(
+                                                                  color:
+                                                                  primaryColor)),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                            children: [
+                                                              Text(
+                                                                snapshot
+                                                                    .data!.data![index]
+                                                                    .enddate
+                                                                    .toString(),
+                                                                style: GoogleFonts.ubuntu(
+                                                                    color: HexColor('#535353'),
+                                                                    fontSize: 10,
+                                                                    fontWeight: FontWeight.w300),
+                                                              ),
+                                                              SvgPicture.asset(
+                                                                  'assets/complain_history_date_icon1.svg')
+                                                            ],
                                                           ),
-                                                          SvgPicture.asset(
-                                                              'assets/Arrow 1.svg'),
-                                                          SizedBox(
-                                                            width: 15,
-                                                          ),
-                                                          Container(
-                                                            width: 82,
-                                                            height: 25,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius.circular(
-                                                                    4),
-                                                                border: Border.all(
-                                                                    color:
-                                                                    primaryColor)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                              children: [
-                                                                Text(
-                                                                  snapshot
-                                                                      .data!.data![index]
-                                                                      .enddate
-                                                                      .toString(),
-                                                                  style: GoogleFonts.ubuntu(
-                                                                      color: HexColor('#535353'),
-                                                                      fontSize: 10,
-                                                                      fontWeight: FontWeight.w300),
-                                                                ),
-                                                                SvgPicture.asset(
-                                                                    'assets/complain_history_date_icon1.svg')
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
                                                     SizedBox(height: 20,),
                                                     GestureDetector(

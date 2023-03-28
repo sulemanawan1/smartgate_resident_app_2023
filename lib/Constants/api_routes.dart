@@ -52,6 +52,7 @@ class Api {
   static const String allsocietybuildings = baseUrl + "allsocietybuildings";
   static const String viewsocietybuildingfloors = baseUrl + "viewsocietybuildingfloors";
   static const String viewsocietybuildingapartments = baseUrl + "viewsocietybuildingapartments";
+  static const String zegocall = baseUrl + "zegocall";
 
 
 

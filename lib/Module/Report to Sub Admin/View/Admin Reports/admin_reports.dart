@@ -358,7 +358,8 @@ class AdminReports extends GetView {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                12, 76, 75, 0),                                            child: Row(
+                                                12, 76, 75, 0),
+                                            child: Row(
                                               children: [
                                                 Container(
                                                   width: 82,
@@ -423,6 +424,9 @@ class AdminReports extends GetView {
                                                           'assets/clock.svg')
                                                     ],
                                                   ),
+                                                ),
+                                                SizedBox(
+                                                  width: 15,
                                                 ),
                                               ],
                                             ),
