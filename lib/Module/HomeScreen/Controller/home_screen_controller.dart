@@ -11,6 +11,7 @@ import 'package:userapp/Constants/api_routes.dart';
 import '../../../Routes/set_routes.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
+import '../Model/DiscussionRoomModel.dart';
 import '../../Login/Model/User.dart';
 import '../Model/residents.dart';
 
@@ -213,4 +214,45 @@ class HomeScreenController extends GetxController {
       print(data);
     }
   }
+
+
+
+  Future<DiscussionRoomModel> createChatRoomApi({
+    required String token,
+    required int subadminid,
+
+
+
+  }) async {
+    final response = await Http.post(
+      Uri.parse(Api.creatediscussionroom),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Bearer $token"
+      },
+      body: jsonEncode(<String, dynamic>
+      {
+        "subadminid": subadminid,
+
+
+
+      }
+
+      ),
+    );
+    print(response.body);
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+
+
+      print(response.body);
+
+      return DiscussionRoomModel.fromJson(data);
+
+    } else {
+
+      return DiscussionRoomModel.fromJson(data);
+    }
+  }
+
 }

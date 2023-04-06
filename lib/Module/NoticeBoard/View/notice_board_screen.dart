@@ -321,7 +321,7 @@ class NoticeBoardScreen extends GetView {
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          16, 32, 16, 0),
+                                          16, 20, 16, 0),
                                       child: SizedBox(
                                         width: 343,
                                         height: 72,

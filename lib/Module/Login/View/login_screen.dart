@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -137,6 +136,7 @@ class Login extends GetView{
                                     ),
                                   )),
                               SizedBox(height:MediaQuery.of(context).size.height*0.05,),
+
                             ],
                           ),
                         )

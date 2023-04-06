@@ -58,10 +58,7 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                     Expanded(
                                       child: ListTile(
                                         onTap: () async {
-                                          print(snapshot
-                                              .data
-                                              .data[index]
-                                              .residentid);
+
                                           final ChatRoomUsers
                                           chatRoomUsers =
                                           await controller

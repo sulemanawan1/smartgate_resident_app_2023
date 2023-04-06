@@ -22,18 +22,17 @@ import '../Model/ViewConversationNeighbours.dart';
 
 class NeighbourChatScreenController extends GetxController {
   var data = Get.arguments;
-  final ScrollController sc = ScrollController();
   late final User userdata;
   late final ChatRoomModel chatRoomModel;
-  late int chatRoomid;
+  late int chatRoomId;
   bool isChat = false;
   late final Residents resident;
   bool isSend=false;
-
+  late final ChatNeighbours.Data chatNeighbours;
   List<ViewConversationNeighbours> v = [];
   final TextEditingController msg = TextEditingController();
-  late final ChatNeighbours.Data chatneighbours;
-  StreamController<List<ViewConversationNeighbours>>conversationneighboursstreamController =
+
+  StreamController<List<ViewConversationNeighbours>> conversationNeighboursStreamController =
       StreamController<List<ViewConversationNeighbours>>();
 
   Future<void> _initiatePusherSocketForMessaging() async {
@@ -81,7 +80,7 @@ class NeighbourChatScreenController extends GetxController {
           success: data['message']['success'],
           updated_at: data['message']['updated_at']));
 
-      conversationneighboursstreamController.sink.add(v);
+      conversationNeighboursStreamController.sink.add(v);
 
       update();
     });
@@ -99,8 +98,8 @@ class NeighbourChatScreenController extends GetxController {
 
     userdata = data[0];
     resident = data[1];
-    chatneighbours = data[2];
-    chatRoomid=data[3];
+    chatNeighbours = data[2];
+    chatRoomId=data[3];
 
 
     _initiatePusherSocketForMessaging();
@@ -152,7 +151,7 @@ class NeighbourChatScreenController extends GetxController {
               updated_at: e['updated_at']))
           .toList();
 
-      conversationneighboursstreamController.sink.add(v);
+      conversationNeighboursStreamController.sink.add(v);
 
 
 
@@ -170,7 +169,7 @@ class NeighbourChatScreenController extends GetxController {
             success: e['success'],
             updated_at: e['updated_at']))
         .toList();
-    conversationneighboursstreamController.sink.add(v);
+    conversationNeighboursStreamController.sink.add(v);
 
     update();
 
@@ -209,14 +208,7 @@ class NeighbourChatScreenController extends GetxController {
     if (response.statusCode == 200) {
 
 
-      isSend=true;
 
-      // sc.position.animateTo(
-      //   sc.position.maxScrollExtent,
-      //   duration: const Duration(microseconds: 1),
-      //   curve: Curves.fastOutSlowIn,
-      // );
-update();
 
 
     } else {
@@ -249,7 +241,6 @@ update();
 
       ),
     );
-    print(response.body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -279,17 +270,12 @@ update();
       },
 
     );
-    print(response.body);
-
 
 
     if (response.statusCode == 200) {
 
 
       print("Success");
-
-
-
 
     } else {
       Get.snackbar("Failed to send msg", "");

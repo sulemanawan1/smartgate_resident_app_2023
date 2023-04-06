@@ -13,7 +13,7 @@ class AddPreApproveEntry extends GetView {
   Widget build(BuildContext context) {
     return SafeArea(
 
-      child: Scaffold(       // Set this to false
+      child: Scaffold(
 
         body: GetBuilder<AddPreApproveEntryController>(
             init: AddPreApproveEntryController(),

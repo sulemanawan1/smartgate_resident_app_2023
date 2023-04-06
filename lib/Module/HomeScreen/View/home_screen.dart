@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:userapp/Module/HomeScreen/Controller/home_screen_controller.dart';
+import 'package:userapp/Module/HomeScreen/Model/DiscussionRoomModel.dart';
 import 'package:userapp/Routes/set_routes.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
-import 'package:userapp/Widgets/My%20Button/my_button.dart';
 import '../../../Constants/constants.dart';
-import 'package:jazzcash_flutter/jazzcash_flutter.dart';
+// import 'package:jazzcash_flutter/jazzcash_flutter.dart';
 
 class HomeScreen extends GetView {
   final HomeScreenController _homeScreenController =
@@ -715,183 +714,7 @@ class HomeScreen extends GetView {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          35, 23, 0, 8),
-                                      child: Text(
-                                        "History",
-                                        style: GoogleFonts.ubuntu(
-                                            fontStyle: FontStyle.normal,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                            color: HexColor('#585353')),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          35, 8, 21, 0),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            width: 140,
-                                            height: 65,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                // _homeScreenController.payment();
-                                                print(_homeScreenController
-                                                    .user.userid!);
-                                                print(_homeScreenController
-                                                    .user.firstName!);
-                                                print(snapshot
-                                                    .data.residentid);
-                                                Get.toNamed(
-                                                    reportshistoryscreen,
-                                                    arguments: [
-                                                      _homeScreenController
-                                                          .user,
-                                                      snapshot.data
-                                                    ]);
-                                              },
-                                              child: Card(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 1, 0, 0),
-                                                      child: Image.asset(
-                                                          'assets/file 3.png',
-                                                          height: 25,
-                                                          width: 25),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 4, 0, 4),
-                                                      child: Text(
-                                                        'Complain History',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 10,
-                                                                color: HexColor(
-                                                                    '#585353')),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 0, 0, 0),
-                                                      child: Text(
-                                                        'Your Complaint History',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 7,
-                                                                color: HexColor(
-                                                                    '#8A8A8A')),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                elevation: 1.6,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 21,
-                                          ),
-                                          SizedBox(
-                                            width: 140,
-                                            height: 65,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Get.toNamed(guestshistoryscreen,
-                                                    arguments:
-                                                        _homeScreenController
-                                                            .user);
-                                              },
-                                              child: Card(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 1, 0, 0),
-                                                      child: Image.asset(
-                                                          'assets/file 3.png',
-                                                          height: 25,
-                                                          width: 25),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 4, 0, 4),
-                                                      child: Text(
-                                                        'Guest History',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 10,
-                                                                color: HexColor(
-                                                                    '#585353')),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          13, 0, 10, 0),
-                                                      child: Text(
-                                                        'Your Guest History',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 7,
-                                                                color: HexColor(
-                                                                    '#8A8A8A')),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                elevation: 1.6,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           35, 23, 0, 8),
@@ -987,83 +810,374 @@ class HomeScreen extends GetView {
                                           SizedBox(
                                             width: 21,
                                           ),
-                                          // SizedBox(
-                                          //   width: 140,
-                                          //   height: 65,
-                                          //   child: GestureDetector(
-                                          //     onTap: () {
-                                          //       Get.toNamed(discussion_form,
-                                          //           arguments:
-                                          //               _homeScreenController
-                                          //                   .user);
-                                          //     },
-                                          //     child: Card(
-                                          //       child: Column(
-                                          //         crossAxisAlignment:
-                                          //             CrossAxisAlignment.start,
-                                          //         children: [
-                                          //           Padding(
-                                          //             padding: const EdgeInsets
-                                          //                     .fromLTRB(
-                                          //                 13, 1, 0, 0),
-                                          //             child: SvgPicture.asset(
-                                          //                 'assets/undraw_connected_re_lmq2.svg',
-                                          //                 height: 25,
-                                          //                 width: 25),
-                                          //           ),
-                                          //           Padding(
-                                          //             padding: const EdgeInsets
-                                          //                     .fromLTRB(
-                                          //                 13, 4, 0, 4),
-                                          //             child: Text(
-                                          //               'Discussion Form',
-                                          //               style:
-                                          //                   GoogleFonts.ubuntu(
-                                          //                       fontStyle:
-                                          //                           FontStyle
-                                          //                               .normal,
-                                          //                       fontWeight:
-                                          //                           FontWeight
-                                          //                               .w400,
-                                          //                       fontSize: 10,
-                                          //                       color: HexColor(
-                                          //                           '#585353')),
-                                          //             ),
-                                          //           ),
-                                          //           Padding(
-                                          //             padding: const EdgeInsets
-                                          //                     .fromLTRB(
-                                          //                 13, 0, 10, 0),
-                                          //             child: Text(
-                                          //               'Share your opinions here',
-                                          //               style:
-                                          //                   GoogleFonts.ubuntu(
-                                          //                       fontStyle:
-                                          //                           FontStyle
-                                          //                               .normal,
-                                          //                       fontWeight:
-                                          //                           FontWeight
-                                          //                               .w400,
-                                          //                       fontSize: 7,
-                                          //                       color: HexColor(
-                                          //                           '#8A8A8A')),
-                                          //             ),
-                                          //           ),
-                                          //         ],
-                                          //       ),
-                                          //       elevation: 1.6,
-                                          //       shape: RoundedRectangleBorder(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(
-                                          //                   12)),
-                                          //     ),
-                                          //   ),
-                                          // ),
+                                          SizedBox(
+                                            width: 140,
+                                            height: 65,
+                                            child: GestureDetector(
+                                              onTap: () async{
+
+                DiscussionRoomModel discussionRoomModel=                       await      _homeScreenController.createChatRoomApi(token: _homeScreenController.user.bearerToken!, subadminid: snapshot.data.subadminid);
+                                                Get.toNamed(discussion_form,
+
+                                                    arguments: [
+                                                    _homeScreenController
+                                                    .user,
+                                                    snapshot.data,
+                                                      discussionRoomModel
+                                                    ]);
+                                              },
+                                              child: Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
+                                                      child: SvgPicture.asset(
+                                                          'assets/undraw_connected_re_lmq2.svg',
+                                                          height: 25,
+                                                          width: 25),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
+                                                      child: Text(
+                                                        'Discussion Form',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 0, 10, 0),
+                                                      child: Text(
+                                                        'Share your opinions here',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                elevation: 1.6,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12)),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
 
-                                    SizedBox(height: 20,)
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 23, 0, 8),
+                                      child: Text(
+                                        "History",
+                                        style: GoogleFonts.ubuntu(
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                            color: HexColor('#585353')),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 140,
+                                            height: 65,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                // _homeScreenController.payment();
+                                                print(_homeScreenController
+                                                    .user.userid!);
+                                                print(_homeScreenController
+                                                    .user.firstName!);
+                                                print(snapshot
+                                                    .data.residentid);
+                                                Get.toNamed(
+                                                    reportshistoryscreen,
+                                                    arguments: [
+                                                      _homeScreenController
+                                                          .user,
+                                                      snapshot.data
+                                                    ]);
+                                              },
+                                              child: Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 1, 0, 0),
+                                                      child: Image.asset(
+                                                          'assets/file 3.png',
+                                                          height: 25,
+                                                          width: 25),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 4, 0, 4),
+                                                      child: Text(
+                                                        'Complain History',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 10,
+                                                            color: HexColor(
+                                                                '#585353')),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 0, 0, 0),
+                                                      child: Text(
+                                                        'Your Complaint History',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 7,
+                                                            color: HexColor(
+                                                                '#8A8A8A')),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                elevation: 1.6,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        12)),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 21,
+                                          ),
+                                          SizedBox(
+                                            width: 140,
+                                            height: 65,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Get.toNamed(guestshistoryscreen,
+                                                    arguments:
+                                                    _homeScreenController
+                                                        .user);
+                                              },
+                                              child: Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 1, 0, 0),
+                                                      child: Image.asset(
+                                                          'assets/file 3.png',
+                                                          height: 25,
+                                                          width: 25),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 4, 0, 4),
+                                                      child: Text(
+                                                        'Guest History',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 10,
+                                                            color: HexColor(
+                                                                '#585353')),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 0, 10, 0),
+                                                      child: Text(
+                                                        'Your Guest History',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 7,
+                                                            color: HexColor(
+                                                                '#8A8A8A')),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                elevation: 1.6,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        12)),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
+                                    SizedBox(height: 20,),
+
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 23, 0, 8),
+                                      child: Text(
+                                        "Bills",
+                                        style: GoogleFonts.ubuntu(
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                            color: HexColor('#585353')),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          35, 8, 21, 0),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 140,
+                                            height: 65,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                // _homeScreenController.payment();
+                                                print(_homeScreenController
+                                                    .user.userid!);
+                                                print(_homeScreenController
+                                                    .user.firstName!);
+                                                print(snapshot
+                                                    .data.residentid);
+                                                Get.toNamed(
+                                                    monthly_bill, arguments: [
+                                                    _homeScreenController
+                                                    .user,
+                                                    snapshot.data
+                                                    ]
+                                                );
+                                              },
+                                              child: Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 1, 0, 0),
+                                                      child: Image.asset(
+                                                          'assets/file 3.png',
+                                                          height: 25,
+                                                          width: 25),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 4, 0, 4),
+                                                      child: Text(
+                                                        'Monthly Bill ',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 10,
+                                                            color: HexColor(
+                                                                '#585353')),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          13, 0, 0, 0),
+                                                      child: Text(
+                                                        'Easy Pay your Monthly Bills',
+                                                        style:
+                                                        GoogleFonts.ubuntu(
+                                                            fontStyle:
+                                                            FontStyle
+                                                                .normal,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize: 7,
+                                                            color: HexColor(
+                                                                '#8A8A8A')),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                elevation: 1.6,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        12)),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 21,
+                                          ),
+
+                                        ],
+                                      ),
+                                    ),
                                     // MyButton(
                                     //   name: 'Pay',
                                     //   onPressed: () {
@@ -1085,39 +1199,39 @@ class HomeScreen extends GetView {
     );
   }
 
-  Future _payViaJazzCash(BuildContext context) async {
-    try {
-      JazzCashFlutter jazzCashFlutter = JazzCashFlutter(
-        merchantId: "MC52072",
-        merchantPassword: "1zu282w8e3",
-        integritySalt: "s8v30w3y0x",
-        isSandbox: true,
-      );
-
-      DateTime date = DateTime.now();
-
-      JazzCashPaymentDataModelV1 paymentDataModelV1 =
-          JazzCashPaymentDataModelV1(
-        ppAmount: '10',
-        ppBillReference:
-            'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
-        ppDescription: 'Product details ',
-        ppMerchantID: jazzCashFlutter.merchantId,
-        ppPassword: jazzCashFlutter.merchantPassword,
-        ppReturnURL:
-            "https://sandbox.jazzcash.com.pk/ApplicationAPI/API/Payment/DoTransaction",
-      );
-
-      jazzCashFlutter
-          .startPayment(
-              paymentDataModelV1: paymentDataModelV1, context: context)
-          .then((_response) {
-        print(jsonDecode(_response));
-      });
-    } catch (err) {
-      print("Error in payment $err");
-
-      return false;
-    }
-  }
+  // Future _payViaJazzCash(BuildContext context) async {
+  //   try {
+  //     JazzCashFlutter jazzCashFlutter = JazzCashFlutter(
+  //       merchantId: "MC52072",
+  //       merchantPassword: "1zu282w8e3",
+  //       integritySalt: "s8v30w3y0x",
+  //       isSandbox: true,
+  //     );
+  //
+  //     DateTime date = DateTime.now();
+  //
+  //     JazzCashPaymentDataModelV1 paymentDataModelV1 =
+  //         JazzCashPaymentDataModelV1(
+  //       ppAmount: '10',
+  //       ppBillReference:
+  //           'refbill${date.year}${date.month}${date.day}${date.hour}${date.millisecond}',
+  //       ppDescription: 'Product details ',
+  //       ppMerchantID: jazzCashFlutter.merchantId,
+  //       ppPassword: jazzCashFlutter.merchantPassword,
+  //       ppReturnURL:
+  //           "https://sandbox.jazzcash.com.pk/ApplicationAPI/API/Payment/DoTransaction",
+  //     );
+  //
+  //     jazzCashFlutter
+  //         .startPayment(
+  //             paymentDataModelV1: paymentDataModelV1, context: context)
+  //         .then((_response) {
+  //       print(jsonDecode(_response));
+  //     });
+  //   } catch (err) {
+  //     print("Error in payment $err");
+  //
+  //     return false;
+  //   }
+  // }
 }

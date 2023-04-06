@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as Http;
 import 'package:userapp/Routes/set_routes.dart';
-
 import '../../../../Constants/api_routes.dart';
 import '../../../HomeScreen/Model/residents.dart';
 import '../../../Login/Model/User.dart';
 
 class AddReportToAdminController extends GetxController {
   var user = Get.arguments;
-
   late DateTime dateTime;
   late final User userdata;
   Residents? resident;
-  bool mystatus = false;
   var isLoading = false;
 
   List<Map<String, dynamic>> visitorTypes = [

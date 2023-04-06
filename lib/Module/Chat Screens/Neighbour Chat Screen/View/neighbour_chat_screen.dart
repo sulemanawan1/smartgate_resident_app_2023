@@ -21,32 +21,31 @@ class NeighbourChatScreen extends GetView {
             child: Scaffold(
               body: Column(
                 children: [
-                  Expanded(flex: 1,
-                    child: MyBackButton(
-                        text: '.',
-                        widget: Row(
-                          children: [
-                            SizedBox(
-                              width: 2,
+                  MyBackButton(
+                      text: '.',
+                      widget: Row(
+                        children: [
+                          SizedBox(
+                            width: 2,
+                          ),
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(imageBaseUrl +
+                                controller.chatNeighbours.image.toString()),
+                            maxRadius: 20,
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            controller.chatNeighbours.firstname.toString() +
+                                ' ' +
+                                controller.chatNeighbours.lastname
+                                    .toString(),
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(imageBaseUrl +
-                                  controller.chatneighbours.image.toString()),
-                              maxRadius: 20,
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              controller.chatneighbours.firstname.toString() +
-                                  ' ' +
-                                  controller.chatneighbours.lastname
-                                      .toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                          ),
 
 
 
@@ -81,16 +80,15 @@ class NeighbourChatScreen extends GetView {
 //
 
 
-                          ],
-                        )),
-                  ),
-                  Expanded(flex: 9,
+                        ],
+                      )),
+                  Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: FutureBuilder(
                           future: controller.ViewConversationNeighboursApi(
                               token: controller.userdata.bearerToken!,
-                              chatroomid: controller.chatRoomid),
+                              chatroomid: controller.chatRoomId),
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
                             if (snapshot.hasData) {
@@ -171,9 +169,9 @@ class NeighbourChatScreen extends GetView {
                                   token: controller.userdata.bearerToken!,
                                   userid: controller.userdata.userid!,
                                   residentid:
-                                      controller.chatneighbours.residentid!,
+                                      controller.chatNeighbours.residentid!,
                                   message: controller.msg.text,
-                                  chatroomid: controller.chatRoomid);
+                                  chatroomid: controller.chatRoomId);
                             },
                             child: Icon(Icons.send)),
                         SizedBox(

@@ -23,7 +23,6 @@ class EventsScreen extends GetView {
               Column(
                 children: [
                   MyBackButton(text: 'Society Events',),
-                  SizedBox(height: 22,),
                   Expanded(
                     child: FutureBuilder<Event>(
                         future: controller.viewEventsApi(

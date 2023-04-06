@@ -5,6 +5,7 @@ import 'package:userapp/Module/Events/View/view_event_images_screen.dart';
 import 'package:userapp/Module/Family%20Member/Add%20Family%20Member/View/add_family_member.dart';
 import 'package:userapp/Module/Family%20Member/View%20Family%20Member/View/view_family_member.dart';
 import 'package:userapp/Module/GuestHistory/View/guests_history_screen.dart';
+import 'package:userapp/Module/Monthly%20Bills/View/monthly_bills.dart';
 import 'package:userapp/Module/Splash/View/splash_screen.dart';
 import 'package:userapp/Routes/screen_binding.dart';
 import 'package:userapp/Routes/set_routes.dart';
@@ -129,6 +130,13 @@ class RouteManagement {
         name: discussion_form,
         page: () => DiscussionForm(),
         binding: ScreenBindings(),
+
+      ),
+      GetPage(
+        name: monthly_bill,
+        page: () => MonthlyBills(),
+        binding: ScreenBindings(),
+
       ),
 
     ];
