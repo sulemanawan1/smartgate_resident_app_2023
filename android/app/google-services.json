@@ -7,9 +7,46 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:493591412320:android:ff849a2420da1a9c078d05",
+        "android_client_info": {
+          "package_name": "com.example.miagatekeeperapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493591412320-72k43otbk3n4g4pleeadb7hblolmom61.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.miagatekeeperapp",
+            "certificate_hash": "0c9b68c1b2194a0733fbb740c303c1c2c2ea3542"
+          }
+        },
+        {
+          "client_id": "493591412320-etadttdu4inc9snclm27pjba63dl4elk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA45Q4oxIEQIljNAWBxFyPfLFgvXx6t78Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493591412320-etadttdu4inc9snclm27pjba63dl4elk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:493591412320:android:1059a88932a1f2af078d05",
         "android_client_info": {
-          "package_name": "com.example.userapp"
+          "package_name": "com.example.miaresidentapp"
         }
       },
       "oauth_client": [
@@ -21,6 +58,35 @@
             "certificate_hash": "0c9b68c1b2194a0733fbb740c303c1c2c2ea3542"
           }
         },
+        {
+          "client_id": "493591412320-etadttdu4inc9snclm27pjba63dl4elk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA45Q4oxIEQIljNAWBxFyPfLFgvXx6t78Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493591412320-etadttdu4inc9snclm27pjba63dl4elk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493591412320:android:2aa4b814070db9e9078d05",
+        "android_client_info": {
+          "package_name": "com.example.smartgateresident"
+        }
+      },
+      "oauth_client": [
         {
           "client_id": "493591412320-etadttdu4inc9snclm27pjba63dl4elk.apps.googleusercontent.com",
           "client_type": 3

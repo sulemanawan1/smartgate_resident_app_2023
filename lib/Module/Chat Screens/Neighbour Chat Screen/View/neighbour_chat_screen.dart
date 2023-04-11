@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:userapp/Constants/api_routes.dart';
 import 'package:userapp/Constants/constants.dart';
-import 'package:userapp/Services/Notification%20Services/notification_services.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 // import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
@@ -83,66 +83,109 @@ class NeighbourChatScreen extends GetView {
                         ],
                       )),
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: FutureBuilder(
-                          future: controller.ViewConversationNeighboursApi(
-                              token: controller.userdata.bearerToken!,
-                              chatroomid: controller.chatRoomId),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
+                      child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: StreamBuilder(
+                              stream:FirebaseFirestore.instance
+                                  .collection('chats').
+                              where('chatroomid',isEqualTo: controller.chatRoomId).
+                              orderBy('createdat',descending: true)
 
-    if (snapshot.data != null && snapshot.data!.length != 0) {
+                                  .snapshots() ,
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.hasData) {
+                                  var data = snapshot.data!.docs ;
 
-    return ListView.builder(
-                                reverse: true,
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (context, index) {
-                                  return Row(
-                                    mainAxisAlignment:
-                                        snapshot.data[index].sender ==
-                                                controller.userdata.userid
+                                  if(data.length==0)
+                                  {
+                                    return EmptyList(
+                                        name:
+                                        "Say Hi! to your Neighbour. 😊 .");
+                                  }
+                                  return ListView.builder(
+                                    reverse: true,
+                                    itemCount: data.length,
+                                    itemBuilder: (context, index) {
+                                      print(data[index]['residentid']);
+
+                                      return Row(
+                                        mainAxisAlignment: data[index]
+                                        ['residentid'] ==
+                                            controller.user.userid
                                             ? MainAxisAlignment.end
                                             : MainAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4),
-                                          child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 12, vertical: 16),
-                                              decoration: BoxDecoration(
-                                                color: snapshot.data[index]
-                                                            .sender ==
+                                        children: [
+                                          Flexible(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4),
+                                              child: Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 16),
+                                                  decoration: BoxDecoration(
+                                                    color: data[index][
+                                                    'residentid'] ==
                                                         controller
-                                                            .userdata.userid
-                                                    ? primaryColor
-                                                    : Colors.black,
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                              ),
-                                              child: Text(
-                                                snapshot.data[index].message
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              )),
-                                        ),
-                                      ),
-                                    ],
+                                                            .user.userid
+                                                        ? primaryColor
+                                                        : Colors.black,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        4),
+                                                  ),
+                                                  child: data![index]
+                                                  ['residentid'] ==
+                                                      controller.user.userid
+                                                      ? Text(
+                                                    data![index]
+                                                    ['message']
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        color:
+                                                        Colors.white),
+                                                  )
+                                                      : Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      // Text(
+                                                      //   data![index]
+                                                      //   ['user']['firstname']
+                                                      //       .toString(),
+                                                      //   style: TextStyle(
+                                                      //       color:
+                                                      //       primaryColor),
+                                                      // ),
+                                                      Text(
+                                                        data![index][
+                                                        'message']
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .white),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
-                                },
-                              );}
-    else { return  EmptyList(name: 'Say Hi ! to your Neighbour'); }
-                            } else if (snapshot.hasError) {
-                              return Icon(Icons.error_outline);
-                            } else {
-                              return Loader();
-                            }
-                          }),
-                    ),
-                  ),
+                                }
+
+                                else if (snapshot.hasError) {
+
+                                  return Text("Something Went Wrong ");
+                                }
+else {
+
+  return Loader();
+                                }
+
+                              }))),
                   Container(
                     color: Colors.white,
                     child: Row(
@@ -165,13 +208,28 @@ class NeighbourChatScreen extends GetView {
                         ),
                         GestureDetector(
                             onTap: () {
-                              controller.conversationsApi(
-                                  token: controller.userdata.bearerToken!,
-                                  userid: controller.userdata.userid!,
-                                  residentid:
-                                      controller.chatNeighbours.residentid!,
-                                  message: controller.msg.text,
-                                  chatroomid: controller.chatRoomId);
+                              try {
+                                // Get a reference to the Firestore collection
+                                CollectionReference chats = FirebaseFirestore
+                                    .instance
+                                    .collection('chats');
+
+
+                                // Add a new document with a generated ID
+                                chats.add({
+                                  'residentid': controller.resident.residentid!,
+                                  'message': controller.msg.text,
+                                  'chatroomid': controller.chatRoomId,
+                                  'createdat': FieldValue.serverTimestamp(),
+
+                                });
+
+
+                                controller.msg.clear();
+                                print('Data added successfully');
+                              } catch (error) {
+                                print('Error adding data: $error');
+                              }
                             },
                             child: Icon(Icons.send)),
                         SizedBox(
@@ -185,5 +243,11 @@ class NeighbourChatScreen extends GetView {
             ),
           );
         });
+
+
   }
+
+  // Example function to get a Firestore collection stream with a condition
+
+
 }

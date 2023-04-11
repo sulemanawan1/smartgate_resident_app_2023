@@ -1,6 +1,6 @@
-const String imageBaseUrl = 'http://192.168.100.7:80/smartgate2023/public/storage/';
+const String imageBaseUrl = 'https://smartgate.pk/storage/';
 class Api {
-  static const String baseUrl = 'http://192.168.100.7:8000/api/';
+  static const String baseUrl = 'https://smartgate.pk/api/';
   static const String login = baseUrl + "login";
   static const String logout = baseUrl + "logout";
   static const String report_to_admin = baseUrl + "reporttoadmin";

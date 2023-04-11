@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter_callkit_incoming/entities/android_params.dart';
 // import 'package:flutter_callkit_incoming/entities/call_event.dart';
@@ -22,7 +23,7 @@ import '../Model/ViewConversationNeighbours.dart';
 
 class NeighbourChatScreenController extends GetxController {
   var data = Get.arguments;
-  late final User userdata;
+  late final User user;
   late final ChatRoomModel chatRoomModel;
   late int chatRoomId;
   bool isChat = false;
@@ -44,7 +45,7 @@ class NeighbourChatScreenController extends GetxController {
           auth: PusherAuth(
             'http://192.168.10.3:8000',
             headers: {
-              'Authorization': 'Bearer ${userdata.bearerToken}',
+              'Authorization': 'Bearer ${user.bearerToken}',
               'Content-Type': 'application/json'
             },
           ),
@@ -96,7 +97,7 @@ class NeighbourChatScreenController extends GetxController {
     // TODO: implement onInit
     super.onInit();
 
-    userdata = data[0];
+    user = data[0];
     resident = data[1];
     chatNeighbours = data[2];
     chatRoomId=data[3];
@@ -283,6 +284,18 @@ class NeighbourChatScreenController extends GetxController {
   }
 
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getUsersChats({required chatroomids}) {
+    // Reference to the Firestore collection
+    CollectionReference<Map<String, dynamic>> collectionReference =
+    FirebaseFirestore.instance.collection('chats');
+
+    // Stream to filter documents based on a condition
+ 
+    Stream<QuerySnapshot<Map<String, dynamic>>> stream = collectionReference.where('chatroomid', isEqualTo: chatroomids)   .orderBy('createdat' , descending: true).snapshots();
+
+    
+    return stream;
+  }
 
 
 

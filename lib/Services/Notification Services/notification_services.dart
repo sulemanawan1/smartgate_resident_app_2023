@@ -6,7 +6,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:userapp/Routes/set_routes.dart';
-
 import '../../Constants/api_routes.dart';
 import '../../Module/HomeScreen/Model/residents.dart';
 import '../../Module/Login/Model/User.dart';
