@@ -103,11 +103,11 @@ class NeighbourChatScreenController extends GetxController {
     chatRoomId=data[3];
 
 
-    _initiatePusherSocketForMessaging();
-
-
-
-    update();
+    // _initiatePusherSocketForMessaging();
+    //
+    //
+    //
+    // update();
 
 
 

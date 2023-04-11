@@ -91,8 +91,8 @@ class DiscussionFormController  extends GetxController
     discussionRoomModel=data[2];
 
 
-    _initiatePusherSocketForMessaging();
-    allDiscussionChatsApi(token: user!.bearerToken!,discussionroomid:discussionRoomModel?.data?.first.id );
+    // _initiatePusherSocketForMessaging();
+    // allDiscussionChatsApi(token: user!.bearerToken!,discussionroomid:discussionRoomModel?.data?.first.id );
 
 
   }
@@ -152,41 +152,41 @@ class DiscussionFormController  extends GetxController
 
 
 
- allDiscussionChatsApi(
-      {required int? discussionroomid,
-        required String token}) async {
-    print(token);
-    print("hello");
-
-    final response = await Http.get(
-      Uri.parse(Api.alldiscussionchats +
-          "/" +
-          discussionroomid.toString() ),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': "Bearer $token"
-      },
-    );
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-
-
-
-myList.add(DiscussionChatModel.fromJson(data));
-discussionChatStreamController.sink.add(myList);
-
-
-
-
-    }
-
-    myList.add(DiscussionChatModel.fromJson(data));
-    discussionChatStreamController.sink.add(myList);
-
-
-
-
-   }
-
+//  allDiscussionChatsApi(
+//       {required int? discussionroomid,
+//         required String token}) async {
+//     print(token);
+//     print("hello");
+//
+//     final response = await Http.get(
+//       Uri.parse(Api.alldiscussionchats +
+//           "/" +
+//           discussionroomid.toString() ),
+//       headers: <String, String>{
+//         'Content-Type': 'application/json; charset=UTF-8',
+//         'Authorization': "Bearer $token"
+//       },
+//     );
+//     var data = jsonDecode(response.body.toString());
+//     if (response.statusCode == 200) {
+//
+//
+//
+// myList.add(DiscussionChatModel.fromJson(data));
+// discussionChatStreamController.sink.add(myList);
+//
+//
+//
+//
+//     }
+//
+//     myList.add(DiscussionChatModel.fromJson(data));
+//     discussionChatStreamController.sink.add(myList);
+//
+//
+//
+//
+//    }
+//
 
 }
