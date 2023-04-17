@@ -95,7 +95,7 @@ class ViewFamilyMember extends GetView {
                                                           decoration: BoxDecoration(
                                                               image: DecorationImage(
                                                                   image: NetworkImage(
-                                                                      imageBaseUrl +
+                                                                      Api.imageBaseUrl +
                                                                           snapshot
                                                                               .data!
                                                                               .data[

@@ -8,6 +8,7 @@ import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 // import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 // import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/Empty List/empty_list.dart';
 import '../Controller/neighbour_chat_screen_controller.dart';
 
@@ -17,35 +18,45 @@ class NeighbourChatScreen extends GetView {
     return GetBuilder<NeighbourChatScreenController>(
         init: NeighbourChatScreenController(),
         builder: (controller) {
-          return SafeArea(
-            child: Scaffold(
-              body: Column(
-                children: [
-                  MyBackButton(
-                      text: '.',
-                      widget: Row(
-                        children: [
-                          SizedBox(
-                            width: 2,
-                          ),
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(imageBaseUrl +
-                                controller.chatNeighbours.image.toString()),
-                            maxRadius: 20,
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            controller.chatNeighbours.firstname.toString() +
-                                ' ' +
-                                controller.chatNeighbours.lastname
-                                    .toString(),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+          return WillPopScope (
+            onWillPop: () async{
+              Get.offAndToNamed(
+                  chatavailbilityscreen,
+                  arguments: [
+                    controller
+                    ,controller.resident
+                  ]);
+              return true;
+            },
+            child: SafeArea(
+              child: Scaffold(
+                body: Column(
+                  children: [
+                    MyBackButton(
+                        text: '.',
+                        widget: Row(
+                          children: [
+                            SizedBox(
+                              width: 2,
                             ),
-                          ),
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(Api.imageBaseUrl +
+                                  controller.chatNeighbours.image.toString()),
+                              maxRadius: 20,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              controller.chatNeighbours.firstname.toString() +
+                                  ' ' +
+                                  controller.chatNeighbours.lastname
+                                      .toString(),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
 
 
 
@@ -80,165 +91,177 @@ class NeighbourChatScreen extends GetView {
 //
 
 
-                        ],
-                      )),
-                  Expanded(
-                      child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: StreamBuilder(
-                              stream:FirebaseFirestore.instance
-                                  .collection('chats').
-                              where('chatroomid',isEqualTo: controller.chatRoomId).
-                              orderBy('createdat',descending: true)
+                          ],
+                        ),onTap: (){
 
-                                  .snapshots() ,
-                              builder: (context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasData) {
-                                  var data = snapshot.data!.docs ;
 
-                                  if(data.length==0)
-                                  {
-                                    return EmptyList(
-                                        name:
-                                        "Say Hi! to your Neighbour. 😊 .");
-                                  }
-                                  return ListView.builder(
-                                    reverse: true,
-                                    itemCount: data.length,
-                                    itemBuilder: (context, index) {
-                                      print(data[index]['residentid']);
+                      Get.offAndToNamed(
+                          chatavailbilityscreen,
+                          arguments: [
+                            controller
+                               ,controller.resident
+                          ]);
+                    },
 
-                                      return Row(
-                                        mainAxisAlignment: data[index]
-                                        ['residentid'] ==
-                                            controller.user.userid
-                                            ? MainAxisAlignment.end
-                                            : MainAxisAlignment.start,
-                                        children: [
-                                          Flexible(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(4),
-                                              child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 12,
-                                                      vertical: 16),
-                                                  decoration: BoxDecoration(
-                                                    color: data[index][
-                                                    'residentid'] ==
-                                                        controller
-                                                            .user.userid
-                                                        ? primaryColor
-                                                        : Colors.black,
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        4),
-                                                  ),
-                                                  child: data![index]
-                                                  ['residentid'] ==
-                                                      controller.user.userid
-                                                      ? Text(
-                                                    data![index]
-                                                    ['message']
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color:
-                                                        Colors.white),
-                                                  )
-                                                      : Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
-                                                    children: [
-                                                      // Text(
-                                                      //   data![index]
-                                                      //   ['user']['firstname']
-                                                      //       .toString(),
-                                                      //   style: TextStyle(
-                                                      //       color:
-                                                      //       primaryColor),
-                                                      // ),
-                                                      Text(
-                                                        data![index][
-                                                        'message']
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .white),
-                                                      ),
-                                                    ],
-                                                  )),
+                    ),
+                    Expanded(
+                        child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: StreamBuilder(
+                                stream:FirebaseFirestore.instance
+                                    .collection('chats').
+                                where('chatroomid',isEqualTo: controller.chatRoomId).
+                                orderBy('createdat',descending: true)
+
+                                    .snapshots() ,
+                                builder: (context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasData) {
+                                    var data = snapshot.data!.docs ;
+
+                                    if(data.length==0)
+                                    {
+                                      return EmptyList(
+                                          name:
+                                          "Say Hi! to your Neighbour. 😊 .");
+                                    }
+                                    return ListView.builder(
+                                      reverse: true,
+                                      itemCount: data.length,
+                                      itemBuilder: (context, index) {
+                                        print(data[index]['residentid']);
+
+                                        return Row(
+                                          mainAxisAlignment: data[index]
+                                          ['residentid'] ==
+                                              controller.user.userid
+                                              ? MainAxisAlignment.end
+                                              : MainAxisAlignment.start,
+                                          children: [
+                                            Flexible(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(4),
+                                                child: Container(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 16),
+                                                    decoration: BoxDecoration(
+                                                      color: data[index][
+                                                      'residentid'] ==
+                                                          controller
+                                                              .user.userid
+                                                          ? primaryColor
+                                                          : Colors.black,
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          4),
+                                                    ),
+                                                    child: data![index]
+                                                    ['residentid'] ==
+                                                        controller.user.userid
+                                                        ? Text(
+                                                      data![index]
+                                                      ['message']
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          color:
+                                                          Colors.white),
+                                                    )
+                                                        : Column(
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .start,
+                                                      children: [
+                                                        // Text(
+                                                        //   data![index]
+                                                        //   ['user']['firstname']
+                                                        //       .toString(),
+                                                        //   style: TextStyle(
+                                                        //       color:
+                                                        //       primaryColor),
+                                                        // ),
+                                                        Text(
+                                                          data![index][
+                                                          'message']
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white),
+                                                        ),
+                                                      ],
+                                                    )),
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                }
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
 
-                                else if (snapshot.hasError) {
+                                  else if (snapshot.hasError) {
 
-                                  return Text("Something Went Wrong ");
-                                }
+                                    return Text("Something Went Wrong ");
+                                  }
 else {
 
   return Loader();
-                                }
+                                  }
 
-                              }))),
-                  Container(
-                    color: Colors.white,
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            maxLines: null,
-                            controller: controller.msg,
-                            decoration: InputDecoration(
-                                hintText: "Write message...",
-                                hintStyle: TextStyle(color: Colors.black54),
-                                border: InputBorder.none),
+                                }))),
+                    Container(
+                      color: Colors.white,
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 15,
                           ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              try {
-                                // Get a reference to the Firestore collection
-                                CollectionReference chats = FirebaseFirestore
-                                    .instance
-                                    .collection('chats');
+                          Expanded(
+                            child: TextField(
+                              maxLines: null,
+                              controller: controller.msg,
+                              decoration: InputDecoration(
+                                  hintText: "Write message...",
+                                  hintStyle: TextStyle(color: Colors.black54),
+                                  border: InputBorder.none),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                try {
+                                  // Get a reference to the Firestore collection
+                                  CollectionReference chats = FirebaseFirestore
+                                      .instance
+                                      .collection('chats');
 
 
-                                // Add a new document with a generated ID
-                                chats.add({
-                                  'residentid': controller.resident.residentid!,
-                                  'message': controller.msg.text,
-                                  'chatroomid': controller.chatRoomId,
-                                  'createdat': FieldValue.serverTimestamp(),
+                                  // Add a new document with a generated ID
+                                  chats.add({
+                                    'residentid': controller.resident.residentid!,
+                                    'message': controller.msg.text,
+                                    'chatroomid': controller.chatRoomId,
+                                    'createdat': FieldValue.serverTimestamp(),
 
-                                });
+                                  });
 
 
-                                controller.msg.clear();
-                                print('Data added successfully');
-                              } catch (error) {
-                                print('Error adding data: $error');
-                              }
-                            },
-                            child: Icon(Icons.send)),
-                        SizedBox(
-                          width: 12,
-                        ),
-                      ],
+                                  controller.msg.clear();
+                                  print('Data added successfully');
+                                } catch (error) {
+                                  print('Error adding data: $error');
+                                }
+                              },
+                              child: Icon(Icons.send)),
+                          SizedBox(
+                            width: 12,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

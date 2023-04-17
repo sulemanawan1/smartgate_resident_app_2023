@@ -737,7 +737,7 @@ class HomeScreen extends GetView {
                                             height: 65,
                                             child: GestureDetector(
                                               onTap: () {
-                                                Get.toNamed(
+                                                Get.offAndToNamed(
                                                     chatavailbilityscreen,
                                                     arguments: [
                                                       _homeScreenController
@@ -817,7 +817,7 @@ class HomeScreen extends GetView {
                                               onTap: () async{
 
                 DiscussionRoomModel discussionRoomModel=                       await      _homeScreenController.createChatRoomApi(token: _homeScreenController.user.bearerToken!, subadminid: snapshot.data.subadminid);
-                                                Get.toNamed(discussion_form,
+                                                Get.offNamed(discussion_form,
 
                                                     arguments: [
                                                     _homeScreenController
