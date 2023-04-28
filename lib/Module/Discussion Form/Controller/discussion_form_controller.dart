@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'package:http/http.dart' as Http;
 import 'package:userapp/Module/HomeScreen/Model/DiscussionRoomModel.dart' as D;
-
 import '../../../Constants/api_routes.dart';
 import '../../../main.dart';
 import '../../HomeScreen/Model/residents.dart' ;

@@ -311,16 +311,18 @@ class ResidentAddressDetail extends GetView {
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
-                                                    .viewAllHousesApi(dynamicId:
-                                                        controller.streets?.id,type: 'street');
+                                                    .viewAllHousesApi(
+                                                        dynamicId: controller
+                                                            .streets?.id,
+                                                        type: 'street');
                                               },
                                               onChanged: (House? house) {
                                                 controller.SelectedHouse(house);
 
-                                                controller.houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.streets!.address}${','}${ house!.address.toString()}";
-
-
-
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.streets!.address}${','}${house!.address.toString()}";
 
                                                 controller
                                                     .isPropertyHouseApartment();
@@ -383,9 +385,8 @@ class ResidentAddressDetail extends GetView {
                                                                   .bearerToken!,
                                                               type: 'house');
                                                         },
-                                                        onChanged:
-                                                            (Measurement?
-                                                                data) {
+                                                        onChanged: (Measurement?
+                                                            data) {
                                                           controller
                                                               .SelectedHousesApartments(
                                                                   data);
@@ -393,8 +394,7 @@ class ResidentAddressDetail extends GetView {
                                                         selectedItem: controller
                                                             .housesApartmentsModel,
                                                         itemAsString:
-                                                            (Measurement
-                                                                p) {
+                                                            (Measurement p) {
                                                           return p.area
                                                                   .toString() +
                                                               ' ' +
@@ -516,11 +516,14 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? apartment) {
+                                              onChanged:
+                                                  (Apartment? apartment) {
                                                 controller.SelectedApartment(
                                                     apartment);
-                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
-
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -544,8 +547,7 @@ class ResidentAddressDetail extends GetView {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: DropdownSearch<
-                                                Measurement>(
+                                            child: DropdownSearch<Measurement>(
                                               validator: (value) =>
                                                   value == null
                                                       ? 'field required'
@@ -562,16 +564,14 @@ class ResidentAddressDetail extends GetView {
                                                             .user!.bearerToken!,
                                                         type: 'apartment');
                                               },
-                                              onChanged: (Measurement?
-                                                  data) {
+                                              onChanged: (Measurement? data) {
                                                 controller
                                                     .SelectedHousesApartments(
                                                         data);
                                               },
                                               selectedItem: controller
                                                   .housesApartmentsModel,
-                                              itemAsString:
-                                                  (Measurement p) {
+                                              itemAsString: (Measurement p) {
                                                 return p.area.toString() +
                                                     ' ' +
                                                     p.unit.toString();
@@ -738,15 +738,19 @@ class ResidentAddressDetail extends GetView {
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
-                                                return
-                                                controller
-                                                    .viewAllHousesApi(dynamicId:
-                                                controller.streets?.id,type: 'street');
+                                                return controller
+                                                    .viewAllHousesApi(
+                                                        dynamicId: controller
+                                                            .streets?.id,
+                                                        type: 'street');
                                               },
                                               onChanged: (House? house) {
                                                 controller.SelectedHouse(house);
 
-                                                controller.houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.blocks!.address}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.blocks!.address}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";
 
                                                 controller
                                                     .isPropertyHouseApartment();
@@ -808,9 +812,8 @@ class ResidentAddressDetail extends GetView {
                                                                   .bearerToken!,
                                                               type: 'house');
                                                         },
-                                                        onChanged:
-                                                            (Measurement?
-                                                                data) {
+                                                        onChanged: (Measurement?
+                                                            data) {
                                                           controller
                                                               .SelectedHousesApartments(
                                                                   data);
@@ -818,8 +821,7 @@ class ResidentAddressDetail extends GetView {
                                                         selectedItem: controller
                                                             .housesApartmentsModel,
                                                         itemAsString:
-                                                            (Measurement
-                                                                p) {
+                                                            (Measurement p) {
                                                           return p.area
                                                                   .toString() +
                                                               ' ' +
@@ -941,10 +943,15 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? apartment) {
-                                                controller.SelectedApartment(apartment);
+                                              onChanged:
+                                                  (Apartment? apartment) {
+                                                controller.SelectedApartment(
+                                                    apartment);
 
-                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -968,8 +975,7 @@ class ResidentAddressDetail extends GetView {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: DropdownSearch<
-                                                Measurement>(
+                                            child: DropdownSearch<Measurement>(
                                               validator: (value) =>
                                                   value == null
                                                       ? 'field required'
@@ -986,16 +992,14 @@ class ResidentAddressDetail extends GetView {
                                                             .user!.bearerToken!,
                                                         type: 'apartment');
                                               },
-                                              onChanged: (Measurement?
-                                                  data) {
+                                              onChanged: (Measurement? data) {
                                                 controller
                                                     .SelectedHousesApartments(
                                                         data);
                                               },
                                               selectedItem: controller
                                                   .housesApartmentsModel,
-                                              itemAsString:
-                                                  (Measurement p) {
+                                              itemAsString: (Measurement p) {
                                                 return p.area.toString() +
                                                     ' ' +
                                                     p.unit.toString();
@@ -1202,13 +1206,19 @@ class ResidentAddressDetail extends GetView {
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
-                                                    .viewAllHousesApi(dynamicId:
-                                                controller.streets?.id,type: 'street');
+                                                    .viewAllHousesApi(
+                                                        dynamicId: controller
+                                                            .streets?.id,
+                                                        type: 'street');
                                               },
                                               onChanged: (House? house) {
                                                 controller.SelectedHouse(house);
 
-                                                controller.houseaddressdetailController.text= "${controller.societies!.name}${','}${controller.phases!.address.toString()}${','}${controller.blocks!.address.toString()}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";;
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.phases!.address.toString()}${','}${controller.blocks!.address.toString()}${','}${controller.streets!.address.toString()}${','}${house!.address.toString()}";
+                                                ;
 
                                                 controller
                                                     .isPropertyHouseApartment();
@@ -1270,9 +1280,8 @@ class ResidentAddressDetail extends GetView {
                                                                   .bearerToken!,
                                                               type: 'house');
                                                         },
-                                                        onChanged:
-                                                            (Measurement?
-                                                                data) {
+                                                        onChanged: (Measurement?
+                                                            data) {
                                                           controller
                                                               .SelectedHousesApartments(
                                                                   data);
@@ -1280,8 +1289,7 @@ class ResidentAddressDetail extends GetView {
                                                         selectedItem: controller
                                                             .housesApartmentsModel,
                                                         itemAsString:
-                                                            (Measurement
-                                                                p) {
+                                                            (Measurement p) {
                                                           return p.area
                                                                   .toString() +
                                                               ' ' +
@@ -1403,11 +1411,14 @@ class ResidentAddressDetail extends GetView {
                                                         floorid: controller
                                                             .floor?.id);
                                               },
-                                              onChanged: (Apartment? apartment) {
+                                              onChanged:
+                                                  (Apartment? apartment) {
                                                 controller.SelectedApartment(
                                                     apartment);
-                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
-
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
                                               },
                                               selectedItem:
                                                   controller.apartment,
@@ -1431,8 +1442,7 @@ class ResidentAddressDetail extends GetView {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: DropdownSearch<
-                                                Measurement>(
+                                            child: DropdownSearch<Measurement>(
                                               validator: (value) =>
                                                   value == null
                                                       ? 'field required'
@@ -1449,16 +1459,14 @@ class ResidentAddressDetail extends GetView {
                                                             .user!.bearerToken!,
                                                         type: 'apartment');
                                               },
-                                              onChanged: (Measurement?
-                                                  data) {
+                                              onChanged: (Measurement? data) {
                                                 controller
                                                     .SelectedHousesApartments(
                                                         data);
                                               },
                                               selectedItem: controller
                                                   .housesApartmentsModel,
-                                              itemAsString:
-                                                  (Measurement p) {
+                                              itemAsString: (Measurement p) {
                                                 return p.area.toString() +
                                                     ' ' +
                                                     p.unit.toString();
@@ -1468,9 +1476,9 @@ class ResidentAddressDetail extends GetView {
                                         ]
                                       ]
 
-
                                       /// For Type 1 => Society,Street, House
-                                     else if (controller.societies?.structureType ==
+                                      else if (controller
+                                              .societies?.structureType ==
                                           5) ...[
                                         Padding(
                                           padding: const EdgeInsets.all(8),
@@ -1519,7 +1527,6 @@ class ResidentAddressDetail extends GetView {
 
                                         if (controller.propertytype ==
                                             'house') ...[
-
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
                                                 8, 0, 0, 0),
@@ -1537,21 +1544,27 @@ class ResidentAddressDetail extends GetView {
                                             padding: const EdgeInsets.all(8.0),
                                             child: DropdownSearch<House>(
                                               validator: (value) =>
-                                              value == null
-                                                  ? 'field required'
-                                                  : null,
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
-                                                    .viewAllHousesApi(dynamicId:
-                                                controller.societies?.id,type: 'society');
+                                                    .viewAllHousesApi(
+                                                        dynamicId: controller
+                                                            .societies?.id,
+                                                        type: 'society');
                                               },
                                               onChanged: (House? house) {
                                                 controller.SelectedHouse(house);
 
-                                                 controller.houseaddressdetailController.text= "${controller.societies!.name}${','} ${house!.address.toString()}";
-                                                controller.isPropertyHouseApartment();
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','} ${house!.address.toString()}";
+                                                controller
+                                                    .isPropertyHouseApartment();
                                               },
                                               selectedItem: controller.houses,
                                               itemAsString: (House p) {
@@ -1562,67 +1575,52 @@ class ResidentAddressDetail extends GetView {
 
                                           /// House Measurement
 
-                                           Padding(
-                                             padding: const EdgeInsets
-                                                 .fromLTRB(8, 0, 0, 0),
-                                             child: Text(
-                                               "Select Area Type",
-                                               style:
-                                               GoogleFonts.ubuntu(
-                                                   fontStyle:
-                                                   FontStyle
-                                                       .normal,
-                                                   // color: secondaryColor,
-                                                   fontWeight:
-                                                   FontWeight
-                                                       .w400,
-                                                   fontSize: 14,
-                                                   color: HexColor(
-                                                       '#4D4D4D')),
-                                             ),
-                                           ),
-                                           Padding(
-                                             padding:
-                                             const EdgeInsets.all(
-                                                 8.0),
-                                             child: DropdownSearch<
-                                                 Measurement>(
-                                               validator: (value) =>
-                                               value == null
-                                                   ? 'field required'
-                                                   : null,
-                                               asyncItems: (String
-                                               filter) async {
-                                                 print(filter);
-                                                 return controller.housesApartmentsModelApi(
-                                                     subadminid:
-                                                     controller
-                                                         .societies!
-                                                         .subAdminId!,
-                                                     token: controller
-                                                         .user!
-                                                         .bearerToken!,
-                                                     type: 'house');
-                                               },
-                                               onChanged:
-                                                   (Measurement?
-                                               data) {
-                                                 controller
-                                                     .SelectedHousesApartments(
-                                                     data);
-                                               },
-                                               selectedItem: controller
-                                                   .housesApartmentsModel,
-                                               itemAsString:
-                                                   (Measurement
-                                               p) {
-                                                 return p.area
-                                                     .toString() +
-                                                     ' ' +
-                                                     p.unit.toString();
-                                               },
-                                             ),
-                                           )
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Area Type",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<Measurement>(
+                                              validator: (value) =>
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .housesApartmentsModelApi(
+                                                        subadminid: controller
+                                                            .societies!
+                                                            .subAdminId!,
+                                                        token: controller
+                                                            .user!.bearerToken!,
+                                                        type: 'house');
+                                              },
+                                              onChanged: (Measurement? data) {
+                                                controller
+                                                    .SelectedHousesApartments(
+                                                        data);
+                                              },
+                                              selectedItem: controller
+                                                  .housesApartmentsModel,
+                                              itemAsString: (Measurement p) {
+                                                return p.area.toString() +
+                                                    ' ' +
+                                                    p.unit.toString();
+                                              },
+                                            ),
+                                          )
                                         ] else ...[
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
@@ -1641,9 +1639,9 @@ class ResidentAddressDetail extends GetView {
                                             padding: const EdgeInsets.all(8.0),
                                             child: DropdownSearch<Building>(
                                               validator: (value) =>
-                                              value == null
-                                                  ? 'field required'
-                                                  : null,
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
@@ -1683,18 +1681,18 @@ class ResidentAddressDetail extends GetView {
                                             padding: const EdgeInsets.all(8.0),
                                             child: DropdownSearch<Floor>(
                                               validator: (value) =>
-                                              value == null
-                                                  ? 'field required'
-                                                  : null,
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
                                                     .viewAllFloorApi(
-                                                    bearerToken: controller
-                                                        .user!.bearerToken!,
-                                                    buildingid: controller
-                                                        .building?.id);
+                                                        bearerToken: controller
+                                                            .user!.bearerToken!,
+                                                        buildingid: controller
+                                                            .building?.id);
                                               },
                                               onChanged: (Floor? data) {
                                                 controller.SelectedFloor(data);
@@ -1722,27 +1720,30 @@ class ResidentAddressDetail extends GetView {
                                             padding: const EdgeInsets.all(8.0),
                                             child: DropdownSearch<Apartment>(
                                               validator: (value) =>
-                                              value == null
-                                                  ? 'field required'
-                                                  : null,
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
                                                     .viewAllApartmentApi(
-                                                    bearerToken: controller
-                                                        .user!.bearerToken!,
-                                                    floorid: controller
-                                                        .floor?.id);
+                                                        bearerToken: controller
+                                                            .user!.bearerToken!,
+                                                        floorid: controller
+                                                            .floor?.id);
                                               },
-                                              onChanged: (Apartment? apartment) {
+                                              onChanged:
+                                                  (Apartment? apartment) {
                                                 controller.SelectedApartment(
                                                     apartment);
-                                                controller. houseaddressdetailController.text ="${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
-
+                                                controller
+                                                        .houseaddressdetailController
+                                                        .text =
+                                                    "${controller.societies!.name}${','}${controller.building!.societybuildingname.toString()}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
                                               },
                                               selectedItem:
-                                              controller.apartment,
+                                                  controller.apartment,
                                               itemAsString: (Apartment p) {
                                                 return p.name.toString();
                                               },
@@ -1763,50 +1764,216 @@ class ResidentAddressDetail extends GetView {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: DropdownSearch<
-                                                Measurement>(
+                                            child: DropdownSearch<Measurement>(
                                               validator: (value) =>
-                                              value == null
-                                                  ? 'field required'
-                                                  : null,
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
                                               asyncItems:
                                                   (String filter) async {
                                                 print(filter);
                                                 return controller
                                                     .housesApartmentsModelApi(
-                                                    subadminid: controller
-                                                        .societies!
-                                                        .subAdminId!,
-                                                    token: controller
-                                                        .user!.bearerToken!,
-                                                    type: 'apartment');
+                                                        subadminid: controller
+                                                            .societies!
+                                                            .subAdminId!,
+                                                        token: controller
+                                                            .user!.bearerToken!,
+                                                        type: 'apartment');
                                               },
-                                              onChanged: (Measurement?
-                                              data) {
+                                              onChanged: (Measurement? data) {
                                                 controller
                                                     .SelectedHousesApartments(
-                                                    data);
+                                                        data);
                                               },
                                               selectedItem: controller
                                                   .housesApartmentsModel,
-                                              itemAsString:
-                                                  (Measurement p) {
+                                              itemAsString: (Measurement p) {
                                                 return p.area.toString() +
                                                     ' ' +
                                                     p.unit.toString();
                                               },
                                             ),
                                           )
+                                       
                                         ]
                                       ]
-
                                     ],
                                   )
-                                : Container(),
+                                : Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Text(
+                                          "Select Building",
+                                          style: GoogleFonts.ubuntu(
+                                              fontStyle: FontStyle.normal,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: HexColor('#4D4D4D')),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<Society>(
+                                          validator: (value) => value == null
+                                              ? 'field required'
+                                              : null,
+                                          asyncItems: (String filter) async {
+                                            return controller
+                                                .viewAllSocietiesApi(
+                                                    controller
+                                                        .societyorbuildingval,
+                                                    controller.token);
+                                          },
+                                          onChanged: (Society? data) {
+                                            controller.SelectedSociety(data!);
+                                          },
+                                          selectedItem: controller.societies,
+                                          itemAsString: (Society society) {
+                                            return society.name.toString();
+                                          },
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 0, 0, 0),
+                                        child: Text(
+                                          "Select Floor",
+                                          style: GoogleFonts.ubuntu(
+                                              fontStyle: FontStyle.normal,
+                                              // color: secondaryColor,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: HexColor('#4D4D4D')),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<Floor>(
+                                          validator: (value) => value == null
+                                              ? 'field required'
+                                              : null,
+                                          asyncItems: (String filter) async {
+                                            print(filter);
+                                            return controller
+                                                .viewAllLocalBuildingFloorApi(
+                                                    bearerToken: controller
+                                                        .user!.bearerToken!,
+                                                    buildingid: controller
+                                                        .societies?.id);
+                                          },
+                                          onChanged: (Floor? data) {
+                                            controller.SelectedFloor(data);
+                                          },
+                                          selectedItem: controller.floor,
+                                          itemAsString: (Floor p) {
+                                            return p.name.toString();
+                                          },
+                                        ),
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            8, 0, 0, 0),
+                                        child: Text(
+                                          "Select Apartment",
+                                          style: GoogleFonts.ubuntu(
+                                              fontStyle: FontStyle.normal,
+                                              // color: secondaryColor,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: HexColor('#4D4D4D')),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DropdownSearch<Apartment>(
+                                          validator: (value) =>
+                                          value == null
+                                              ? 'field required'
+                                              : null,
+                                          asyncItems:
+                                              (String filter) async {
+                                            print(filter);
+                                            return controller
+                                                .viewAllLocalBuildingApartmentApi(
+                                                bearerToken: controller
+                                                    .user!.bearerToken!,
+                                                floorid: controller
+                                                    .floor?.id);
+                                          },
+                                          onChanged: (Apartment? apartment) {
+                                            controller.SelectedApartment(
+                                                apartment);
+                                            controller. houseaddressdetailController.text ="${controller.societies!.name}${','} ${controller.floor!.name.toString()}${','}${apartment!.name.toString()}";
+
+                                          },
+                                          selectedItem:
+                                          controller.apartment,
+                                          itemAsString: (Apartment p) {
+                                            return p.name.toString();
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
+                                            child: Text(
+                                              "Select Area Type",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontStyle: FontStyle.normal,
+                                                  // color: secondaryColor,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 14,
+                                                  color: HexColor('#4D4D4D')),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownSearch<Measurement>(
+                                              validator: (value) =>
+                                                  value == null
+                                                      ? 'field required'
+                                                      : null,
+                                              asyncItems:
+                                                  (String filter) async {
+                                                print(filter);
+                                                return controller
+                                                    .housesApartmentsModelApi(
+                                                        subadminid: controller
+                                                            .societies!
+                                                            .subAdminId!,
+                                                        token: controller
+                                                            .user!.bearerToken!,
+                                                        type: 'apartment');
+                                              },
+                                              onChanged: (Measurement? data) {
+                                                controller
+                                                    .SelectedHousesApartments(
+                                                        data);
+                                              },
+                                              selectedItem: controller
+                                                  .housesApartmentsModel,
+                                              itemAsString: (Measurement p) {
+                                                return p.area.toString() +
+                                                    ' ' +
+                                                    p.unit.toString();
+                                              },
+                                            ),
+                                          )
+                                       
+                                   
+                                    ],
+                                  ),
                           ],
                         ),
                       ),
-                      MyTextFormField(readOnly: true,
+                      MyTextFormField(
+                        readOnly: true,
                         validator: emptyStringValidator,
                         maxLines: null,
                         controller: controller.houseaddressdetailController,
@@ -1906,14 +2073,14 @@ class ResidentAddressDetail extends GetView {
                                     controller.addResidentApi(
                                       subadminid:
                                           controller.societies!.subAdminId!,
-                                      residentid: controller.user!.userid!,
+                                      residentid: controller.user!.userId!,
                                       country: controller.country,
                                       state: controller.state,
                                       city: controller.city,
                                       societyid: controller.societies?.id,
                                       phaseid: controller.phases?.id ?? 0,
                                       blockid: controller.blocks?.id ?? 0,
-                                      streetid: controller.streets?.id??0,
+                                      streetid: controller.streets?.id ?? 0,
                                       propertyid: controller.houses?.id,
                                       houseaddress: controller
                                           .houseaddressdetailController.text,
@@ -1933,8 +2100,36 @@ class ResidentAddressDetail extends GetView {
                                       buildingid: controller.building?.id,
                                       floorid: controller.floor?.id,
                                     );
+                                 
                                   } else {
                                     print('local building');
+                                       controller.addResidentApi(
+                                      subadminid: controller.societies!.subAdminId!,
+                                      residentid: controller.user!.userId!,
+                                      country: controller.country,
+                                      state: controller.state,
+                                      city: controller.city,
+                                      societyid: controller.societies?.id,
+                                         houseaddress: controller.houseaddressdetailController.text,
+                                      residentalType: controller.rentalorowner,
+                                      propertyType: 'localbuildingapartment',
+                                      vechileno:
+                                          controller.vehiclenoController.text,
+                                      bearerToken:
+                                          controller.user!.bearerToken!,
+                                      ownerName:
+                                          controller.ownernameController.text,
+                                      ownerPhoneNo: controller
+                                          .ownerphonenumController.text,
+                                      measurementid:
+                                          controller.housesApartmentsModel?.id,
+                                      apartmentid: controller.apartment?.id,
+                                      
+                                      floorid: controller.floor?.id,
+                                    );
+                                 
+
+                                    
                                   }
                                 }
                               },

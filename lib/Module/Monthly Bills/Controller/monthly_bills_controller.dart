@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
-
 import '../../../Constants/api_routes.dart';
 import '../../HomeScreen/Model/residents.dart';
 import 'package:http/http.dart' as Http;
-
 import '../../Login/Model/User.dart';
 import '../Model/BillModel.dart';
 class MonthlyBillsController extends GetxController

@@ -201,7 +201,7 @@ class AddPreApproveEntry extends GetView {
                                   name: controller.nameController.text,
                                   mobileno:
                                       controller.mobileNoController.text,
-                                  userid: controller.userdata.userid!,
+                                  userid: controller.userdata.userId!,
                                   arrivaldate: controller.arrivaldate.text,
                                   arrivaltime: controller.arrivaltime.text,
                                   description:

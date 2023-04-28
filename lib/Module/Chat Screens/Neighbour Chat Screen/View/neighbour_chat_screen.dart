@@ -23,8 +23,8 @@ class NeighbourChatScreen extends GetView {
               Get.offAndToNamed(
                   chatavailbilityscreen,
                   arguments: [
-                    controller
-                    ,controller.resident
+                    controller.user,
+                    controller.resident
                   ]);
               return true;
             },
@@ -98,8 +98,8 @@ class NeighbourChatScreen extends GetView {
                       Get.offAndToNamed(
                           chatavailbilityscreen,
                           arguments: [
-                            controller
-                               ,controller.resident
+                            controller.user,
+                            controller.resident
                           ]);
                     },
 
@@ -134,7 +134,7 @@ class NeighbourChatScreen extends GetView {
                                         return Row(
                                           mainAxisAlignment: data[index]
                                           ['residentid'] ==
-                                              controller.user.userid
+                                              controller.user.userId
                                               ? MainAxisAlignment.end
                                               : MainAxisAlignment.start,
                                           children: [
@@ -149,7 +149,7 @@ class NeighbourChatScreen extends GetView {
                                                       color: data[index][
                                                       'residentid'] ==
                                                           controller
-                                                              .user.userid
+                                                              .user.userId
                                                           ? primaryColor
                                                           : Colors.black,
                                                       borderRadius:
@@ -158,7 +158,7 @@ class NeighbourChatScreen extends GetView {
                                                     ),
                                                     child: data![index]
                                                     ['residentid'] ==
-                                                        controller.user.userid
+                                                        controller.user.userId
                                                         ? Text(
                                                       data![index]
                                                       ['message']

@@ -58,5 +58,6 @@ class Api {
   static const String resetpassword = baseUrl + "resetpassword";
   static const String monthlybills = baseUrl + "monthlybills";
 
-
+  static const String viewlocalbuildingfloors = baseUrl + "viewlocalbuildingfloors";
+  static const String viewlocalbuildingapartments = baseUrl + "viewlocalbuildingapartments";
 }

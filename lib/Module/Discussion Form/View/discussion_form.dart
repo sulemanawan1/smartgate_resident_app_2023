@@ -9,8 +9,6 @@ import '../../../Widgets/My Back Button/my_back_button.dart';
 import '../Controller/discussion_form_controller.dart';
 
 class DiscussionForm extends GetView {
-
-
   @override
   Widget build(BuildContext context) {
     print('build');
@@ -19,9 +17,9 @@ class DiscussionForm extends GetView {
         init: DiscussionFormController(),
         builder: (controller) {
           return WillPopScope(
-            onWillPop: ()async{
-           await   Get.offAllNamed(homescreen, arguments:controller. user);
-return true;
+            onWillPop: () async {
+              await Get.offAllNamed(homescreen, arguments: controller.user);
+              return true;
             },
             child: SafeArea(
               child: Scaffold(
@@ -29,10 +27,8 @@ return true;
                   children: [
                     MyBackButton(
                       text: 'Discussion Form',
-                      onTap: (){
-                        Get.offAllNamed(homescreen, arguments:controller. user);
-
-
+                      onTap: () {
+                        Get.offAllNamed(homescreen, arguments: controller.user);
                       },
                     ),
                     Expanded(
@@ -41,20 +37,24 @@ return true;
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
                                     .collection('discussionchats')
-                                    .where('discussionroomid',isEqualTo: controller.discussionRoomModel?.data?.first.id).
-                                    orderBy('timestamp', descending: true)
+                                    .where('discussionroomid',
+                                        isEqualTo: controller
+                                            .discussionRoomModel
+                                            ?.data
+                                            ?.first
+                                            .id)
+                                    .orderBy('timestamp', descending: true)
                                     .snapshots(),
                                 builder: (context,
                                     AsyncSnapshot<QuerySnapshot> snapshot) {
                                   if (snapshot.hasData) {
                                     var data = snapshot.data!.docs;
 
-                                    if(data.length==0)
-                                      {
-                                          return EmptyList(
-                                            name:
-                                            "Join the discussion Forum 😊 \n and share your thoughts with the community.");
-                                      }
+                                    if (data.length == 0) {
+                                      return EmptyList(
+                                          name:
+                                              "Join the discussion Forum 😊 \n and share your thoughts with the community.");
+                                    }
                                     return ListView.builder(
                                       reverse: true,
                                       itemCount: data.length,
@@ -64,38 +64,41 @@ return true;
                                         return Row(
                                           mainAxisAlignment: data[index]
                                                       ['residentid'] ==
-                                                  controller.user.userid
+                                                  controller.user.userId
                                               ? MainAxisAlignment.end
                                               : MainAxisAlignment.start,
                                           children: [
                                             Flexible(
                                               child: Padding(
-                                                padding: const EdgeInsets.all(4),
+                                                padding:
+                                                    const EdgeInsets.all(4),
                                                 child: Container(
-                                                    padding: EdgeInsets.symmetric(
-                                                        horizontal: 12,
-                                                        vertical: 16),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 12,
+                                                            vertical: 16),
                                                     decoration: BoxDecoration(
                                                       color: data[index][
                                                                   'residentid'] ==
                                                               controller
-                                                                  .user.userid
+                                                                  .user.userId
                                                           ? primaryColor
                                                           : Colors.black,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               4),
                                                     ),
-                                                    child: data![index]
-                                                                ['residentid'] ==
-                                                            controller.user.userid
+                                                    child: data![index][
+                                                                'residentid'] ==
+                                                            controller
+                                                                .user.userId
                                                         ? Text(
                                                             data![index]
                                                                     ['message']
                                                                 .toString(),
                                                             style: TextStyle(
-                                                                color:
-                                                                    Colors.white),
+                                                                color: Colors
+                                                                    .white),
                                                           )
                                                         : Column(
                                                             crossAxisAlignment:
@@ -103,15 +106,17 @@ return true;
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                data![index]
-                                                                ['user']['firstname']
+                                                                data![index][
+                                                                            'user']
+                                                                        [
+                                                                        'firstname']
                                                                     .toString(),
                                                                 style: TextStyle(
                                                                     color:
                                                                         primaryColor),
                                                               ),
                                                               Text(
-                                                                data![index][
+                                                                data[index][
                                                                         'message']
                                                                     .toString(),
                                                                 style: TextStyle(
@@ -126,18 +131,12 @@ return true;
                                         );
                                       },
                                     );
+                                  } else if (snapshot.connectionState ==
+                                      ConnectionState.active) {
+                                    return Loader();
+                                  } else {
+                                    return Loader();
                                   }
-  else  if (snapshot.connectionState==ConnectionState.active) {
-
-      return Loader();
-    }
-
-else {
-
-  return Loader();
-                                  }
-
-
                                 }))),
                     Container(
                       color: Colors.white,
@@ -167,30 +166,23 @@ else {
                                       .instance
                                       .collection('discussionchats');
 
-
-
-                                  var user ={
-                                    'firstname':controller.user.firstName,
-                                    'lastname':controller.user.lastName,
-                                    'address':controller.user.address,
-                                    'rolename':controller.user.roleName,
-                                    'roleid':controller.user.roleId,
-
-
-
+                                  var user = {
+                                    'firstname': controller.user.firstName,
+                                    'lastname': controller.user.lastName,
+                                    'address': controller.user.address,
+                                    'rolename': controller.user.roleName,
+                                    'roleid': controller.user.roleId,
                                   };
                                   // Add a new document with a generated ID
                                   chats.add({
-                                    'residentid': controller.resident.residentid!,
+                                    'residentid':
+                                        controller.resident.residentid!,
                                     'message': controller.msg.text,
                                     'discussionroomid': controller
                                         .discussionRoomModel?.data?.first.id,
                                     'timestamp': FieldValue.serverTimestamp(),
                                     'user': user
-
                                   });
-
-
 
                                   controller.msg.clear();
                                   print('Data added successfully');
