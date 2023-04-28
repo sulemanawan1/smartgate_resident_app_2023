@@ -27,114 +27,116 @@ class MonthlyBills extends GetView {
                       future: controller.monthlyBillsApi(userid: controller.resident.residentid!, token: controller.userdata.bearerToken!),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         if (snapshot.hasData) {
-                  if (snapshot.data.data != null && snapshot.data!.data!.length != 0) {
+                  if (snapshot.data.data != null ) {
 
-                  return Column(
-                  children: [
+                  return SingleChildScrollView(
+                    child: Column(
+                    children: [
 
-                  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                  child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                  SizedBox(
-                  height: 10,
-                  ),
-                  CircleAvatar(
-                  backgroundImage: AssetImage(
-                  'assets/user.png'),
-                  ),
-                  SizedBox(
-                  height: 10,
-                  ),
-                  Text(
-                  'Smart Gate - Monthly Bill',
-                  style: GoogleFonts.montserrat(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                  snapshot.data.data.duedate.toString(),
-                  style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey),
-                  ),
-                  SizedBox(
-                  height: 30,
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment
-                      .spaceBetween,
-                  children: [
-                  SizedBox(
-                  width: 8,
-                  ),
-                  Text(
-                  'Amount Due',
-                  style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20),
-                  ),
-                  Text(
-                  'PKR ${snapshot.data.data.payableamount.toString()}',
-                  style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20),
-                  ),
-                  SizedBox(
-                  width: 8,
-                  ),
-                  ],
-                  ),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  MyBillWidget(name: 'Charges',
-                  description: 'PKR ${snapshot.data.data.charges.toString()}'),
-                  MyBillWidget(name: 'App Charges',
-                  description: 'PKR ${snapshot.data.data.appcharges.toString()}'),
-                  MyBillWidget(
-                  name: 'Tax', description: 'PKR ${snapshot.data.data.tax.toString()}'),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  MyBillDivider(),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  MyBillWidget(name: 'Balance',
-                  description: 'PKR ${snapshot.data.data.balance.toString()}'),
-                  MyBillWidget(
-                  name: 'Amount After Due Date',
-                  description: 'PKR ${snapshot.data.data.chargesafterduedate.toString()}'),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  MyBillDivider(),
-                  MyBillWidget(
-                  name: 'Billing Month',
-                  description: snapshot.data.data.month.toString()),
-                  MyBillWidget(
-                  name: 'Due Date',
-                  description: '${snapshot.data.data.duedate.toString()}'),
-                  MyBillDivider(),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  MyButton(
-                  name: 'Pay',
-                  color: Colors.green,
-                  onPressed: () {},
-                  ),
-                  SizedBox(
-                  height: 20,
-                  ),
-                  ],
-                  ),
-                  ),
-                  )
-                  ],
+                    Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                    SizedBox(
+                    height: 10,
+                    ),
+                    CircleAvatar(
+                    backgroundImage: AssetImage(
+                    'assets/user.png'),
+                    ),
+                    SizedBox(
+                    height: 10,
+                    ),
+                    Text(
+                    'Smart Gate - Monthly Bill',
+                    style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                    snapshot.data.data.duedate.toString(),
+                    style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey),
+                    ),
+                    SizedBox(
+                    height: 30,
+                    ),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment
+                        .spaceBetween,
+                    children: [
+                    SizedBox(
+                    width: 8,
+                    ),
+                    Text(
+                    'Amount Due',
+                    style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20),
+                    ),
+                    Text(
+                    'PKR ${snapshot.data.data.payableamount.toString()}',
+                    style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20),
+                    ),
+                    SizedBox(
+                    width: 8,
+                    ),
+                    ],
+                    ),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    MyBillWidget(name: 'Charges',
+                    description: 'PKR ${snapshot.data.data.charges.toString()}'),
+                    MyBillWidget(name: 'App Charges',
+                    description: 'PKR ${snapshot.data.data.appcharges.toString()}'),
+                    MyBillWidget(
+                    name: 'Tax', description: 'PKR ${snapshot.data.data.tax.toString()}'),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    MyBillDivider(),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    MyBillWidget(name: 'Balance',
+                    description: 'PKR ${snapshot.data.data.balance.toString()}'),
+                    MyBillWidget(
+                    name: 'Amount After Due Date',
+                    description: 'PKR ${snapshot.data.data.chargesafterduedate.toString()}'),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    MyBillDivider(),
+                    MyBillWidget(
+                    name: 'Billing Month',
+                    description: snapshot.data.data.month.toString()),
+                    MyBillWidget(
+                    name: 'Due Date',
+                    description: '${snapshot.data.data.duedate.toString()}'),
+                    MyBillDivider(),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    MyButton(
+                    name: 'Pay',
+                    color: Colors.green,
+                    onPressed: () {},
+                    ),
+                    SizedBox(
+                    height: 20,
+                    ),
+                    ],
+                    ),
+                    ),
+                    )
+                    ],
+                    ),
                   );
                   }
 
