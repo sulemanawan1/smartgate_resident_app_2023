@@ -158,31 +158,7 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600)),
-                                                    subtitle: Row(children: [
-                                                      Icon(
-                                                        Colors.blue ==
-                                                                Colors.blue
-                                                            ? Icons.done_all
-                                                            : Icons.done,
-                                                        size: 15,
-                                                        color: Colors.green,
-                                                      ),
-                                                      Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 6.0),
-                                                          child: Text(
-                                                            'dsdj',
-                                                            style: const TextStyle(
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ]),
+
                                                   ),
                                                 ),
                                               ],

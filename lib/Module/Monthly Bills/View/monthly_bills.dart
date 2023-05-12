@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:userapp/Module/Monthly%20Bills/Controller/monthly_bills_controller.dart';
+import 'package:userapp/Module/Monthly%20Bills/Model/BillModel.dart';
 import 'package:userapp/Widgets/Empty%20List/empty_list.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 import 'package:userapp/Widgets/My%20Button/my_button.dart';
@@ -23,11 +25,36 @@ class MonthlyBills extends GetView {
 
                 MyBackButton(text: 'Monthly Bill',),
                 Expanded(
-                  child: FutureBuilder(
+                  child: FutureBuilder<BillModel>(
                       future: controller.monthlyBillsApi(userid: controller.resident.residentid!, token: controller.userdata.bearerToken!),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      builder: (BuildContext context, AsyncSnapshot<BillModel> snapshot) {
                         if (snapshot.hasData) {
-                  if (snapshot.data.data != null ) {
+                  if (snapshot.data!.data != null ) {
+
+                    DateTime currentDate = DateTime.now();
+                    controller.dueDate= controller.toDateFormat(dateString:  snapshot.data!.data!.duedate.toString());
+                    controller.payAbleAmount=double.parse( snapshot.data!.data!.payableamount.toString());
+                    controller.lateCharges=double.parse( snapshot.data!.data!.latecharges.toString());
+                       controller.latePayAbleAmount=controller.payAbleAmount+controller.lateCharges;
+
+
+                       print(controller.payAbleAmount);
+                       print(controller.latePayAbleAmount);
+
+
+if( currentDate.isAfter(controller.dueDate))
+
+  {
+    print("hello");
+  }
+                    // if (date1.isBefore(date2)) {
+                    //   print('date1 is before date2');
+                    // } else if (date1.isAfter(date2)) {
+                    //   print('date1 is after date2');
+                    // } else {
+                    //   print('date1 and date2 are the same');
+                    // }
+
 
                   return SingleChildScrollView(
                     child: Column(
@@ -55,8 +82,8 @@ class MonthlyBills extends GetView {
                     fontSize: 18,
                     fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                    snapshot.data.data.duedate.toString(),
+                    Text(snapshot.data!.data!.duedate.toString()
+                   ,
                     style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w500,
                     color: Colors.grey),
@@ -78,7 +105,7 @@ class MonthlyBills extends GetView {
                     fontSize: 20),
                     ),
                     Text(
-                    'PKR ${snapshot.data.data.payableamount.toString()}',
+                    'PKR ${snapshot.data!.data!.payableamount.toString()}',
                     style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w600,
                     fontSize: 20),
@@ -92,11 +119,10 @@ class MonthlyBills extends GetView {
                     height: 20,
                     ),
                     MyBillWidget(name: 'Charges',
-                    description: 'PKR ${snapshot.data.data.charges.toString()}'),
-                    MyBillWidget(name: 'App Charges',
-                    description: 'PKR ${snapshot.data.data.appcharges.toString()}'),
-                    MyBillWidget(
-                    name: 'Tax', description: 'PKR ${snapshot.data.data.tax.toString()}'),
+                    description: 'PKR ${snapshot.data!.data!.charges.toString()}'),
+                    MyBillWidget(name: 'App Charges', description: 'PKR ${snapshot.data!.data!.appcharges!.toString()}'),
+                    MyBillWidget(name: 'Tax', description: 'PKR ${snapshot.data!.data!.tax.toString()}'),
+                    MyBillWidget(name: 'No of App Users', description: snapshot.data!.data!.noofappusers.toString()),
                     SizedBox(
                     height: 20,
                     ),
@@ -105,20 +131,20 @@ class MonthlyBills extends GetView {
                     height: 20,
                     ),
                     MyBillWidget(name: 'Balance',
-                    description: 'PKR ${snapshot.data.data.balance.toString()}'),
+                    description: 'PKR ${snapshot.data!.data!.balance.toString()}'),
                     MyBillWidget(
                     name: 'Amount After Due Date',
-                    description: 'PKR ${snapshot.data.data.chargesafterduedate.toString()}'),
+                    description: 'PKR ${snapshot.data!.data!.chargesafterduedate.toString()}'),
                     SizedBox(
                     height: 20,
                     ),
                     MyBillDivider(),
                     MyBillWidget(
                     name: 'Billing Month',
-                    description: snapshot.data.data.month.toString()),
+                    description: snapshot.data!.data!.month.toString()),
                     MyBillWidget(
                     name: 'Due Date',
-                    description: '${snapshot.data.data.duedate.toString()}'),
+                    description: '${snapshot.data!.data!.duedate.toString()}'),
                     MyBillDivider(),
                     SizedBox(
                     height: 20,
@@ -126,7 +152,12 @@ class MonthlyBills extends GetView {
                     MyButton(
                     name: 'Pay',
                     color: Colors.green,
-                    onPressed: () {},
+                    onPressed: () {
+
+controller.payBillApi(id: snapshot.data!.data!.id!, token: controller.userdata.bearerToken!);
+
+
+                    },
                     ),
                     SizedBox(
                     height: 20,

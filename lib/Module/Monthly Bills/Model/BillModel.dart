@@ -1,5 +1,5 @@
 /// success : true
-/// data : {"id":1,"charges":"5000.00","chargesafterduedate":"6100.00","appcharges":"100.00","tax":"750.00","balance":"5850.00","payableamount":"5850.00","subadminid":2,"residentid":4,"propertyid":1,"measurementid":1,"duedate":"2023-04-28","billstartdate":"2023-04-28","billenddate":"2023-04-28","month":"April 2023","status":0,"noofappusers":1,"created_at":"2023-04-28T14:44:32.000000Z","updated_at":"2023-04-28T14:44:32.000000Z"}
+/// data : {"id":210,"charges":"5000.00","chargesafterduedate":"6100.00","latecharges":"250.00","appcharges":"100.00","tax":"750.00","balance":"5850.00","payableamount":"5850.00","subadminid":2,"residentid":3,"propertyid":1,"measurementid":1,"duedate":"2023-06-15","billstartdate":"2023-05-01","billenddate":"2023-05-30","month":"May 2023","status":0,"noofappusers":1,"created_at":"2023-05-12T07:03:51.000000Z","updated_at":"2023-05-12T07:03:51.000000Z"}
 
 class BillModel {
   BillModel({
@@ -28,31 +28,33 @@ BillModel copyWith({  bool? success,
 
 }
 
-/// id : 1
+/// id : 210
 /// charges : "5000.00"
 /// chargesafterduedate : "6100.00"
+/// latecharges : "250.00"
 /// appcharges : "100.00"
 /// tax : "750.00"
 /// balance : "5850.00"
 /// payableamount : "5850.00"
 /// subadminid : 2
-/// residentid : 4
+/// residentid : 3
 /// propertyid : 1
 /// measurementid : 1
-/// duedate : "2023-04-28"
-/// billstartdate : "2023-04-28"
-/// billenddate : "2023-04-28"
-/// month : "April 2023"
+/// duedate : "2023-06-15"
+/// billstartdate : "2023-05-01"
+/// billenddate : "2023-05-30"
+/// month : "May 2023"
 /// status : 0
 /// noofappusers : 1
-/// created_at : "2023-04-28T14:44:32.000000Z"
-/// updated_at : "2023-04-28T14:44:32.000000Z"
+/// created_at : "2023-05-12T07:03:51.000000Z"
+/// updated_at : "2023-05-12T07:03:51.000000Z"
 
 class Data {
   Data({
       this.id, 
       this.charges, 
       this.chargesafterduedate, 
+      this.latecharges, 
       this.appcharges, 
       this.tax, 
       this.balance, 
@@ -74,6 +76,7 @@ class Data {
     id = json['id'];
     charges = json['charges'];
     chargesafterduedate = json['chargesafterduedate'];
+    latecharges = json['latecharges'];
     appcharges = json['appcharges'];
     tax = json['tax'];
     balance = json['balance'];
@@ -94,6 +97,7 @@ class Data {
   int? id;
   String? charges;
   String? chargesafterduedate;
+  String? latecharges;
   String? appcharges;
   String? tax;
   String? balance;
@@ -113,6 +117,7 @@ class Data {
 Data copyWith({  int? id,
   String? charges,
   String? chargesafterduedate,
+  String? latecharges,
   String? appcharges,
   String? tax,
   String? balance,
@@ -132,6 +137,7 @@ Data copyWith({  int? id,
 }) => Data(  id: id ?? this.id,
   charges: charges ?? this.charges,
   chargesafterduedate: chargesafterduedate ?? this.chargesafterduedate,
+  latecharges: latecharges ?? this.latecharges,
   appcharges: appcharges ?? this.appcharges,
   tax: tax ?? this.tax,
   balance: balance ?? this.balance,
@@ -154,6 +160,7 @@ Data copyWith({  int? id,
     map['id'] = id;
     map['charges'] = charges;
     map['chargesafterduedate'] = chargesafterduedate;
+    map['latecharges'] = latecharges;
     map['appcharges'] = appcharges;
     map['tax'] = tax;
     map['balance'] = balance;

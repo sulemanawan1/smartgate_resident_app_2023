@@ -8,6 +8,11 @@ import '../Model/BillModel.dart';
 class MonthlyBillsController extends GetxController
 
 {
+
+  var dueDate;
+  var payAbleAmount;
+  var latePayAbleAmount;
+  var lateCharges;
   var data = Get.arguments;
 
   late final User userdata;
@@ -29,7 +34,7 @@ class MonthlyBillsController extends GetxController
     print(token);
 
     final response = await Http.get(
-      Uri.parse(Api.monthlybills + "/" + userid.toString()),
+      Uri.parse(Api.monthlyBills + "/" + userid.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': "Bearer $token"
@@ -48,9 +53,52 @@ class MonthlyBillsController extends GetxController
   }
 
 
+payBillApi(
+      {required int id, required String token}) async {
+    print("${id.toString()}");
+    print(token);
+
+    final response = await Http.get(
+      Uri.parse(Api.payBill + "/" + id.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': "Bearer $token"
+      },
+    );
+    print(response.body);
+    var data = jsonDecode(response.body.toString());
 
 
 
+    if (response.statusCode == 200) {
+
+      Get.snackbar('Success', data['message']);
+      update();
+
+    }
+
+    else if (response.statusCode==500)
+      {
+
+
+        Get.snackbar('Warning', 'Something went Wrong');
+        update();
+      }
+
+  }
+
+
+
+toDateFormat({required dateString})
+
+{
+  DateTime date = DateTime.parse(dateString.toString());
+
+  print(date);
+
+  return date;
+
+}
 
 
 

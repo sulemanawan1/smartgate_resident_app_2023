@@ -643,7 +643,7 @@ class ResidentAddressDetailController extends GetxController {
     print(bearerToken.toString());
 
     final response = await Http.post(
-      Uri.parse(Api.loginresidentupdateaddress),
+      Uri.parse(Api.loginResidentUpdateAddress),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': "Bearer $bearerToken"
@@ -673,7 +673,7 @@ class ResidentAddressDetailController extends GetxController {
     print(type);
 
     var response = await Dio().get(
-        Api.view_all_societies + '/' + type.toString(),
+        Api.viewAllSocieties + '/' + type.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${token}"
@@ -705,7 +705,7 @@ class ResidentAddressDetailController extends GetxController {
     print(dynamicId);
 
     var response = await Dio().get(
-        Api.view_all_phases + '/' + dynamicId.toString(),
+        Api.viewAllPhases + '/' + dynamicId.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${token}"
@@ -780,7 +780,7 @@ class ResidentAddressDetailController extends GetxController {
   Future<List<Building>> viewAllBuildingApi(
       {required subAdminId, required bearerToken}) async {
     var response = await Dio().get(
-        Api.allsocietybuildings + '/' + subAdminId.toString(),
+        Api.allSocietyBuildings + '/' + subAdminId.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${bearerToken}"
@@ -805,7 +805,7 @@ class ResidentAddressDetailController extends GetxController {
       {required buildingid, required bearerToken}) async {
     print(buildingid);
     var response = await Dio().get(
-        Api.viewsocietybuildingfloors + '/' + buildingid.toString(),
+        Api.viewSocietyBuildingFloors + '/' + buildingid.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${bearerToken}"
@@ -827,7 +827,7 @@ class ResidentAddressDetailController extends GetxController {
       {required floorid, required bearerToken}) async {
     print(floorid);
     var response = await Dio().get(
-        Api.viewsocietybuildingapartments + '/' + floorid.toString(),
+        Api.viewSocietyBuildingApartments + '/' + floorid.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${bearerToken}"
@@ -851,7 +851,7 @@ class ResidentAddressDetailController extends GetxController {
     print(dynamicId);
 
     var response = await Dio().get(
-        Api.view_properties_for_residents +
+        Api.viewPropertiesForResidents +
             '/' +
             dynamicId.toString() +
             '/' +
@@ -891,7 +891,7 @@ class ResidentAddressDetailController extends GetxController {
     print(type);
 
     var response = await Dio().get(
-        Api.housesapartmentmeasurements +
+        Api.housesApartmentMeasurements +
             '/' +
             subadminid.toString() +
             '/' +
@@ -926,7 +926,7 @@ class ResidentAddressDetailController extends GetxController {
       {required buildingid, required bearerToken}) async {
     print(buildingid);
     var response = await Dio().get(
-        Api.viewlocalbuildingfloors + '/' + buildingid.toString(),
+        Api.viewLocalBuildingFloors + '/' + buildingid.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${bearerToken}"
@@ -948,7 +948,7 @@ class ResidentAddressDetailController extends GetxController {
       {required floorid, required bearerToken}) async {
     print(floorid);
     var response = await Dio().get(
-        Api.viewlocalbuildingapartments + '/' + floorid.toString(),
+        Api.viewLocalBuildingApartments + '/' + floorid.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${bearerToken}"

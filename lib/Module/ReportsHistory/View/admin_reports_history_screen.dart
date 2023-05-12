@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,16 +41,9 @@ class ReportsHistoryScreen extends GetView {
                                           builder:
                                               (BuildContext context) =>
                                                   AlertDialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                    contentPadding:
-                                                        EdgeInsets.all(0),
-                                                    title: SizedBox(
-                                                      width: 307,
+
+                                                   
+                                                    content: SingleChildScrollView(
                                                       child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
@@ -57,7 +51,7 @@ class ReportsHistoryScreen extends GetView {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .fromLTRB(
-                                                                    22,
+                                                                    18,
                                                                     0,
                                                                     0,
                                                                     0),
@@ -78,7 +72,7 @@ class ReportsHistoryScreen extends GetView {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .fromLTRB(
-                                                                    22,
+                                                                    18,
                                                                     0,0,
                                                                     0),
                                                             child: Text(
@@ -145,7 +139,7 @@ class ReportsHistoryScreen extends GetView {
                                                                 ),
 
                                                           Padding(
-                                                            padding: const EdgeInsets.fromLTRB(22, 0, 0, 0),
+                                                            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
                                                             child: Text(
                                                               'Status Description',
                                                               style: GoogleFonts.ubuntu(
@@ -161,7 +155,7 @@ class ReportsHistoryScreen extends GetView {
                                                             padding:
                                                             const EdgeInsets
                                                                 .fromLTRB(
-                                                                22,
+                                                                18,
                                                                 8,0,
                                                                 0),
                                                             child: Text(
@@ -189,7 +183,7 @@ class ReportsHistoryScreen extends GetView {
                                                           ),
 
                                                           Padding(
-                                                            padding: const EdgeInsets.fromLTRB(22, 0, 0, 0),
+                                                            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
                                                             child: Text(
                                                               'Complaint At',
                                                               style: GoogleFonts.ubuntu(
@@ -204,7 +198,7 @@ class ReportsHistoryScreen extends GetView {
                                                             height:15,
                                                           ),
                                                           Padding(
-                                                            padding: const EdgeInsets.fromLTRB(22, 0, 0, 0),
+                                                            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
                                                             child: Row(
                                                               children: [
                                                                 Container(
@@ -279,7 +273,7 @@ class ReportsHistoryScreen extends GetView {
                                                           ),
 
                                                           Padding(
-                                                            padding: const EdgeInsets.fromLTRB(22, 0, 0, 0),
+                                                            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
                                                             child: Text(
                                                               'Action At',
                                                               style: GoogleFonts.ubuntu(
@@ -294,7 +288,7 @@ class ReportsHistoryScreen extends GetView {
                                                             height:15,
                                                           ),
                                                           Padding(
-                                                            padding: const EdgeInsets.fromLTRB(22, 0, 0, 0),
+                                                            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
                                                             child: Row(
                                                               children: [
                                                                 Container(
@@ -365,17 +359,16 @@ class ReportsHistoryScreen extends GetView {
                                                             ),
                                                           ),
                                                           SizedBox(height: 20,),
-                                                          Center(
-                                                            child: MyButton(width: 80,height: 22,
-                                                              border: 4,
+                                                      Center(
+                                                        child: MyButton(
+                                                          fontSize: 12,
+                                                          name: 'Ok',width: 67,height: 18,onPressed: (){
+                                                          Get.back();
+                                                        },),
+                                                      ),
+                                                          20.h.ph
 
-                                                              name: 'Ok',color: primaryColor,
-                                                              onPressed: (){
-                                                              Get.back();
-                                                              },
 
-                                                            ),
-                                                          )
 
                                                         ],
                                                       ),

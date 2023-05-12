@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:userapp/Module/Report%20to%20Sub%20Admin/Controller/Admin%20Repo
 import 'package:userapp/Routes/set_routes.dart';
 import 'package:userapp/Widgets/Empty%20List/empty_list.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
+import 'package:userapp/Widgets/My%20Floating%20Action%20Button/my_floating_action_button.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Widgets/My Button/my_button.dart';
 
@@ -256,56 +258,13 @@ class AdminReports extends GetView {
                                                 ),
 
 
-
-                                                GestureDetector(
-                                                  onTap: () {
+                                                Center(
+                                                  child: MyButton(
+                                                    fontSize: 12,
+                                                    name: 'Ok',width: 67,height: 22,onPressed: (){
                                                     Get.back();
-                                                  },
-                                                  child: Center(
-                                                    child: Container(
-                                                      height: 31,
-                                                      width: 96,
-                                                      decoration: BoxDecoration(
-                                                          color: primaryColor,
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                  .all(
-                                                            Radius.circular(
-                                                                7.0),
-                                                          ),
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: Colors.grey
-                                                                  .withOpacity(
-                                                                      0.8),
-                                                              spreadRadius: 4,
-                                                              blurRadius: 10,
-                                                              offset:
-                                                                  Offset(0, 3),
-                                                            )
-                                                          ]),
-                                                      child: Center(
-                                                        child: Text(
-                                                          'OK',
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                "Netflix",
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 18,
-                                                            letterSpacing: 0.0,
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ), SizedBox(
-                                                  height: 30,
-                                                ),
-
+                                                  },),
+                                                )
                                               ],
                                             ),
                                           ));
@@ -330,20 +289,21 @@ class AdminReports extends GetView {
                                                 fit: BoxFit.fill),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                12, 15, 0, 0),
+                                            padding:  EdgeInsets.fromLTRB(
+                                                12.w, 15.h, 156.w, 0),
                                             child: Text(
                                               overflow:TextOverflow.ellipsis,
                                               snapshot.data.data[index].title.toString(),
-                                              style: GoogleFonts.montserrat(
-                                                  color: HexColor('#4D4D4D'),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w700),
+                                              style: GoogleFonts.ubuntu(
+                                                  color: HexColor('#A5AAB7'),
+                                                  fontSize: 12,
+
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                12, 35,50, 0),
+                                                12, 35,191, 0),
                                             child: Text(
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
@@ -351,9 +311,9 @@ class AdminReports extends GetView {
                                                   .data.data[index].description
                                                   .toString(),
                                               style: GoogleFonts.ubuntu(
-                                                  color: HexColor('#757575'),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400),
+                                                  color: HexColor('#606470'),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                           Padding(
@@ -592,16 +552,18 @@ class AdminReports extends GetView {
               ),
             ],
           ),
-          floatingActionButton: IconButton(
-              padding: EdgeInsets.only(top: 85),
-              iconSize: MediaQuery.of(context).size.height * 0.065,
-              icon: SvgPicture.asset('assets/floatingbutton.svg'),
-              onPressed: () {
-                Get.offAndToNamed(reporttoadmin, arguments: [
-                  _adminReportsController.user,
-                  _adminReportsController.resident
-                ]);
-              }),
+          floatingActionButton:
+          MyFloatingActionButton(onPressed: (){
+
+            Get.offAndToNamed(reporttoadmin, arguments: [
+              _adminReportsController.user,
+              _adminReportsController.resident
+            ]);
+
+          },)
+
+
+
         ),
       ),
     );
@@ -671,10 +633,10 @@ class AdminReports extends GetView {
       double? width,
       double? height}) {
     return Container(
-      width: width ?? 64,
+      width: width ?? 64.w,
       height: height ?? 18,
       decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(4)),
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(4.r)),
       child: Center(
         child: Text(
           status,

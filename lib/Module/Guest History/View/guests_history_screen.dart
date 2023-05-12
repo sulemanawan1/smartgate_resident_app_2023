@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,347 +36,306 @@ class GuestsHistoryScreen extends GetView {
                               itemBuilder: (context, index) {
                                 return Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                                       EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0),
                                   child: GestureDetector(
                                     onTap: () {
                                       showDialog(
                                           context: context,
                                           builder: (BuildContext context) =>
                                               AlertDialog(
-                                                title: SizedBox(
-                                                  width: 347,
-                                                  height: 375,
-                                                  child: Stack(
+                                                content:
+                                                SingleChildScrollView(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: [
-                                                      Align(
-                                                        alignment:
-                                                            Alignment.topCenter,
-                                                        child: Text(
-                                                          snapshot
-                                                              .data!
-                                                              .data![index]
-                                                              .name!,
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                0, 38, 0, 0),
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .topCenter,
+                                                      Center(
                                                           child: Text(
                                                             snapshot
                                                                 .data!
                                                                 .data![index]
-                                                                .description!,
+                                                                .name.toString(),
                                                             style: GoogleFonts.ubuntu(
                                                                 color: HexColor(
                                                                     '#4D4D4D'),
                                                                 fontSize: 18,
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w300),
+                                                                FontWeight
+                                                                    .w700),
+                                                          )),
+                                                      SizedBox(
+                                                        height: 37,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              maxRadius: 10,
+                                                              backgroundColor:
+                                                              Color.fromRGBO(
+                                                                  255,
+                                                                  153,
+                                                                  0,
+                                                                  0.35),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                  'assets/ellipse_icon.svg')),
+                                                          SizedBox(
+                                                            width: 8,
                                                           ),
-                                                        ),
+                                                          Text(
+                                                            'Description',
+                                                            style: GoogleFonts.ubuntu(
+                                                                color: HexColor(
+                                                                    '#4D4D4D'),
+                                                                fontSize:
+                                                                14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                        ],
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                14, 98, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                38, 98, 0, 0),
-                                                        child: Text(
-                                                          'Visitor Type',
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                38, 117, 0, 0),
+                                                        EdgeInsets.only(
+                                                            left: 30),
                                                         child: Text(
                                                           snapshot
                                                               .data!
                                                               .data![index]
-                                                              .visitortype
-                                                              .toString(),
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                198, 98, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                218, 98, 0, 0),
-                                                        child: Text(
-                                                          'Vehilce No',
+                                                              .description.toString(),
                                                           style: GoogleFonts.ubuntu(
                                                               color: HexColor(
                                                                   '#4D4D4D'),
                                                               fontSize: 12,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
+                                                              FontWeight
+                                                                  .w400),
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                218, 117, 0, 0),
-                                                        child: Text(
-                                                          snapshot
-                                                              .data!
-                                                              .data![index]
-                                                              .vechileno
-                                                              .toString(),
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
+                                                      SizedBox(
+                                                        height: 30,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              maxRadius: 10,
+                                                              backgroundColor:
+                                                              Color.fromRGBO(
+                                                                  255,
+                                                                  153,
+                                                                  0,
+                                                                  0.35),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                  'assets/ellipse_icon.svg')),
+                                                          SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Date',
+                                                            style: GoogleFonts.ubuntu(
+                                                                color: HexColor(
+                                                                    '#4D4D4D'),
+                                                                fontSize:
+                                                                14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 70,
+                                                          ),
+                                                          CircleAvatar(
+                                                              maxRadius: 10,
+                                                              backgroundColor:
+                                                              Color.fromRGBO(
+                                                                  255,
+                                                                  153,
+                                                                  0,
+                                                                  0.35),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                  'assets/ellipse_icon.svg')),
+                                                          SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Vehicle No',
+                                                            style: GoogleFonts.ubuntu(
+                                                                color: HexColor(
+                                                                    '#4D4D4D'),
+                                                                fontSize:
+                                                                14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 11,
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                14, 165, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                39, 165, 0, 0),
-                                                        child: Text(
-                                                          'Contact No',
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                39, 185, 0, 0),
-                                                        child: Text(
-                                                          snapshot
-                                                              .data!
-                                                              .data![index]
-                                                              .mobileno
-                                                              .toString(),
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                199, 169, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                223, 169, 0, 0),
-                                                        child: Text(
-                                                          'Expected Time',
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                223, 188, 0, 0),
-                                                        child: Text(
-                                                          snapshot
-                                                                  .data!
-                                                                  .data![index]
-                                                                  .arrivaltime
-                                                                  .toString()
-                                                                  .split(':')[0]
-                                                                  .toString() +
-                                                              " : " +
+                                                        EdgeInsets.only(
+                                                            left: 30),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
                                                               snapshot
                                                                   .data!
-                                                                  .data![index]
-                                                                  .arrivaltime
-                                                                  .toString()
-                                                                  .split(':')[1]
-                                                                  .toString(),
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
-                                                              fontWeight:
+                                                                  .data![
+                                                              index]
+                                                                  .arrivaldate.toString(),
+                                                              style: GoogleFonts.ubuntu(
+                                                                  color: HexColor(
+                                                                      '#4D4D4D'),
+                                                                  fontSize:
+                                                                  12,
+                                                                  fontWeight:
                                                                   FontWeight
-                                                                      .w300),
+                                                                      .w400),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 70,
+                                                            ),
+                                                            Flexible(
+                                                              child: Text(
+                                                                snapshot
+                                                                    .data!
+                                                                    .data![index]
+                                                                    .vechileno
+                                                                    .toString(),
+                                                                overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                                style: GoogleFonts.ubuntu(
+                                                                    color: HexColor(
+                                                                        '#4D4D4D'),
+                                                                    fontSize:
+                                                                    12,
+                                                                    fontWeight:
+                                                                    FontWeight.w400),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                14, 232, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
+                                                      SizedBox(
+                                                        height: 30,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              maxRadius: 10,
+                                                              backgroundColor:
+                                                              Color.fromRGBO(
+                                                                  255,
+                                                                  153,
+                                                                  0,
+                                                                  0.35),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                  'assets/ellipse_icon.svg')),
+                                                          SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Expected Arrival Time',
+                                                            style: GoogleFonts.ubuntu(
+                                                                color: HexColor(
+                                                                    '#4D4D4D'),
+                                                                fontSize:
+                                                                14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height: 11,
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                39, 232, 0, 0),
-                                                        child: Text(
-                                                          'Cnic',
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                39, 252, 0, 0),
-                                                        child: Text(
-                                                          snapshot.data!
-                                                              .data![index].cnic
-                                                              .toString(),
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                199, 233, 0, 0),
-                                                        child: SvgPicture.asset(
-                                                            'assets/ellipse_icon.svg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                223, 233, 0, 0),
-                                                        child: Text(
-                                                          'Date',
-                                                          style: GoogleFonts.ubuntu(
-                                                              color: HexColor(
-                                                                  '#4D4D4D'),
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                223, 252, 0, 0),
+                                                        EdgeInsets.only(
+                                                            left: 30),
                                                         child: Text(
                                                           snapshot
                                                               .data!
                                                               .data![index]
-                                                              .updatedAt
-                                                              .toString()
-                                                              .split('T')[0]
-                                                              .toString(),
+                                                              .arrivaltime.toString(),
                                                           style: GoogleFonts.ubuntu(
                                                               color: HexColor(
-                                                                  '#1A1A1A'),
-                                                              fontSize: 16,
+                                                                  '#4D4D4D'),
+                                                              fontSize: 12,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w300),
+                                                              FontWeight
+                                                                  .w400),
                                                         ),
                                                       ),
+                                                      SizedBox(
+                                                        height: 30,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          CircleAvatar(
+                                                              maxRadius: 10,
+                                                              backgroundColor:
+                                                              Color.fromRGBO(
+                                                                  255,
+                                                                  153,
+                                                                  0,
+                                                                  0.35),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                  'assets/ellipse_icon.svg')),
+                                                          SizedBox(
+                                                            width: 8,
+                                                          ),
+                                                          Text(
+                                                            'Visitor Type',
+                                                            style: GoogleFonts.ubuntu(
+                                                                color: HexColor(
+                                                                    '#4D4D4D'),
+                                                                fontSize:
+                                                                14,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      11.h.ph,
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
-                                                                    .fromLTRB(
-                                                                100,
-                                                                316,
-                                                                105,
-                                                                0),
-                                                        child: MyButton(
-                                                          name: 'Ok',
-                                                          onPressed: () {
-                                                            Get.back();
-                                                          },
+                                                        EdgeInsets.only(
+                                                            left: 30),
+                                                        child: Text(
+                                                          snapshot
+                                                              .data!
+                                                              .data![index]
+                                                              .visitortype.toString(),
+                                                          style: GoogleFonts.ubuntu(
+                                                              color: HexColor(
+                                                                  '#4D4D4D'),
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400),
                                                         ),
-                                                      )
+                                                      ),
+                                                      34.h.ph,
+                                                      Center(
+                                                        child: MyButton(
+                                                          fontSize: 12,
+                                                          name: 'Ok',width: 67,height: 22,onPressed: (){
+                                                          Get.back();
+                                                        },),
+                                                      ),
+                                                      20.h.ph
                                                     ],
                                                   ),
                                                 ),
@@ -444,7 +404,7 @@ class GuestsHistoryScreen extends GetView {
                                                                 fontSize: 10,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300),
+                                                                        .w500),
                                                       ),
                                                       SvgPicture.asset(
                                                         'assets/complain_history_date_icon1.svg',
@@ -496,7 +456,7 @@ class GuestsHistoryScreen extends GetView {
                                                               fontSize: 12,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w300),
+                                                                      .w500),
                                                         ),
                                                       ],
                                                     )),
@@ -522,7 +482,7 @@ class GuestsHistoryScreen extends GetView {
                                                               fontSize: 12,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w300),
+                                                                      .w500),
                                                         ),
                                                       ],
                                                     ))

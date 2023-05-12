@@ -1,5 +1,7 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pusher_client/pusher_client.dart';
 import 'package:userapp/Routes/routes_managment.dart';
@@ -47,12 +49,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return ScreenUtilInit(
+        designSize: Size(375,812),
+      builder: (context,child) {
+          return GetMaterialApp(
 
-      debugShowCheckedModeBanner: false,
-      initialRoute: splashscreen,
-      getPages: RouteManagement.getPages(),
+          debugShowCheckedModeBanner: false,
+          initialRoute: splashscreen,
+          getPages: RouteManagement.getPages(),
 
+
+        );
+      }
     );
   }
 }

@@ -123,7 +123,7 @@ class LoginController extends GetxController {
 
     try {
       final response = await Http.post(
-        Uri.parse(Api.fcmtokenrefresh),
+        Uri.parse(Api.fcmTokenRefresh),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': "Bearer $bearertoken"

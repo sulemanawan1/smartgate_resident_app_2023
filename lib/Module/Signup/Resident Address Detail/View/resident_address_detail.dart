@@ -2037,7 +2037,7 @@ class ResidentAddressDetail extends GetView {
                                 Padding(
                                   padding: const EdgeInsets.all(18.0),
                                   child: Text(
-                                    'Enter Owner Details',
+                                    'Owner Details',
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
@@ -2047,14 +2047,14 @@ class ResidentAddressDetail extends GetView {
                                   controller: controller.ownernameController,
                                   validator: emptyStringValidator,
                                   hintText: 'Owner Name',
-                                  labelText: 'Enter Owner Name',
+                                  labelText: 'Owner Name',
                                 ),
                                 MyTextFormField(
                                   controller:
                                       controller.ownerphonenumController,
                                   validator: emptyStringValidator,
                                   hintText: 'Owner Phone No',
-                                  labelText: 'Enter Phone No',
+                                  labelText: 'Owner Phone No',
                                 ),
                               ],
                             )

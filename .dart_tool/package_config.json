@@ -98,6 +98,18 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "device_frame",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/device_frame-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "device_preview",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/device_preview-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "dio",
       "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/dio-4.0.6",
       "packageUri": "lib/",
@@ -206,8 +218,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_localizations",
+      "rootUri": "file:///C:/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_screenutil",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_screenutil-5.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -226,6 +250,12 @@
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "freezed_annotation",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/freezed_annotation-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -302,6 +332,12 @@
       "languageVersion": "2.16"
     },
     {
+      "name": "json_annotation",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.13",
       "packageUri": "lib/",
@@ -316,6 +352,12 @@
     {
       "name": "meta",
       "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -396,6 +438,12 @@
       "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/process-4.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/sulemanawan/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "pusher_client",
@@ -530,7 +578,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-04-19T07:20:53.511193Z",
+  "generated": "2023-05-10T14:31:26.765139Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

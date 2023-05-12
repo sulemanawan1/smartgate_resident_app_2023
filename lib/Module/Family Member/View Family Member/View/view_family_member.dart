@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,7 @@ import 'package:userapp/Module/Family%20Member/View%20Family%20Member/Controller
 import 'package:userapp/Routes/set_routes.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Button/my_button.dart';
+import 'package:userapp/Widgets/My%20Floating%20Action%20Button/my_floating_action_button.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Widgets/My Back Button/my_back_button.dart';
@@ -30,7 +32,7 @@ class ViewFamilyMember extends GetView {
                 return false;
               },
               child: Scaffold(
-                backgroundColor: HexColor('#F5F5F5'),
+                backgroundColor: Colors.white,
                 body: Column(
                   children: [
                     MyBackButton(text: 'Family Members', onTap: () {
@@ -54,64 +56,49 @@ class ViewFamilyMember extends GetView {
 
 
                                         },
-                                        child: Padding(
-                                          padding: EdgeInsets.all(20),
-                                          child: Container(
-                                            decoration: BoxDecoration(
+                                        child:Padding(
+                                          padding:  EdgeInsets.fromLTRB(10.w, 16.h, 10.w, 0),
+                                          child: SizedBox(
+                                            width: 100,
+                                            height: 80,
+                                            child: Card(
 
-                                              borderRadius:
-                                              BorderRadius.circular(17),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Color.fromARGB(
-                                                      189, 224, 224, 223),
-                                                  spreadRadius: 5,
 
-                                                  blurRadius: 9,
-                                                  offset: Offset(0,
-                                                      3), // changes position of shadow
-                                                ),
-                                              ],
-                                              color: HexColor('#FFFFFF'),
-                                            ),
+                                              child:  Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
 
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(
-                                                  20.0),
-                                              child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment
-                                                          .spaceEvenly,
-                                                      children: [
-                                                        Container(
-                                                          width: 70.4,
-                                                          height: 64,
-                                                          decoration: BoxDecoration(
-                                                              image: DecorationImage(
-                                                                  image: NetworkImage(
-                                                                      Api.imageBaseUrl +
-                                                                          snapshot
-                                                                              .data!
-                                                                              .data[
-                                                                          index]
-                                                                              .image
-                                                                              .toString()),
-                                                                  fit: BoxFit
-                                                                      .cover),
-                                                              borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                  7)),
-                                                        ),
-                                                        Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            Text(
+                                                  Row(
+
+                                                    children: [
+                                                      Container(
+                                                        width: 70,
+                                                        height: 64,
+                                                        decoration: BoxDecoration(
+                                                            image: DecorationImage(
+                                                                image: NetworkImage(
+                                                                    Api.imageBaseUrl +
+                                                                        snapshot
+                                                                            .data!
+                                                                            .data[
+                                                                        index]
+                                                                            .image
+                                                                            .toString()),
+                                                                fit: BoxFit
+                                                                    .contain),
+                                                            borderRadius:
+                                                            BorderRadius.circular(7)),
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 2),
+                                                            child: Text(
+
                                                               snapshot.data
                                                                   .data[index]
                                                                   .firstname +
@@ -119,125 +106,141 @@ class ViewFamilyMember extends GetView {
                                                                   snapshot.data
                                                                       .data[index]
                                                                       .lastname,
-                                                              style: TextStyle(
+                                                              style: GoogleFonts.ubuntu(
                                                                   fontStyle:
                                                                   FontStyle
                                                                       .normal,
                                                                   fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                                  fontSize: 16,
+                                                                  fontSize: 12,
                                                                   color: HexColor(
-                                                                      '#404345')),
+                                                                      '#A5AAB7'),),
                                                             ),
-                                                            Text(
+                                                          ),
+
+                                                          Padding(
+                                                            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 0),
+                                                            child: Text(
                                                               snapshot.data
                                                                   .data[index]
                                                                   .mobileno,
-                                                              style: TextStyle(
+                                                              style: GoogleFonts.montserrat(
+                                                                color: HexColor('#606470'),
                                                                 fontStyle:
                                                                 FontStyle
                                                                     .normal,
                                                                 fontWeight:
                                                                 FontWeight
-                                                                    .w200,
-                                                                fontSize: 16,
+                                                                    .w500,
+                                                                fontSize: 14,
                                                               ),
                                                               overflow:
                                                               TextOverflow
                                                                   .ellipsis,
                                                               maxLines: 1,
                                                             ),
-                                                          ],
-                                                        ),
-
-                                                        GetBuilder<
-                                                            ResetPasswordController>(
-                                                          init: ResetPasswordController(),
-                                                            builder: (resetPasswordController) {
-                                                              return GestureDetector(
-                                                                onTap: () {
-                                                                  Get.defaultDialog(
-                                                                      title: 'Reset Password',
-                                                                      content: Form(
-                                                                        key: _formKey,
-                                                                        child: Column(
-                                                                          children: [
-                                                                            SvgPicture
-                                                                                .asset(
-                                                                              'assets/reset_password_icon.svg',
-                                                                              width: 200,
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 20,
-                                                                            ),
-                                                                            MyPasswordTextFormField(
-                                                                                validator:emptyStringValidator,
-                                                                                labelText: 'New Password',
-                                                                                hintText: 'New Password',
-                                                                                togglePasswordView:
-                                                                                resetPasswordController
-                                                                                    .togglePasswordView,
-                                                                                controller:
-                                                                                resetPasswordController
-                                                                                    .passwordController,
-
-                                                                                obscureText:
-                                                                                resetPasswordController
-                                                                                    .isHidden),
-                                                                            SizedBox(
-                                                                              height: 20,
-                                                                            ),
-                                                                            MyButton(
-                                                                              name: 'Reset Password',
-                                                                              onPressed: () {
-
-                                                                                if (_formKey.currentState!.validate())
-                                                                           {
-
-                                                                             resetPasswordController
-                                                                                 .resetPasswordApi(
-                                                                                 familymemberid:  snapshot.data
-                                                                                     .data[index]
-                                                                                     .familyMemberId,
-                                                                                 bearerToken: controller
-                                                                                     .userdata
-                                                                                     .bearerToken!,
-                                                                                 password:
-                                                                                 resetPasswordController
-                                                                                     .passwordController
-                                                                                     .text);
-                                                                           }
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.fromLTRB(200, 0, 0, 0),
+                                                            child: GetBuilder<ResetPasswordController>(
+                                                                init: ResetPasswordController(),
+                                                                builder: (resetPasswordController) {
+                                                                  return SizedBox(
+                                                                    width: 100,
+                                                                    height: 20,
+                                                                    child: ElevatedButton(
+                                                                      onPressed: (){
 
 
+                                                                        Get.defaultDialog(
+                                                                            title: 'Reset Password',
+                                                                            content: Form(
+                                                                              key: _formKey,
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  SvgPicture
+                                                                                      .asset(
+                                                                                    'assets/reset_password_icon.svg',
+                                                                                    width: 200,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    height: 20,
+                                                                                  ),
+                                                                                  MyPasswordTextFormField(
+                                                                                      validator:emptyStringValidator,
+                                                                                      labelText: 'New Password',
+                                                                                      hintText: 'New Password',
+                                                                                      togglePasswordView:
+                                                                                      resetPasswordController
+                                                                                          .togglePasswordView,
+                                                                                      controller:
+                                                                                      resetPasswordController
+                                                                                          .passwordController,
 
-                                                                              },
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 20,
-                                                                            ),
+                                                                                      obscureText:
+                                                                                      resetPasswordController
+                                                                                          .isHidden),
+                                                                                  SizedBox(
+                                                                                    height: 20,
+                                                                                  ),
+                                                                                  MyButton(
+                                                                                    name: 'Reset Password',
+                                                                                    onPressed: () {
 
-                                                                          ],
-                                                                        ),
-                                                                      ));
-                                                                },
-                                                                child: Chip(
-                                                                  label: Text(
-                                                                    'Reset Password',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize: 8),)
-                                                                  ,
-                                                                  backgroundColor: primaryColor,),
-                                                              );
-                                                            })
-                                                      ],
-                                                    ),
-                                                  ]),
-                                            ),
+                                                                                      if (_formKey.currentState!.validate())
+                                                                                      {
+
+                                                                                        resetPasswordController
+                                                                                            .resetPasswordApi(
+                                                                                            familymemberid:  snapshot.data
+                                                                                                .data[index]
+                                                                                                .familyMemberId,
+                                                                                            bearerToken: controller
+                                                                                                .userdata
+                                                                                                .bearerToken!,
+                                                                                            password:
+                                                                                            resetPasswordController
+                                                                                                .passwordController
+                                                                                                .text);
+                                                                                      }
+
+
+
+                                                                                    },
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    height: 20,
+                                                                                  ),
+
+                                                                                ],
+                                                                              ),
+                                                                            ));
+                                                                      }, child: Text('Reset Password',style:
+                                                                    GoogleFonts.montserrat(fontSize: 8,fontWeight: FontWeight.w500),
+
+                                                                    ),
+                                                                      style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
+
+
+
+                                                                    ),
+                                                                  );
+                                                                }),
+                                                          )
+
+                                                        ],
+                                                      ),
+
+
+
+                                                    ],
+                                                  ),
+
+                                                ]),),
                                           ),
-                                        ),
+                                        )
+
                                       );
                                     },
                                     itemCount: snapshot.data.data.length
@@ -263,19 +266,12 @@ class ViewFamilyMember extends GetView {
                     ),
                   ],
                 ),
-                floatingActionButton: IconButton(
-                    padding: EdgeInsets.only(top: 85),
-                    iconSize: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.065,
-                    icon: SvgPicture.asset('assets/floatingbutton.svg'),
-                    onPressed: () {
-                      Get.offAndToNamed(addfamilymember, arguments: [
-                        controller.userdata,
-                        controller.resident
-                      ]);
-                    }), // floatingActionButton: IconButton(
+                floatingActionButton: MyFloatingActionButton(onPressed: (){
+                  Get.offAndToNamed(addfamilymember, arguments: [
+                    controller.userdata,
+                    controller.resident
+                  ]);
+                },)
 
               ),
             ),
