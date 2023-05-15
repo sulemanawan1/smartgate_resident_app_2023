@@ -1,45 +1,102 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:crypto/crypto.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as Http;
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:userapp/Constants/api_routes.dart';
+
 import '../../../Routes/set_routes.dart';
 import '../../../Services/Notification Services/notification_services.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
-import '../../Add PreApprove Entry/View/add_pre_aprove_entry.dart';
-import '../Model/DiscussionRoomModel.dart';
 import '../../Login/Model/User.dart';
+import '../Model/DiscussionRoomModel.dart';
 import '../Model/residents.dart';
 import '../View/home_screen.dart';
 
 class HomeScreenController extends GetxController {
-  var scaffoldKey = GlobalKey<ScaffoldState>();
+  // var scaffoldKey = GlobalKey<ScaffoldState>();
   var imageFile;
 
   var data = Get.arguments;
   late final User user;
 
-
-  List<HomeScreenCard> servicesLi=[
-    HomeScreenCard(heading: 'Complaint', description: 'Resolve issues. Empower residents. Strengthen community bonds', iconPath: 'assets/icons/complaint.svg',type: 'services',),
-    HomeScreenCard(heading: 'Pre Approve Entry', description: 'Seamless access. Secure entry. Hassle-free resident approvals.', iconPath: 'assets/icons/preapprove_entry.svg',type: 'services',),
-    HomeScreenCard(heading: 'Family Members', description: 'Inclusive communities. Easy family additions. Strengthening bonds', iconPath: 'assets/icons/complaint.svg',type: 'services',),
+  List<HomeScreenCard> servicesLi = [
+    HomeScreenCard(
+      heading: 'Complaint',
+      description:
+          'Resolve issues. Empower residents. Strengthen community bonds',
+      iconPath: 'assets/file 3.png',
+      type: 'services',
+    ),
+    HomeScreenCard(
+      heading: 'Pre Approve Entry',
+      description:
+          'Seamless access. Secure entry. Hassle-free resident approvals.',
+      iconPath: 'assets/noticeboard_icon.png',
+      type: 'services',
+    ),
+    HomeScreenCard(
+      heading: 'Family Members',
+      description:
+          'Inclusive communities. Easy family additions. Strengthening bonds',
+      iconPath: 'assets/team 1.png',
+      type: 'services',
+    ),
   ];
-  List<HomeScreenCard> eventsLi=[    HomeScreenCard(heading: 'Society Events', description: 'Unforgettable gatherings. Engaging community events.', iconPath: 'assets/icons/event.svg',type: 'events',),
-    HomeScreenCard(heading: 'Notice Board', description: 'Stay informed. Important updates. Community notices at fingertips', iconPath: 'assets/icons/noticeboard.svg',type: 'events',),];
-  List<HomeScreenCard> chatsLi=[    HomeScreenCard(heading: 'Neighbours', description: 'Connect with neighbors. Instant community communication', iconPath: 'assets/icons/chat.svg',type: 'chats',),
-    HomeScreenCard(heading: 'Discussion Forum', description: 'Engage. Discuss. Share. Community forum platform', iconPath: 'assets/icons/discussion_forum.svg',type: 'chats',),];
-  List<HomeScreenCard> historyLi=[    HomeScreenCard(heading: 'Complaint History', description: 'Track. Resolve. Improve. Complaint history tracker', iconPath: 'assets/icons/history.svg',type: 'history',),
-    HomeScreenCard(heading: 'Guest History', description: 'Guest visits. History. Enhanced security.', iconPath: 'assets/icons/history.svg',type: 'history',),
+  List<HomeScreenCard> eventsLi = [
+    HomeScreenCard(
+      heading: 'Society Events',
+      description: 'Unforgettable gatherings. Engaging community events.',
+      iconPath: 'assets/icons/event.svg',
+      type: 'events',
+    ),
+    HomeScreenCard(
+      heading: 'Notice Board',
+      description:
+          'Stay informed. Important updates. Community notices at fingertips',
+      iconPath: 'assets/icons/noticeboard.svg',
+      type: 'events',
+    ),
   ];
-  List<HomeScreenCard> billsLi=[   HomeScreenCard(heading: 'Monthly Bills', description: 'Easy pay your Monthly Bills', iconPath: 'assets/icons/history.svg',type: 'bills',),
+  List<HomeScreenCard> chatsLi = [
+    HomeScreenCard(
+      heading: 'Neighbours',
+      description: 'Connect with neighbors. Instant community communication',
+      iconPath: 'assets/icons/chat.svg',
+      type: 'chats',
+    ),
+    HomeScreenCard(
+      heading: 'Discussion Forum',
+      description: 'Engage. Discuss. Share. Community forum platform',
+      iconPath: 'assets/icons/discussion_forum.svg',
+      type: 'chats',
+    ),
   ];
-
+  List<HomeScreenCard> historyLi = [
+    HomeScreenCard(
+      heading: 'Complaint History',
+      description: 'Track. Resolve. Improve. Complaint history tracker',
+      iconPath: 'assets/icons/history.svg',
+      type: 'history',
+    ),
+    HomeScreenCard(
+      heading: 'Guest History',
+      description: 'Guest visits. History. Enhanced security.',
+      iconPath: 'assets/icons/history.svg',
+      type: 'history',
+    ),
+  ];
+  List<HomeScreenCard> billsLi = [
+    HomeScreenCard(
+      heading: 'Monthly Bills',
+      description: 'Easy pay your Monthly Bills',
+      iconPath: 'assets/icons/history.svg',
+      type: 'bills',
+    ),
+  ];
 
   getFromCamera(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(
@@ -93,7 +150,7 @@ class HomeScreenController extends GetxController {
 
     var e = data['data'];
 
-    final Residents residents =   Residents(
+    final Residents residents = Residents(
         id: e['id'],
         residentid: e['residentid'],
         subadminid: e['subadminid'],
@@ -227,21 +284,16 @@ class HomeScreenController extends GetxController {
       print("logout successfully");
       print(data);
       MySharedPreferences.deleteUserData();
-      await FirebaseMessaging.instance.deleteToken();
+      // await FirebaseMessaging.instance.deleteToken();
       Get.offAllNamed(loginscreen);
     } else {
       print(data);
     }
   }
 
-
-
   Future<DiscussionRoomModel> createChatRoomApi({
     required String token,
     required int subadminid,
-
-
-
   }) async {
     final response = await Http.post(
       Uri.parse(Api.createDiscussionRoom),
@@ -249,29 +301,18 @@ class HomeScreenController extends GetxController {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': "Bearer $token"
       },
-      body: jsonEncode(<String, dynamic>
-      {
+      body: jsonEncode(<String, dynamic>{
         "subadminid": subadminid,
-
-
-
-      }
-
-      ),
+      }),
     );
     print(response.body);
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
-
-
       print(response.body);
 
       return DiscussionRoomModel.fromJson(data);
-
     } else {
-
       return DiscussionRoomModel.fromJson(data);
     }
   }
-
 }

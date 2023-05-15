@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
+
 import '../../../Constants/constants.dart';
 import '../../../Routes/set_routes.dart';
 import '../../../Widgets/Empty List/empty_list.dart';
@@ -39,10 +40,7 @@ class DiscussionForm extends GetView {
                                     .collection('discussionchats')
                                     .where('discussionroomid',
                                         isEqualTo: controller
-                                            .discussionRoomModel
-                                            ?.data
-                                            ?.first
-                                            .id)
+                                            .discussionRoomModel.data?.first.id)
                                     .orderBy('timestamp', descending: true)
                                     .snapshots(),
                                 builder: (context,

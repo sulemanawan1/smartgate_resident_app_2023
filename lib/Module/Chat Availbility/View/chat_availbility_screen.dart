@@ -4,6 +4,7 @@ import 'package:userapp/Constants/api_routes.dart';
 import 'package:userapp/Routes/set_routes.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
+
 import '../Controller/chat_availibility_controller.dart';
 import '../Model/ChatRoomUsers.dart';
 
@@ -109,21 +110,24 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                                               .userdata
                                                               .bearerToken!,
                                                         );
-                                                        Get.offAndToNamed(
+                                                        Get.offNamed(
                                                             neighbourchatscreen,
                                                             arguments: [
-                                                              controller.userdata, //Login User
-                                                              controller.resident,
-                                                              snapshot.data.data[index],
-                                                              chatRoomUsers.data!.chatroomid // Chat User
+                                                              controller
+                                                                  .userdata, //Login User
+                                                              controller
+                                                                  .resident,
+                                                              snapshot.data
+                                                                  .data[index],
+                                                              chatRoomUsers
+                                                                  .data!
+                                                                  .chatroomid // Chat User
                                                             ]);
-                                                      }
-
-                                                      else {
+                                                      } else {
                                                         final ChatRoomUsers
-                                                        chatRoomUsers =
-                                                        await controller
-                                                            .fetchchatroomusers(
+                                                            chatRoomUsers =
+                                                            await controller
+                                                                .fetchchatroomusers(
                                                           userid: controller
                                                               .userdata.userId!,
                                                           chatuserid: snapshot
@@ -137,13 +141,19 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                                         Get.toNamed(
                                                             neighbourchatscreen,
                                                             arguments: [
-                                                              controller.userdata,
-                                                              controller.resident,
-                                                              snapshot.data.data[index],
-                                                              chatRoomUsers.data!.chatroomid
+                                                              controller
+                                                                  .userdata,
+                                                              controller
+                                                                  .resident,
+                                                              snapshot.data
+                                                                  .data[index],
+                                                              chatRoomUsers
+                                                                  .data!
+                                                                  .chatroomid
                                                               // Chat User
                                                             ]);
-                                                      }},
+                                                      }
+                                                    },
                                                     title: Text(
                                                         snapshot
                                                                 .data
@@ -158,7 +168,6 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600)),
-
                                                   ),
                                                 ),
                                               ],

@@ -1,23 +1,25 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as Http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as Http;
 import 'package:image_picker/image_picker.dart';
 import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/apartment.dart';
 import 'package:userapp/Module/Signup/Resident%20Address%20Detail/Model/phase.dart';
 import 'package:userapp/Services/Shared%20Preferences/MySharedPreferences.dart';
+
 import '../../../../Constants/api_routes.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../../Login/Model/User.dart';
+import '../Model/block.dart';
 import '../Model/building.dart';
 import '../Model/floor.dart';
+import '../Model/house.dart';
 import '../Model/measurement.dart';
 import '../Model/society.dart';
 import '../Model/street.dart';
-import '../Model/block.dart';
-import '../Model/house.dart';
 
 class ResidentAddressDetailController extends GetxController {
   User? user;
@@ -312,8 +314,7 @@ class ResidentAddressDetailController extends GetxController {
 
     request.headers.addAll(headers);
     if (societyorbuildingval == 'society') {
-      if (residentalType.contains('Rental'))
-      {
+      if (residentalType.contains('Rental')) {
         print('iam inside rental');
         request.fields['residentid'] = residentid.toString();
         request.fields['state'] = state;
@@ -365,18 +366,14 @@ class ResidentAddressDetailController extends GetxController {
               address: address,
               residentid: user.userId!,
               bearerToken: user.bearerToken!);
-          Get.offAndToNamed(homescreen, arguments: user1);
-        }
-        else if (response.statusCode == 409) {
-
+          Get.offNamed(homescreen, arguments: user1);
+        } else if (response.statusCode == 409) {
           isLoading = false;
           update();
           var data = jsonDecode(response.body.toString());
 
           Get.snackbar(data['message'], "");
-
-        }
-        else if (response.statusCode == 403) {
+        } else if (response.statusCode == 403) {
           isLoading = false;
           update();
 
@@ -386,13 +383,10 @@ class ResidentAddressDetailController extends GetxController {
             "Error",
             data.toString(),
           );
-        }
-
-        else {
+        } else {
           Get.snackbar("Failed to Register", "");
         }
-      }
-      else {
+      } else {
         print("Owner");
         request.fields['residentid'] = residentid.toString();
         request.fields['state'] = state;
@@ -442,18 +436,14 @@ class ResidentAddressDetailController extends GetxController {
               address: address,
               residentid: user.userId!,
               bearerToken: user.bearerToken!);
-          Get.offAndToNamed(homescreen, arguments: user1);
-        }
-        else if (response.statusCode == 409) {
-
+          Get.offNamed(homescreen, arguments: user1);
+        } else if (response.statusCode == 409) {
           isLoading = false;
           update();
           var data = jsonDecode(response.body.toString());
 
           Get.snackbar(data['message'], "");
-
-        }
-        else if (response.statusCode == 403) {
+        } else if (response.statusCode == 403) {
           isLoading = false;
           update();
 
@@ -463,19 +453,14 @@ class ResidentAddressDetailController extends GetxController {
             "Error",
             data.toString(),
           );
-        }
-        else {
+        } else {
           isLoading = false;
           update();
 
           Get.snackbar("Failed to Register", "");
         }
       }
-    }
-
-
-
-    else if (societyorbuildingval == 'building') {
+    } else if (societyorbuildingval == 'building') {
       print("Local Building");
       if (residentalType.contains('Rental')) {
         print('iam inside rental local buiulding');
@@ -525,9 +510,8 @@ class ResidentAddressDetailController extends GetxController {
               address: address,
               residentid: user.userId!,
               bearerToken: user.bearerToken!);
-          Get.offAndToNamed(homescreen, arguments: user1);
-        }
-        else if (response.statusCode == 403) {
+          Get.offNamed(homescreen, arguments: user1);
+        } else if (response.statusCode == 403) {
           isLoading = false;
           update();
 
@@ -537,23 +521,17 @@ class ResidentAddressDetailController extends GetxController {
             "Error",
             data.toString(),
           );
-        }
-        else if (response.statusCode == 409) {
-
+        } else if (response.statusCode == 409) {
           isLoading = false;
           update();
-
 
           var data = jsonDecode(response.body.toString());
 
           Get.snackbar(data['message'], "");
-        }
-
-        else {
+        } else {
           Get.snackbar("Failed to Register", "");
         }
-      }
-      else {
+      } else {
         print("ima in else local building ");
         request.fields['residentid'] = residentid.toString();
         request.fields['state'] = state;
@@ -599,9 +577,8 @@ class ResidentAddressDetailController extends GetxController {
               address: address,
               residentid: user.userId!,
               bearerToken: user.bearerToken!);
-          Get.offAndToNamed(homescreen, arguments: user1);
-        }
-        else if (response.statusCode == 403) {
+          Get.offNamed(homescreen, arguments: user1);
+        } else if (response.statusCode == 403) {
           isLoading = false;
           update();
 
@@ -611,21 +588,14 @@ class ResidentAddressDetailController extends GetxController {
             "Error",
             data.toString(),
           );
-        }
-        else if (response.statusCode == 409) {
+        } else if (response.statusCode == 409) {
           isLoading = false;
           update();
-
 
           var data = jsonDecode(response.body.toString());
 
           Get.snackbar(data['message'], "");
-
-
-        }
-
-
-        else {
+        } else {
           isLoading = false;
           update();
 
@@ -672,8 +642,7 @@ class ResidentAddressDetailController extends GetxController {
 
     print(type);
 
-    var response = await Dio().get(
-        Api.viewAllSocieties + '/' + type.toString(),
+    var response = await Dio().get(Api.viewAllSocieties + '/' + type.toString(),
         options: Options(headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer ${token}"
