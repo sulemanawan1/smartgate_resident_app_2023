@@ -122,12 +122,11 @@ class HomeScreenController extends GetxController {
     super.onInit();
 
     NotificationServices notificationServices = NotificationServices();
-    notificationServices.requestNotification();
+    // notificationServices.requestNotification();
     notificationServices.fireBaseInit();
     notificationServices.setupInteractMessage();
     notificationServices.getDeviceToken();
 
-    print('Home Screen Controller Data');
     this.user = data;
     print(user.userId);
     print(user.bearerToken);
@@ -145,15 +144,26 @@ class HomeScreenController extends GetxController {
         'Authorization': "Bearer $token"
       },
     );
-    print(response.body);
+
     var data = jsonDecode(response.body.toString());
+    print(data);
 
     var e = data['data'];
+
+    var societyData = data['data']['societydata'];
+
+    var societyId = societyData[0]['societyid'];
+    var superAdminId = societyData[0]['superadminid'];
+
+    print(societyId);
+    print('superAdminId $superAdminId');
 
     final Residents residents = Residents(
         id: e['id'],
         residentid: e['residentid'],
         subadminid: e['subadminid'],
+        superadminid: superAdminId,
+        societyid: societyId,
         country: e["country"],
         state: e["state"],
         city: e["city"],
@@ -282,9 +292,9 @@ class HomeScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       print("logout successfully");
-      print(data);
+
       MySharedPreferences.deleteUserData();
-      // await FirebaseMessaging.instance.deleteToken();
+
       Get.offAllNamed(loginscreen);
     } else {
       print(data);

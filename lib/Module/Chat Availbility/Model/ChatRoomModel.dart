@@ -1,92 +1,82 @@
-import 'dart:convert';
-/// data : {"id":1,"loginuserid":4,"created_at":"2023-01-22T06:58:33.000000Z","updated_at":"2023-01-22T06:58:33.000000Z"}
-/// success : true
+/// data : [{"loginuserid":1,"chatuserid":6,"updated_at":"2023-05-27T08:55:39.000000Z","created_at":"2023-05-27T08:55:39.000000Z","id":20}]
 
-ChatRoomModel chatRoomModelFromJson(String str) => ChatRoomModel.fromJson(json.decode(str));
-String chatRoomModelToJson(ChatRoomModel data) => json.encode(data.toJson());
 class ChatRoomModel {
   ChatRoomModel({
-      Data? data, 
-      bool? success,}){
-    _data = data;
-    _success = success;
-}
+    this.data,
+  });
 
   ChatRoomModel.fromJson(dynamic json) {
-    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
-    _success = json['success'];
+    if (json['data'] != null) {
+      data = [];
+      json['data'].forEach((v) {
+        data?.add(Data.fromJson(v));
+      });
+    }
   }
-  Data? _data;
-  bool? _success;
-ChatRoomModel copyWith({  Data? data,
-  bool? success,
-}) => ChatRoomModel(  data: data ?? _data,
-  success: success ?? _success,
-);
-  Data? get data => _data;
-  bool? get success => _success;
-
+  List<Data>? data;
+  ChatRoomModel copyWith({
+    List<Data>? data,
+  }) =>
+      ChatRoomModel(
+        data: data ?? this.data,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (_data != null) {
-      map['data'] = _data?.toJson();
+    if (data != null) {
+      map['data'] = data?.map((v) => v.toJson()).toList();
     }
-    map['success'] = _success;
     return map;
   }
-
 }
 
-/// id : 1
-/// loginuserid : 4
-/// created_at : "2023-01-22T06:58:33.000000Z"
-/// updated_at : "2023-01-22T06:58:33.000000Z"
+/// loginuserid : 1
+/// chatuserid : 6
+/// updated_at : "2023-05-27T08:55:39.000000Z"
+/// created_at : "2023-05-27T08:55:39.000000Z"
+/// id : 20
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
 class Data {
   Data({
-      int? id, 
-      int? loginuserid, 
-      String? createdAt, 
-      String? updatedAt,}){
-    _id = id;
-    _loginuserid = loginuserid;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-}
+    this.loginuserid,
+    this.chatuserid,
+    this.updatedAt,
+    this.createdAt,
+    this.id,
+  });
 
   Data.fromJson(dynamic json) {
-    _id = json['id'];
-    _loginuserid = json['loginuserid'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+    loginuserid = json['loginuserid'];
+    chatuserid = json['chatuserid'];
+    updatedAt = json['updated_at'];
+    createdAt = json['created_at'];
+    id = json['id'];
   }
-  int? _id;
-  int? _loginuserid;
-  String? _createdAt;
-  String? _updatedAt;
-Data copyWith({  int? id,
-  int? loginuserid,
-  String? createdAt,
-  String? updatedAt,
-}) => Data(  id: id ?? _id,
-  loginuserid: loginuserid ?? _loginuserid,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-);
-  int? get id => _id;
-  int? get loginuserid => _loginuserid;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
-
+  int? loginuserid;
+  int? chatuserid;
+  String? updatedAt;
+  String? createdAt;
+  int? id;
+  Data copyWith({
+    int? loginuserid,
+    int? chatuserid,
+    String? updatedAt,
+    String? createdAt,
+    int? id,
+  }) =>
+      Data(
+        loginuserid: loginuserid ?? this.loginuserid,
+        chatuserid: chatuserid ?? this.chatuserid,
+        updatedAt: updatedAt ?? this.updatedAt,
+        createdAt: createdAt ?? this.createdAt,
+        id: id ?? this.id,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['loginuserid'] = _loginuserid;
-    map['created_at'] = _createdAt;
-    map['updated_at'] = _updatedAt;
+    map['loginuserid'] = loginuserid;
+    map['chatuserid'] = chatuserid;
+    map['updated_at'] = updatedAt;
+    map['created_at'] = createdAt;
+    map['id'] = id;
     return map;
   }
-
 }

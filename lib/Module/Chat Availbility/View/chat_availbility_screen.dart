@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:userapp/Constants/api_routes.dart';
+import 'package:userapp/Module/Chat%20Availbility/Model/ChatRoomModel.dart';
+import 'package:userapp/Module/Chat%20Screens/Neighbour%20Chat%20Screen/Controller/neighbour_chat_screen_controller.dart';
 import 'package:userapp/Routes/set_routes.dart';
 import 'package:userapp/Widgets/Loader/loader.dart';
 import 'package:userapp/Widgets/My%20Back%20Button/my_back_button.dart';
 
 import '../Controller/chat_availibility_controller.dart';
-import '../Model/ChatRoomUsers.dart';
 
 class ChatAvailbilityScreen extends StatelessWidget {
   @override
@@ -66,93 +67,36 @@ class ChatAvailbilityScreen extends StatelessWidget {
                                                 Expanded(
                                                   child: ListTile(
                                                     onTap: () async {
-                                                      final ChatRoomUsers
-                                                          chatRoomUsers =
-                                                          await controller
-                                                              .fetchchatroomusers(
-                                                        userid: controller
-                                                            .userdata.userId!,
-                                                        chatuserid: snapshot
-                                                            .data
-                                                            .data[index]
-                                                            .residentid,
-                                                        token: controller
-                                                            .userdata
-                                                            .bearerToken!,
-                                                      );
+                                                      final ChatRoomModel
+                                                          chatRoomModel =
+                                                          await controller.createChatRoomApi(
+                                                              token: controller
+                                                                  .userdata
+                                                                  .bearerToken!,
+                                                              userid: controller
+                                                                  .userdata
+                                                                  .userId!,
+                                                              chatuserid: snapshot
+                                                                  .data
+                                                                  .data[index]
+                                                                  .residentid);
 
-                                                      if (chatRoomUsers.data ==
-                                                          null) {
-                                                        await controller
-                                                            .createChatRoomApi(
-                                                                token: controller
-                                                                    .userdata
-                                                                    .bearerToken!,
-                                                                userid: controller
-                                                                    .userdata
-                                                                    .userId!,
-                                                                chatuserid: snapshot
-                                                                    .data
-                                                                    .data[index]
-                                                                    .residentid);
-
-                                                        final ChatRoomUsers
-                                                            chatRoomUsers =
-                                                            await controller
-                                                                .fetchchatroomusers(
-                                                          userid: controller
-                                                              .userdata.userId!,
-                                                          chatuserid: snapshot
-                                                              .data
-                                                              .data[index]
-                                                              .residentid,
-                                                          token: controller
-                                                              .userdata
-                                                              .bearerToken!,
-                                                        );
-                                                        Get.offNamed(
-                                                            neighbourchatscreen,
-                                                            arguments: [
-                                                              controller
-                                                                  .userdata, //Login User
-                                                              controller
-                                                                  .resident,
-                                                              snapshot.data
-                                                                  .data[index],
-                                                              chatRoomUsers
-                                                                  .data!
-                                                                  .chatroomid // Chat User
-                                                            ]);
-                                                      } else {
-                                                        final ChatRoomUsers
-                                                            chatRoomUsers =
-                                                            await controller
-                                                                .fetchchatroomusers(
-                                                          userid: controller
-                                                              .userdata.userId!,
-                                                          chatuserid: snapshot
-                                                              .data
-                                                              .data[index]
-                                                              .residentid,
-                                                          token: controller
-                                                              .userdata
-                                                              .bearerToken!,
-                                                        );
-                                                        Get.toNamed(
-                                                            neighbourchatscreen,
-                                                            arguments: [
-                                                              controller
-                                                                  .userdata,
-                                                              controller
-                                                                  .resident,
-                                                              snapshot.data
-                                                                  .data[index],
-                                                              chatRoomUsers
-                                                                  .data!
-                                                                  .chatroomid
-                                                              // Chat User
-                                                            ]);
-                                                      }
+                                                      Get.offNamed(
+                                                          neighbourchatscreen,
+                                                          arguments: [
+                                                            controller
+                                                                .userdata, //Login User
+                                                            controller
+                                                                .resident, // Resident Details
+                                                            snapshot.data
+                                                                .data[index],
+                                                            chatRoomModel
+                                                                .data!.first.id,
+                                                            ChatTypes.NeighbourChat
+                                                                    .toString()
+                                                                .split('.')
+                                                                .last, // Chat User
+                                                          ]);
                                                     },
                                                     title: Text(
                                                         snapshot

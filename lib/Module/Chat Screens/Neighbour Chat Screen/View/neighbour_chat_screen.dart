@@ -21,8 +21,13 @@ class NeighbourChatScreen extends GetView {
         builder: (controller) {
           return WillPopScope(
             onWillPop: () async {
-              Get.offNamed(chatavailbilityscreen,
-                  arguments: [controller.user, controller.resident]);
+              if (controller.chatType == "NeighbourChat") {
+                Get.offNamed(chatavailbilityscreen,
+                    arguments: [controller.user, controller.resident]);
+              } else if (controller.chatType == "MarketPlaceChat") {
+                Get.offNamed(marketPlaceScreen,
+                    arguments: [controller.user, controller.resident]);
+              }
               return true;
             },
             child: SafeArea(
@@ -86,8 +91,17 @@ class NeighbourChatScreen extends GetView {
                         ],
                       ),
                       onTap: () {
-                        Get.offNamed(chatavailbilityscreen,
-                            arguments: [controller.user, controller.resident]);
+                        if (controller.chatType == "NeighbourChat") {
+                          Get.offNamed(chatavailbilityscreen, arguments: [
+                            controller.user,
+                            controller.resident
+                          ]);
+                        } else if (controller.chatType == "MarketPlaceChat") {
+                          Get.offNamed(marketPlaceScreen, arguments: [
+                            controller.user,
+                            controller.resident
+                          ]);
+                        }
                       },
                     ),
                     Expanded(
@@ -108,7 +122,7 @@ class NeighbourChatScreen extends GetView {
                                     if (data.length == 0) {
                                       return EmptyList(
                                           name:
-                                              "Say Hi! to your Neighbour. 😊 .");
+                                              "Chat away! Your conversation starts here.. 😊 .");
                                     }
                                     return ListView.builder(
                                       reverse: true,
@@ -160,16 +174,8 @@ class NeighbourChatScreen extends GetView {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              // Text(
-                                                              //   data![index]
-                                                              //   ['user']['firstname']
-                                                              //       .toString(),
-                                                              //   style: TextStyle(
-                                                              //       color:
-                                                              //       primaryColor),
-                                                              // ),
                                                               Text(
-                                                                data![index][
+                                                                data[index][
                                                                         'message']
                                                                     .toString(),
                                                                 style: TextStyle(

@@ -49,9 +49,9 @@ class LoginController extends GetxController {
           bearerToken: data['Bearer']);
 
       MySharedPreferences.setUserData(user: user);
-      // final NotificationServices notificationServices = NotificationServices();
-      // final String? token = await notificationServices.getDeviceToken();
-      // fcmtokenrefresh(user.userId!, token!, user.bearerToken!);
+      final NotificationServices notificationServices = NotificationServices();
+      final String? token = await notificationServices.getDeviceToken();
+      fcmtokenrefresh(user.userId!, token!, user.bearerToken!);
       if (user.address == "NA") {
         Get.offAndToNamed(residentaddressdetail, arguments: user);
       } else {

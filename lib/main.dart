@@ -1,12 +1,11 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:pusher_client/pusher_client.dart';
-import 'package:userapp/Routes/routes_managment.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:userapp/Routes/routes_managment.dart';
 import 'package:userapp/Routes/set_routes.dart';
 
 @pragma('vm:entry-point')
@@ -15,17 +14,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
 
-  print("Handling a background message: ${message.messageId}");
+  print("Handling a background message: ${message.notification!.title}");
+  print("Handling a background message: ${message.notification!.body}");
 }
 
-
-const String YOUR_APP_KEY = '3c358bce6465e1821b3b';
-late PusherClient pusher;
-
+// const String YOUR_APP_KEY = '3c358bce6465e1821b3b';
+// late PusherClient pusher;
 
 main() async {
-
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -43,24 +40,23 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
 
     super.initState();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return ScreenUtilInit(
-        designSize: Size(375,812),
-      builder: (context,child) {
+        useInheritedMediaQuery: true,
+        designSize: Size(375, 812),
+        builder: (context, child) {
           return GetMaterialApp(
-
-          debugShowCheckedModeBanner: false,
-          initialRoute: splashscreen,
-          getPages: RouteManagement.getPages(),
-
-
-        );
-      }
-    );
+            debugShowCheckedModeBanner: false,
+            initialRoute: splashscreen,
+            getPages: RouteManagement.getPages(),
+          );
+        });
   }
 }

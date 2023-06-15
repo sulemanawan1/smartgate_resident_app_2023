@@ -13,6 +13,7 @@ import '../../Controller/Report to Admin Controller/report_to_admin_controller.d
 class ReportToAdmin extends GetView {
   @override
   Widget build(BuildContext context) {
+    print('build');
     return SafeArea(
       child: Scaffold(
         body: GetBuilder<AddReportToAdminController>(

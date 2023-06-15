@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,6 +23,59 @@ class HomeScreen extends GetView {
     return SafeArea(
       child: Scaffold(
           key: _scaffoldKey,
+          // floatingActionButton: FloatingActionButton(
+          //   //Floating action button on Scaffold
+          //   onPressed: () {
+          //     //code to execute on button press
+          //   },
+          //   child: Icon(Icons.send), //icon inside button
+          // ),
+          // floatingActionButtonLocation:
+          // FloatingActionButtonLocation.centerDocked,
+          // //floating action button position to center
+          //
+          // bottomNavigationBar: BottomAppBar(
+          //   color: Colors.redAccent,
+          //   shape: CircularNotchedRectangle(),
+          //   padding: EdgeInsets.symmetric(vertical: 10), //shape of notch
+          //   notchMargin:
+          //   8, //notche margin between floating button and bottom appbar
+          //   child: Row(
+          //     //children inside bottom appbar
+          //     mainAxisSize: MainAxisSize.max,
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: <Widget>[
+          //       IconButton(
+          //         icon: Icon(
+          //           Icons.menu,
+          //           color: Colors.white,
+          //         ),
+          //         onPressed: () {},
+          //       ),
+          //       IconButton(
+          //         icon: Icon(
+          //           Icons.search,
+          //           color: Colors.white,
+          //         ),
+          //         onPressed: () {},
+          //       ),
+          //       IconButton(
+          //         icon: Icon(
+          //           Icons.print,
+          //           color: Colors.white,
+          //         ),
+          //         onPressed: () {},
+          //       ),
+          //       IconButton(
+          //         icon: Icon(
+          //           Icons.people,
+          //           color: Colors.white,
+          //         ),
+          //         onPressed: () {},
+          //       ),
+          //     ],
+          //   ),
+          // ),
           drawer: Drawer(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -50,7 +104,8 @@ class HomeScreen extends GetView {
                     color: primaryColor,
                   ),
                   title: Text("Logout"),
-                  onTap: () {
+                  onTap: () async {
+                    await FirebaseMessaging.instance.deleteToken();
                     _homeScreenController.logoutApi(
                         token: _homeScreenController.user.bearerToken!);
                   },
@@ -457,9 +512,10 @@ class HomeScreen extends GetView {
                                                                     0,
                                                                     0),
                                                             child: Image.asset(
-                                                                'assets/report_icon.png',
-                                                                height: 25,
-                                                                width: 25),
+                                                              'assets/report_icon.png',
+                                                              height: 25,
+                                                              width: 25,
+                                                            ),
                                                           ),
                                                           Padding(
                                                             padding:
@@ -519,6 +575,96 @@ class HomeScreen extends GetView {
                                                 ),
                                                 SizedBox(
                                                   width: 21,
+                                                ),
+                                                SizedBox(
+                                                  width: 140,
+                                                  height: 65,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      print(snapshot.data);
+
+                                                      Get.offNamed(
+                                                          marketPlaceScreen,
+                                                          arguments: [
+                                                            _homeScreenController
+                                                                .user,
+                                                            snapshot.data
+                                                          ]);
+                                                    },
+                                                    child: Card(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .fromLTRB(
+                                                                    13,
+                                                                    1,
+                                                                    0,
+                                                                    0),
+                                                            child: Image.asset(
+                                                                'assets/report_icon.png',
+                                                                height: 25,
+                                                                width: 25),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .fromLTRB(
+                                                                    13,
+                                                                    4,
+                                                                    0,
+                                                                    4),
+                                                            child: Text(
+                                                              'Market Place',
+                                                              style: GoogleFonts.ubuntu(
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize: 10,
+                                                                  color: HexColor(
+                                                                      '#585353')),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .fromLTRB(
+                                                                    13,
+                                                                    0,
+                                                                    0,
+                                                                    0),
+                                                            child: Text(
+                                                              'Market Place Buy And Sell',
+                                                              style: GoogleFonts.ubuntu(
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize: 7,
+                                                                  color: HexColor(
+                                                                      '#8A8A8A')),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      elevation: 1.6,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12)),
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1163,6 +1309,80 @@ class HomeScreen extends GetView {
                                           ),
                                           SizedBox(
                                             width: 21,
+                                          ),
+                                          SizedBox(
+                                            width: 140,
+                                            height: 65,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Get.offNamed(addEmergencyScreen,
+                                                    arguments: [
+                                                      _homeScreenController
+                                                          .user,
+                                                      snapshot.data
+                                                    ]);
+                                              },
+                                              child: Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 1, 0, 0),
+                                                      child: Image.asset(
+                                                          'assets/file 3.png',
+                                                          height: 25,
+                                                          width: 25),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 4, 0, 4),
+                                                      child: Text(
+                                                        'Emergency ',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 10,
+                                                                color: HexColor(
+                                                                    '#585353')),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          13, 0, 0, 0),
+                                                      child: Text(
+                                                        'Report Your Emergency',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .normal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize: 7,
+                                                                color: HexColor(
+                                                                    '#8A8A8A')),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                elevation: 1.6,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12)),
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),

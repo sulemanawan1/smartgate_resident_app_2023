@@ -45,6 +45,7 @@ class Api {
   static const String conversations = baseUrl + "conversations";
   static const String createChatRoom = baseUrl + "createchatroom";
   static const String fetchChatroomUsers = baseUrl + "fetchchatroomusers";
+  static const String fetchChatRoom = baseUrl + "fetch-chat-room";
   static const String housesApartmentMeasurements =
       baseUrl + "housesapartmentmeasurements";
 
@@ -71,4 +72,10 @@ class Api {
   static const String monthlyBillUpdateOverDueDateStatus =
       baseUrl + "monthlybillupdateoverduedatestatus";
   static const String searchPreapproveEntry = baseUrl + "searchpreapproventry";
+  static const String viewProducts = baseUrl + "viewProducts";
+  static const String viewSellProductsResidnet =
+      baseUrl + "viewSellProductsResidnet";
+  static const String addProduct = baseUrl + "addProduct";
+  static const String addEmergency = baseUrl + "addEmergency";
+  static const String productSellerInfo = baseUrl + "product-seller-info";
 }
